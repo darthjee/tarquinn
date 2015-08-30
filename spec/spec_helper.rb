@@ -1,7 +1,13 @@
 require 'simplecov'
-SimpleCov.start
+
+SimpleCov.profiles.define 'gem' do
+  add_filter '/spec/'
+end
+
+SimpleCov.start 'gem'
 
 require 'tarquinn'
+require 'pry-nav'
 
 support_files = File.expand_path("spec/support/**/*.rb")
 Dir[support_files].each { |file| require file  }
