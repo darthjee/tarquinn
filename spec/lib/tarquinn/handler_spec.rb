@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Tarquinn::Handler do
-  let(:controller) { double('controller') }
+  let(:controller) { double('controller', true: true, false: false) }
   let(:config) { Tarquinn::Config.new(:redirect_method) }
   let(:subject) { described_class.new config, controller }
 
@@ -42,6 +42,48 @@ describe Tarquinn::Handler do
 
         it do
           expect(subject.perform_redirect?).to be_falsey
+        end
+      end
+    end
+
+    context 'when passing a method name for evaluation' do
+      context 'when method returns true' do
+        before do
+          config.add_redirection_rules :true
+        end
+
+        it do
+          expect(subject.perform_redirect?).to be_truthy
+        end
+
+        context 'but some grant a skip' do
+          before do
+            config.add_skip_rules :true
+          end
+
+          it do
+            expect(subject.perform_redirect?).to be_falsey
+          end
+        end
+      end
+
+      context 'when method returns false' do
+        before do
+          config.add_redirection_rules :false
+        end
+
+        it do
+          expect(subject.perform_redirect?).to be_falsey
+        end
+
+        context 'but some do not grant a skip' do
+          before do
+            config.add_skip_rules :false
+          end
+
+          it do
+            expect(subject.perform_redirect?).to be_falsey
+          end
         end
       end
     end
