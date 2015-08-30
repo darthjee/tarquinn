@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Tarquinn::Handler do
-  let(:controller) { double('controller', true: true, false: false) }
-  let(:config) { Tarquinn::Config.new(:redirect_method) }
+  let(:redirection_path) { '/path' }
+  let(:controller) { double('controller', true: true, false: false, redirect_path: redirection_path) }
+  let(:config) { Tarquinn::Config.new(:redirect_path) }
   let(:subject) { described_class.new config, controller }
 
   describe '#perform_redirect?' do
@@ -85,6 +86,13 @@ describe Tarquinn::Handler do
             expect(subject.perform_redirect?).to be_falsey
           end
         end
+      end
+    end
+
+    describe '#redirect' do
+      it do
+        expect(controller).to receive(:redirect_to).with(redirection_path)
+        subject.redirect
       end
     end
   end
