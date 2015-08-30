@@ -33,24 +33,28 @@ class Tarquinn::Handler
   end
 
   def methods_skip_redirect?
-    skip_methods.any? do |method|
-      controller.send(method)
-    end
+    check_methods(skip_methods)
   end
 
   def blocks_skip_redirect?
-    skip_blocks.any? do |block|
-      block.yield
-    end
+    check_blocks(skip_blocks)
   end
 
   def methods_require_redirect?
+    check_methods(methods)
+  end
+
+  def blocks_require_redirect?
+    check_blocks(blocks)
+  end
+
+  def check_methods(methods)
     methods.any? do |method|
       controller.send(method)
     end
   end
 
-  def blocks_require_redirect?
+  def check_blocks(blocks)
     blocks.any? do |block|
       block.yield
     end
