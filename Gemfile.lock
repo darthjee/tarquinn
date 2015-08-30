@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tarquinn (0.0.1)
+    tarquinn (0.0.2)
       activesupport
 
 GEM
