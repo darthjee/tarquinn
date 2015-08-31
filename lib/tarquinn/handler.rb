@@ -1,7 +1,7 @@
 class Tarquinn::Handler
   attr_accessor :config, :controller
 
-  delegate :methods, :skip_methods, :blocks, :skip_blocks, to: :config
+  delegate :methods, :skip_methods, :redirection_blocks, :skip_blocks, to: :config
 
   def initialize(config, controller)
     @config = config
@@ -29,35 +29,21 @@ class Tarquinn::Handler
   end
 
   def is_redirect?
-    return false if methods_skip_redirect? || blocks_skip_redirect?
-    methods_require_redirect? || blocks_require_redirect?
-  end
-
-  def methods_skip_redirect?
-    check_methods(skip_methods)
+    return false if blocks_skip_redirect?
+    blocks_require_redirect?
   end
 
   def blocks_skip_redirect?
     check_blocks(skip_blocks)
   end
 
-  def methods_require_redirect?
-    check_methods(methods)
-  end
-
   def blocks_require_redirect?
-    check_blocks(blocks)
-  end
-
-  def check_methods(methods)
-    methods.any? do |method|
-      controller.send(method)
-    end
+    check_blocks(redirection_blocks)
   end
 
   def check_blocks(blocks)
     blocks.any? do |block|
-      block.yield
+      block.yield(controller)
     end
   end
 end

@@ -6,28 +6,28 @@ class Tarquinn::Config
   end
 
   def add_redirection_rules(*methods, &block)
-    self.methods.concat methods
-    blocks << block if block_given?
+    redirection_blocks.concat block_methods(methods)
+    redirection_blocks << block if block_given?
   end
 
   def add_skip_rules(*methods, &block)
-    skip_methods.concat methods
+    skip_blocks.concat block_methods(methods)
     skip_blocks << block if block_given?
   end
 
-  def methods
-    @methods ||= []
-  end
-
-  def skip_methods
-    @skip_methods ||= []
-  end
-
-  def blocks
+  def redirection_blocks
     @blocks ||= []
   end
 
   def skip_blocks
     @skip_blocks ||= []
+  end
+
+  private
+
+  def block_methods(methods)
+    methods.map do |method|
+      Proc.new { |controller| controller.send(method) }
+    end
   end
 end
