@@ -8,13 +8,17 @@ class Tarquinn::Engine
 
   def perform_redirect
     return unless perform_redirect?
-    handlers.find { |h| h.perform_redirect? }.redirect
+    handler_redirector.redirect
   end
 
   private
 
   def perform_redirect?
-    handlers.any? { |h| h.perform_redirect? }
+    handler_redirector.present?
+  end
+
+  def handler_redirector
+    @handler_redirector ||= handlers.find { |h| h.perform_redirect? }
   end
 
   def handlers
