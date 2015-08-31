@@ -13,6 +13,10 @@ class Tarquinn::DummyController
 
   private
 
+  def params
+    { action: 'show' }
+  end
+
   def true
     true
   end
