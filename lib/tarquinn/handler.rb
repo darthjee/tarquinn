@@ -9,8 +9,8 @@ class Tarquinn::Handler
   end
 
   def perform_redirect?
-    @perform_redirect = is_redirect? if @perform_redirect.nil?
-    @perform_redirect
+    return @perform_redirect unless @perform_redirect.nil?
+    @perform_redirect = is_redirect?
   end
 
   def redirect
