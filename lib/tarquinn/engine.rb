@@ -6,16 +6,16 @@ class Tarquinn::Engine
     @controller = controller
   end
 
-  def perform_redirect?
-    handlers.any? { |h| h.perform_redirect? }
-  end
-
   def perform_redirect
     return unless perform_redirect?
     handlers.find { |h| h.perform_redirect? }.redirect
   end
 
   private
+
+  def perform_redirect?
+    handlers.any? { |h| h.perform_redirect? }
+  end
 
   def handlers
     @handlers ||= build_handlers
