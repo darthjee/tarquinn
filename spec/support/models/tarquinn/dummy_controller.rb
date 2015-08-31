@@ -1,4 +1,4 @@
-class Tarquinn::Controller
+class Tarquinn::DummyController
   def self.before_action(_)
   end
 
@@ -12,6 +12,10 @@ class Tarquinn::Controller
   end
 
   private
+
+  def params
+    { action: 'show' }
+  end
 
   def true
     true

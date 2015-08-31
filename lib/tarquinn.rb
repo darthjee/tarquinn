@@ -4,6 +4,7 @@ require 'active_support/core_ext'
 module Tarquinn
   require 'tarquinn/version'
   require 'tarquinn/handler'
+  require 'tarquinn/controller'
   require 'tarquinn/config'
   require 'tarquinn/engine'
   require 'tarquinn/builder'

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Tarquinn do
-  let(:controller) { Tarquinn::Controller.new }
+  let(:controller) { Tarquinn::DummyController.new }
 
   describe 'redirection' do
     context 'when configuration calls for a method that allows redirection' do
