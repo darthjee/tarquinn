@@ -1,7 +1,7 @@
 class Tarquinn::Handler
   attr_accessor :config, :controller
 
-  delegate :methods, :skip_methods, :redirection_blocks, :skip_blocks, to: :config
+  delegate :redirection_blocks, :skip_blocks, to: :config
 
   def initialize(config, controller)
     @config = config
