@@ -13,6 +13,14 @@ class Tarquinn::Controller
 
   private
 
+  def true
+    true
+  end
+
+  def false
+    false
+  end
+
   def redirection_path
     '/path'
   end
