@@ -30,7 +30,7 @@ Getting started
       end
 
       def loggin_needed?
-        user.present?
+        user.nil?
       end
     end
 
