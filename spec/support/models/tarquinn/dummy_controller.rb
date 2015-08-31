@@ -1,4 +1,4 @@
-class Tarquinn::Controller
+class Tarquinn::DummyController
   def self.before_action(_)
   end
 
