@@ -38,10 +38,6 @@ class Tarquinn::Config
   end
 
   def block_routes(routes)
-    routes.map do |route|
-      Tarquinn::ProcRunner.new do |controller|
-        controller.params[:action] == route
-      end
-    end
+    [ Tarquinn::ProcRunner::ActionChecker.new(routes) ]
   end
 end
