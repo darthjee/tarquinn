@@ -5,6 +5,7 @@ module Tarquinn
   require 'tarquinn/version'
   require 'tarquinn/handler'
   require 'tarquinn/controller'
+  require 'tarquinn/proc_runner'
   require 'tarquinn/config'
   require 'tarquinn/engine'
   require 'tarquinn/builder'

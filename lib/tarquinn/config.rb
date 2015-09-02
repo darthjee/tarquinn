@@ -31,7 +31,7 @@ class Tarquinn::Config
 
   def block_methods(methods)
     methods.map do |method|
-      Proc.new do |controller|
+      Tarquinn::ProcRunner.new do |controller|
         controller.call(method)
       end
     end
@@ -39,7 +39,7 @@ class Tarquinn::Config
 
   def block_routes(routes)
     routes.map do |route|
-      Proc.new do |controller|
+      Tarquinn::ProcRunner.new do |controller|
         controller.params[:action] == route
       end
     end
