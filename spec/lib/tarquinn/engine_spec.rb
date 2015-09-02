@@ -9,7 +9,9 @@ describe Tarquinn::Engine do
   let(:config) { Tarquinn::Config.new(:redirect_path) }
   let(:config2) { Tarquinn::Config.new(:redirect_path2) }
   let(:configs) { { redirect_path: config, redirect_path2: config2 } }
-  let(:subject) { described_class.new configs, controller }
+  let(:subject) do
+    described_class.new configs, Tarquinn::Controller.new(controller)
+  end
 
   describe '#perform_redirect' do
     context 'when no redirection should be performed' do

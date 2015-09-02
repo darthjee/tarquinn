@@ -8,6 +8,7 @@ class Tarquinn::Builder
   end
 
   def build(controller)
+    controller = Tarquinn::Controller.new(controller)
     Tarquinn::Engine.new(configs, controller)
   end
 

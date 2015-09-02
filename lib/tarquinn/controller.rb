@@ -1,4 +1,4 @@
-class Tarquinn::ParamsHandler
+class Tarquinn::Controller
   attr_reader :controller
 
   def initialize(controller)
@@ -9,7 +9,11 @@ class Tarquinn::ParamsHandler
     @params ||= controller.send(:params)
   end
 
-  def call(method)
-    controller.send(method)
+  def call(method, *args)
+    controller.send(method, *args)
+  end
+
+  def has_method?(method)
+    controller.respond_to?(method, true)
   end
 end

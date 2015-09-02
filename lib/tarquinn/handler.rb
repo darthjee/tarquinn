@@ -14,7 +14,7 @@ class Tarquinn::Handler
   end
 
   def redirect
-    controller.send(:redirect_to, redirect_path)
+    controller.call(:redirect_to, redirect_path)
   end
 
   private
@@ -24,8 +24,8 @@ class Tarquinn::Handler
   end
 
   def redirect_path
-    return redirect_method unless controller.respond_to?(redirect_method, true)
-    controller.send redirect_method
+    return redirect_method unless controller.has_method?(redirect_method)
+    controller.call redirect_method
   end
 
   def is_redirect?
