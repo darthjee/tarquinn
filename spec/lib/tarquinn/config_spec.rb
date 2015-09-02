@@ -12,6 +12,11 @@ describe Tarquinn::Config do
       end
 
       it do
+        subject.add_redirection_rules(:methods)
+        expect(subject.redirection_blocks.last).to be_a(Tarquinn::ProcRunner::MethodCaller)
+      end
+
+      it do
         expect do
           subject.add_redirection_rules(:methods)
         end.not_to change { subject.skip_blocks }
@@ -23,6 +28,11 @@ describe Tarquinn::Config do
         expect do
           subject.add_redirection_rules { true }
         end.to change { subject.redirection_blocks }
+      end
+
+      it do
+          subject.add_redirection_rules { true }
+        expect(subject.redirection_blocks.last).to be_a(Tarquinn::ProcRunner)
       end
 
       it do
@@ -46,6 +56,11 @@ describe Tarquinn::Config do
           subject.add_skip_rules(:methods)
         end.not_to change { subject.redirection_blocks }
       end
+
+      it do
+        subject.add_skip_rules(:methods)
+        expect(subject.skip_blocks.last).to be_a(Tarquinn::ProcRunner::MethodCaller)
+      end
     end
 
     context 'when passing only a block' do
@@ -59,6 +74,11 @@ describe Tarquinn::Config do
         expect do
           subject.add_skip_rules { true }
         end.not_to change { subject.redirection_blocks }
+      end
+
+      it do
+        subject.add_skip_rules { true }
+        expect(subject.skip_blocks.last).to be_a(Tarquinn::ProcRunner)
       end
     end
   end
