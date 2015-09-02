@@ -6,16 +6,16 @@ class Tarquinn::Config
   end
 
   def add_skip_route(*routes)
-    skip_blocks.concat block_routes(routes)
+    skip_blocks << block_routes(routes)
   end
 
   def add_redirection_rules(*methods, &block)
-    redirection_blocks.concat block_methods(methods)
+    redirection_blocks << block_methods(methods)
     redirection_blocks << block if block_given?
   end
 
   def add_skip_rules(*methods, &block)
-    skip_blocks.concat block_methods(methods)
+    skip_blocks << block_methods(methods)
     skip_blocks << block if block_given?
   end
 
@@ -30,14 +30,10 @@ class Tarquinn::Config
   private
 
   def block_methods(methods)
-    methods.map do |method|
-      Tarquinn::ProcRunner.new do |controller|
-        controller.call(method)
-      end
-    end
+    Tarquinn::ProcRunner::MethodCaller.new(methods)
   end
 
   def block_routes(routes)
-    [ Tarquinn::ProcRunner::ActionChecker.new(routes) ]
+    Tarquinn::ProcRunner::ActionChecker.new(routes)
   end
 end

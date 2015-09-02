@@ -1,5 +1,6 @@
 class Tarquinn::ProcRunner
   require 'tarquinn/proc_runner/action_checker'
+  require 'tarquinn/proc_runner/method_caller'
 
   delegate :yield, to: :@block
 
