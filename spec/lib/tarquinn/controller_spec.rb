@@ -16,4 +16,24 @@ describe Tarquinn::Controller do
       expect(subject.params).to eq(action: 'show')
     end
   end
+
+  describe '#has_method?' do
+    context 'when calling for a public method that exists' do
+      it do
+        expect(subject.has_method?(:parse_request)).to be_truthy
+      end
+    end
+
+    context 'when calling for a private method that exists' do
+      it do
+        expect(subject.has_method?(:redirection_path)).to be_truthy
+      end
+    end
+
+    context 'when calling for a non existing method' do
+      it do
+        expect(subject.has_method?(:non_existing)).to be_falsey
+      end
+    end
+  end
 end
