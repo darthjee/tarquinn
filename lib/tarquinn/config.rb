@@ -5,7 +5,7 @@ class Tarquinn::Config
     @redirect = redirect
   end
 
-  def add_skip_route(*routes)
+  def add_skip_action(*routes)
     skip_blocks << block_routes(routes)
   end
 

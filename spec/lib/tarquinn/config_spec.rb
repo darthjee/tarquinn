@@ -82,4 +82,24 @@ describe Tarquinn::Config do
       end
     end
   end
+
+  describe '#add_skip_action' do
+    it do
+      expect do
+        subject.add_skip_action(:methods)
+      end.to change { subject.skip_blocks }
+    end
+
+    it do
+      expect do
+        subject.add_skip_action(:methods)
+      end.not_to change { subject.redirection_blocks }
+    end
+
+    it do
+      subject.add_skip_action(:methods)
+      expect(subject.skip_blocks.last).to be_a(Tarquinn::ProcRunner::ActionChecker)
+    end
+
+  end
 end
