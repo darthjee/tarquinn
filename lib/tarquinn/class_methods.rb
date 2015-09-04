@@ -1,4 +1,8 @@
 module Tarquinn::ClassMethods
+  def skip_redirection(redirection, *actions)
+    redirector_builder.add_skip_action(redirection, *actions)
+  end
+
   def redirection_rule(redirection, *methods, &block)
     redirector_builder.add_redirection_config(redirection, *methods, block)
   end
