@@ -32,7 +32,7 @@ describe Tarquinn::Config do
   end
 
   describe '#add_skip_action' do
-    it_behaves_like 'a method that adds a skip rule', Tarquinn::ProcRunner::ActionChecker do
+    it_behaves_like 'a method that adds a skip rule', Tarquinn::Condition::ActionChecker do
       let(:call_method) { subject.add_skip_action(:methods) }
     end
   end

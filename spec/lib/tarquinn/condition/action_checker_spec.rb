@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tarquinn::ProcRunner::ActionChecker do
+describe Tarquinn::Condition::ActionChecker do
   let(:dummy_controller) { Tarquinn::DummyController.new }
   let(:controller) { Tarquinn::Controller.new(dummy_controller) }
 

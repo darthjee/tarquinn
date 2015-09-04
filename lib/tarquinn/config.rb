@@ -34,6 +34,6 @@ class Tarquinn::Config
   end
 
   def block_routes(routes)
-    Tarquinn::ProcRunner::ActionChecker.new(routes)
+    Tarquinn::Condition::ActionChecker.new(routes)
   end
 end

@@ -1,4 +1,4 @@
-class Tarquinn::ProcRunner::ActionChecker
+class Tarquinn::Condition::ActionChecker
   attr_accessor :routes
 
   def initialize(routes)
