@@ -30,7 +30,7 @@ class Tarquinn::Config
   private
 
   def block_methods(methods)
-    Tarquinn::ProcRunner::MethodCaller.new(methods)
+    Tarquinn::Condition::MethodCaller.new(methods)
   end
 
   def block_routes(routes)

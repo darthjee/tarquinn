@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tarquinn::ProcRunner::MethodCaller do
+describe Tarquinn::Condition::MethodCaller do
   let(:dummy_controller) { Tarquinn::DummyController.new }
   let(:controller) { Tarquinn::Controller.new(dummy_controller) }
 

@@ -1,4 +1,4 @@
-class Tarquinn::ProcRunner::MethodCaller
+class Tarquinn::Condition::MethodCaller
   attr_accessor :methods
 
   def initialize(methods)
