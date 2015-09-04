@@ -1,4 +1,8 @@
 class Tarquinn::Builder
+  def add_skip_action(redirection, *actions)
+    config_for(redirection).add_skip_action(*actions)
+  end
+
   def add_redirection_config(redirection, *methods, block)
     config_for(redirection).add_redirection_rules(*methods, &block)
   end
@@ -8,6 +12,7 @@ class Tarquinn::Builder
   end
 
   def build(controller)
+    controller = Tarquinn::Controller.new(controller)
     Tarquinn::Engine.new(configs, controller)
   end
 

@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe Tarquinn::Handler do
   let(:redirection_path) { '/path' }
-  let(:controller) { Tarquinn::Controller.new }
+  let(:controller) { Tarquinn::DummyController.new }
   let(:config) { Tarquinn::Config.new(:redirection_path) }
-  let(:subject) { described_class.new config, controller }
+  let(:subject) do
+    described_class.new config, Tarquinn::Controller.new(controller)
+  end
 
   describe '#perform_redirect?' do
     context 'when rules allow for redirection' do

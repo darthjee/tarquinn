@@ -1,9 +1,10 @@
-class Tarquinn::Controller
+class Tarquinn::DummyController
   def self.before_action(_)
   end
 
   include Tarquinn
 
+  skip_redirection :redirection_path, :route_method
   redirection_rule :redirection_path, :should_redirect?
   skip_redirection_rule :redirection_path, :should_skip_redirect?
 
@@ -12,6 +13,10 @@ class Tarquinn::Controller
   end
 
   private
+
+  def params
+    { action: 'show' }
+  end
 
   def true
     true
