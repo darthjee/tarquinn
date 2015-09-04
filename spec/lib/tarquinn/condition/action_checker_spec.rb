@@ -11,7 +11,7 @@ describe Tarquinn::Condition::ActionChecker do
     context 'when receiving a request for the given action' do
       context 'but it was configured with a symbol' do
         it do
-          expect(subject.yield(controller)).to be_truthy
+          expect(subject.check?(controller)).to be_truthy
         end
       end
 
@@ -19,7 +19,7 @@ describe Tarquinn::Condition::ActionChecker do
         let(:route) { 'show' }
 
         it do
-          expect(subject.yield(controller)).to be_truthy
+          expect(subject.check?(controller)).to be_truthy
         end
       end
     end
@@ -28,7 +28,7 @@ describe Tarquinn::Condition::ActionChecker do
       let(:route) { :view }
 
       it do
-        expect(subject.yield(controller)).to be_falsey
+        expect(subject.check?(controller)).to be_falsey
       end
     end
   end
@@ -39,14 +39,14 @@ describe Tarquinn::Condition::ActionChecker do
 
     context 'when receiving a request for one of the given action' do
       it do
-        expect(subject.yield(controller)).to be_truthy
+        expect(subject.check?(controller)).to be_truthy
       end
     end
 
     context 'when receiving a request for another action' do
       let(:routes) { [ :update, :view ] }
       it do
-        expect(subject.yield(controller)).to be_falsey
+        expect(subject.check?(controller)).to be_falsey
       end
     end
   end

@@ -10,7 +10,7 @@ describe Tarquinn::Condition::MethodCaller do
 
     context 'when method returns true' do
       it do
-        expect(subject.yield(controller)).to be_truthy
+        expect(subject.check?(controller)).to be_truthy
       end
     end
 
@@ -18,7 +18,7 @@ describe Tarquinn::Condition::MethodCaller do
       let(:method) { :false }
 
       it do
-        expect(subject.yield(controller)).to be_falsey
+        expect(subject.check?(controller)).to be_falsey
       end
     end
   end
@@ -29,21 +29,21 @@ describe Tarquinn::Condition::MethodCaller do
 
     context 'when one return true and the other false' do
       it do
-        expect(subject.yield(controller)).to be_truthy
+        expect(subject.check?(controller)).to be_truthy
       end
     end
 
     context 'when all return true' do
       let(:methods) { [ :true, :true ] }
       it do
-        expect(subject.yield(controller)).to be_truthy
+        expect(subject.check?(controller)).to be_truthy
       end
     end
 
     context 'when all return false' do
       let(:methods) { [ :false, :false ] }
       it do
-        expect(subject.yield(controller)).to be_falsey
+        expect(subject.check?(controller)).to be_falsey
       end
     end
   end

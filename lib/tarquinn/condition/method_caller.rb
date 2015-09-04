@@ -5,7 +5,7 @@ class Tarquinn::Condition::MethodCaller
     @methods = [ methods ].flatten
   end
 
-  def yield(controller)
+  def check?(controller)
     methods.any? do |method|
       controller.call(method)
     end

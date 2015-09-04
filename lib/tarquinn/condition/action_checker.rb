@@ -5,7 +5,7 @@ class Tarquinn::Condition::ActionChecker
     @routes = [ routes ].flatten.map(&:to_s)
   end
 
-  def yield(controller)
+  def check?(controller)
     routes.include? controller.params[:action]
   end
 end

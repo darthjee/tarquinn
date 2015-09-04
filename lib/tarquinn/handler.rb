@@ -43,7 +43,7 @@ class Tarquinn::Handler
 
   def check_blocks(blocks)
     blocks.any? do |block|
-      block.yield(controller)
+      block.check?(controller)
     end
   end
 end
