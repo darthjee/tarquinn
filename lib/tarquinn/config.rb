@@ -11,12 +11,12 @@ class Tarquinn::Config
 
   def add_redirection_rules(*methods, &block)
     redirection_blocks << block_methods(methods)
-    redirection_blocks << Tarquinn::ProcRunner.new(&block) if block_given?
+    redirection_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
   end
 
   def add_skip_rules(*methods, &block)
     skip_blocks << block_methods(methods)
-    skip_blocks << Tarquinn::ProcRunner.new(&block) if block_given?
+    skip_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
   end
 
   def redirection_blocks

@@ -11,7 +11,7 @@ describe Tarquinn::Config do
     end
 
     context 'when passing only a block' do
-      it_behaves_like 'a method that adds a redirection rule', Tarquinn::ProcRunner do
+      it_behaves_like 'a method that adds a redirection rule', Tarquinn::Condition::ProcRunner do
         let(:call_method) { subject.add_redirection_rules { true } }
       end
     end
@@ -25,7 +25,7 @@ describe Tarquinn::Config do
     end
 
     context 'when passing only a block' do
-      it_behaves_like 'a method that adds a skip rule', Tarquinn::ProcRunner do
+      it_behaves_like 'a method that adds a skip rule', Tarquinn::Condition::ProcRunner do
         let(:call_method) { subject.add_skip_rules { true } }
       end
     end

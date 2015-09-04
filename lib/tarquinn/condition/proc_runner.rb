@@ -1,4 +1,4 @@
-class Tarquinn::ProcRunner
+class Tarquinn::Condition::ProcRunner
   delegate :yield, to: :@block
 
   def initialize(&block)
