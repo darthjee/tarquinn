@@ -11,18 +11,17 @@ shared_examples 'a method that adds a rule' do |rule, expected_class|
   it do
     expect do
       call_method
-    end.to change { subject.public_send("#{rule}_blocks" ) }
+    end.to change { subject.public_send("#{rule}_blocks") }
   end
 
   it do
     call_method
-    expect(subject.public_send("#{rule}_blocks" ).last).to be_a(expected_class)
+    expect(subject.public_send("#{rule}_blocks").last).to be_a(expected_class)
   end
 
   it do
     expect do
       call_method
-    end.not_to change { subject.public_send("#{reverse_rule}_blocks" ) }
+    end.not_to change { subject.public_send("#{reverse_rule}_blocks") }
   end
 end
-

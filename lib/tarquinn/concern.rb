@@ -12,6 +12,6 @@ module Tarquinn
   end
 
   def perform_redirection
-     redirector_engine.perform_redirect
+    redirector_engine.perform_redirect
   end
 end

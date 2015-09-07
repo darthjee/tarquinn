@@ -34,7 +34,7 @@ describe Tarquinn::Condition::ActionChecker do
   end
 
   context 'when initialized with more routes' do
-    let(:routes) { [ :show, :view ] }
+    let(:routes) { [:show, :view] }
     let(:subject) { described_class.new(routes) }
 
     context 'when receiving a request for one of the given action' do
@@ -44,7 +44,7 @@ describe Tarquinn::Condition::ActionChecker do
     end
 
     context 'when receiving a request for another action' do
-      let(:routes) { [ :update, :view ] }
+      let(:routes) { [:update, :view] }
       it do
         expect(subject.check?(controller)).to be_falsey
       end

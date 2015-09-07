@@ -18,7 +18,7 @@ class Tarquinn::Engine
   end
 
   def handler_redirector
-    @handler_redirector ||= handlers.find { |h| h.perform_redirect? }
+    @handler_redirector ||= handlers.find(&:perform_redirect?)
   end
 
   def handlers
@@ -26,6 +26,6 @@ class Tarquinn::Engine
   end
 
   def build_handlers
-    configs.map { |_,c| Tarquinn::Handler.new(c, controller) }
+    configs.map { |_, c| Tarquinn::Handler.new(c, controller) }
   end
 end

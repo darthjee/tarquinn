@@ -2,7 +2,7 @@ class Tarquinn::Condition::MethodCaller
   attr_accessor :methods
 
   def initialize(methods)
-    @methods = [ methods ].flatten
+    @methods = [methods].flatten
   end
 
   def check?(controller)

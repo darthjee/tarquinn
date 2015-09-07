@@ -24,7 +24,7 @@ describe Tarquinn::Condition::MethodCaller do
   end
 
   context 'when initialized with more methods' do
-    let(:methods) { [ :true, :false ] }
+    let(:methods) { [:true, :false] }
     let(:subject) { described_class.new(methods) }
 
     context 'when one return true and the other false' do
@@ -34,14 +34,14 @@ describe Tarquinn::Condition::MethodCaller do
     end
 
     context 'when all return true' do
-      let(:methods) { [ :true, :true ] }
+      let(:methods) { [:true, :true] }
       it do
         expect(subject.check?(controller)).to be_truthy
       end
     end
 
     context 'when all return false' do
-      let(:methods) { [ :false, :false ] }
+      let(:methods) { [:false, :false] }
       it do
         expect(subject.check?(controller)).to be_falsey
       end

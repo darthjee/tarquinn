@@ -12,16 +12,16 @@ Gem::Specification.new do |gem|
   gem.description   = 'Gem for easy redirection controll'
   gem.summary       = gem.description
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f)  }
   gem.test_files    = gem.files.grep(%r{^(test|gem|features)/})
-  gem.require_paths = ["lib"]
+  gem.require_paths = ['lib']
 
   gem.add_runtime_dependency 'activesupport'
 
-  gem.add_development_dependency "bundler", "~> 1.6"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec", "~> 2.14"
+  gem.add_development_dependency 'bundler', '~> 1.6'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec', '~> 2.14'
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'pry-nav'
