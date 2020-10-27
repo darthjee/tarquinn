@@ -1,5 +1,17 @@
 Tarquinn
 ========
+[![Build Status](https://circleci.com/gh/darthjee/tarquinn.svg?style=shield)](https://circleci.com/gh/darthjee/tarquinn)
+[![Code Climate](https://codeclimate.com/github/darthjee/tarquinn/badges/gpa.svg)](https://codeclimate.com/github/darthjee/tarquinn)
+[![Test Coverage](https://codeclimate.com/github/darthjee/tarquinn/badges/coverage.svg)](https://codeclimate.com/github/darthjee/tarquinn/coverage)
+[![Issue Count](https://codeclimate.com/github/darthjee/tarquinn/badges/issue_count.svg)](https://codeclimate.com/github/darthjee/tarquinn)
+[![Gem Version](https://badge.fury.io/rb/tarquinn.svg)](https://badge.fury.io/rb/tarquinn)
+[![Inline docs](http://inch-ci.org/github/darthjee/tarquinn.svg)](http://inch-ci.org/github/darthjee/tarquinn)
+
+![tarquinn](https://raw.githubusercontent.com/darthjee/tarquinn/master/tarquinn.jpg)
+
+Yard Documentation
+-------------------
+[https://www.rubydoc.info/gems/tarquinn/0.2.0](https://www.rubydoc.info/gems/tarquinn/0.2.0)
 
 This gem makes easier to controll generic redirection
 
