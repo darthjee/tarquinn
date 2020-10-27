@@ -19,10 +19,10 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'activesupport'
 
-  gem.add_development_dependency 'bundler', '~> 1.6'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec', '~> 2.14'
-  gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'pry-nav'
+  gem.add_development_dependency 'bundler',   '~> 1.16.1'
+  gem.add_development_dependency 'rake',      '~> 13.0.1'
+  gem.add_development_dependency 'rspec',     '~> 3.9.0'
+  gem.add_development_dependency 'simplecov', '~> 0.17.1'
+  gem.add_development_dependency 'pry',       '~> 0.12.2'
+  gem.add_development_dependency 'pry-nav',   '~> 0.3.0'
 end
