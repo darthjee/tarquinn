@@ -1,11 +1,17 @@
-class Tarquinn::Condition::ProcRunner
-  attr_reader :block
+# frozen_string_literal: true
 
-  def initialize(&block)
-    @block = block
-  end
+module Tarquinn
+  module Condition
+    class ProcRunner
+      attr_reader :block
 
-  def check?(controller)
-    block.yield(controller)
+      def initialize(&block)
+        @block = block
+      end
+
+      def check?(controller)
+        block.yield(controller)
+      end
+    end
   end
 end

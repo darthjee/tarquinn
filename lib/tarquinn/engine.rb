@@ -1,31 +1,36 @@
-class Tarquinn::Engine
-  attr_reader :configs, :controller
+# frozen_string_literal: true
 
-  def initialize(configs, controller)
-    @configs = configs
-    @controller = controller
-  end
+module Tarquinn
+  class Engine
+    attr_reader :configs, :controller
 
-  def perform_redirect
-    return unless perform_redirect?
-    handler_redirector.redirect
-  end
+    def initialize(configs, controller)
+      @configs = configs
+      @controller = controller
+    end
 
-  private
+    def perform_redirect
+      return unless perform_redirect?
 
-  def perform_redirect?
-    handler_redirector.present?
-  end
+      handler_redirector.redirect
+    end
 
-  def handler_redirector
-    @handler_redirector ||= handlers.find(&:perform_redirect?)
-  end
+    private
 
-  def handlers
-    @handlers ||= build_handlers
-  end
+    def perform_redirect?
+      handler_redirector.present?
+    end
 
-  def build_handlers
-    configs.map { |_, c| Tarquinn::Handler.new(c, controller) }
+    def handler_redirector
+      @handler_redirector ||= handlers.find(&:perform_redirect?)
+    end
+
+    def handlers
+      @handlers ||= build_handlers
+    end
+
+    def build_handlers
+      configs.map { |_, c| Tarquinn::Handler.new(c, controller) }
+    end
   end
 end

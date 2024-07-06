@@ -1,49 +1,56 @@
-class Tarquinn::Handler
-  attr_accessor :config, :controller
+# frozen_string_literal: true
 
-  delegate :redirection_blocks, :skip_blocks, to: :config
+module Tarquinn
+  class Handler
+    attr_accessor :config, :controller
 
-  def initialize(config, controller)
-    @config = config
-    @controller = controller
-  end
+    delegate :redirection_blocks, :skip_blocks, to: :config
 
-  def perform_redirect?
-    return @perform_redirect unless @perform_redirect.nil?
-    @perform_redirect = is_redirect?
-  end
+    def initialize(config, controller)
+      @config = config
+      @controller = controller
+    end
 
-  def redirect
-    controller.call(:redirect_to, redirect_path)
-  end
+    def perform_redirect?
+      return @perform_redirect unless @perform_redirect.nil?
 
-  private
+      @perform_redirect = is_redirect?
+    end
 
-  def redirect_method
-    config.redirect
-  end
+    def redirect
+      controller.call(:redirect_to, redirect_path)
+    end
 
-  def redirect_path
-    return redirect_method unless controller.has_method?(redirect_method)
-    controller.call redirect_method
-  end
+    private
 
-  def is_redirect?
-    return false if blocks_skip_redirect?
-    blocks_require_redirect?
-  end
+    def redirect_method
+      config.redirect
+    end
 
-  def blocks_skip_redirect?
-    check_blocks(skip_blocks)
-  end
+    def redirect_path
+      return redirect_method unless controller.has_method?(redirect_method)
 
-  def blocks_require_redirect?
-    check_blocks(redirection_blocks)
-  end
+      controller.call redirect_method
+    end
 
-  def check_blocks(blocks)
-    blocks.any? do |block|
-      block.check?(controller)
+    def is_redirect?
+      return false if blocks_skip_redirect?
+
+      blocks_require_redirect?
+    end
+
+    def blocks_skip_redirect?
+      check_blocks(skip_blocks)
+    end
+
+    def blocks_require_redirect?
+      check_blocks(redirection_blocks)
+    end
+
+    def check_blocks(blocks)
+      blocks.any? do |block|
+        block.check?(controller)
+      end
     end
   end
 end

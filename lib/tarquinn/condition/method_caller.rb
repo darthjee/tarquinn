@@ -1,13 +1,19 @@
-class Tarquinn::Condition::MethodCaller
-  attr_accessor :methods
+# frozen_string_literal: true
 
-  def initialize(methods)
-    @methods = [methods].flatten
-  end
+module Tarquinn
+  module Condition
+    class MethodCaller
+      attr_accessor :methods
 
-  def check?(controller)
-    methods.any? do |method|
-      controller.call(method)
+      def initialize(methods)
+        @methods = [methods].flatten
+      end
+
+      def check?(controller)
+        methods.any? do |method|
+          controller.call(method)
+        end
+      end
     end
   end
 end
