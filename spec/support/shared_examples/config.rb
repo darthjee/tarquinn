@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'a method that adds a redirection rule' do |expected_class|
   it_behaves_like 'a method that adds a rule', :redirection, expected_class
 end
