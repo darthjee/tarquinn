@@ -10,5 +10,6 @@ gem 'rspec',       '~> 3.12.0'
 gem 'simplecov',   '~> 0.22.0'
 gem 'rails',       '7.0.4.3'
 gem 'rspec-rails', '6.0.2'
+gem 'sqlite3',     '1.4.2'
 
 gemspec
