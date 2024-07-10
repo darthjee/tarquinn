@@ -3,6 +3,24 @@
 require 'spec_helper'
 
 describe Tarquinn, type: :controller do
+  describe '.redirection_rule' do
+    controller(Tarquinn::DummyRouteController) {}
+
+    before do
+      get :index, params: parameters
+    end
+
+    context 'with basic rule' do
+      context 'when request indicates a redirection' do
+        let(:parameters) { { should_redirect: true } }
+
+        it 'Performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+    end
+  end
+
   describe 'redirection' do
     let(:controller) { Tarquinn::DummyController.new }
 
