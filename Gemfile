@@ -8,5 +8,6 @@ gem 'pry-nav',   '~> 1.0.0'
 gem 'rake',      '~> 13.1.0'
 gem 'rspec',     '~> 3.12.0'
 gem 'simplecov', '~> 0.22.0'
+gem 'rails',     '7.0.4.3'
 
 gemspec
