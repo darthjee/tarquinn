@@ -12,7 +12,7 @@ require 'tarquinn'
 require 'pry-nav'
 
 support_files = File.expand_path('spec/support/**/*.rb')
-Dir[support_files].each { |file| require file  }
+Dir[support_files].each { |file| require file }
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -22,6 +22,6 @@ RSpec.configure do |config|
 
   config.order = 'random'
 
-  config.before do
-  end
+  # config.before do
+  # end
 end

@@ -14,7 +14,7 @@ module Tarquinn
     def perform_redirect?
       return @perform_redirect unless @perform_redirect.nil?
 
-      @perform_redirect = is_redirect?
+      @perform_redirect = redirect?
     end
 
     def redirect
@@ -28,12 +28,12 @@ module Tarquinn
     end
 
     def redirect_path
-      return redirect_method unless controller.has_method?(redirect_method)
+      return redirect_method unless controller.method?(redirect_method)
 
       controller.call redirect_method
     end
 
-    def is_redirect?
+    def redirect?
       return false if blocks_skip_redirect?
 
       blocks_require_redirect?

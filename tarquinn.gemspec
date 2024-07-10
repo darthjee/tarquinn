@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/darthje/tarquinn'
   gem.description   = 'Gem for easy redirection controll'
   gem.summary       = gem.description
+  gem.required_ruby_version = '>= 3.3.1'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -19,11 +20,5 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'activesupport'
 
-  gem.add_development_dependency 'bundler',   '~> 2.5.13'
-  gem.add_development_dependency 'pry',       '~> 0.14.2'
-  gem.add_development_dependency 'pry-nav',   '~> 1.0.0'
-  gem.add_development_dependency 'rake',      '~> 13.1.0'
-  gem.add_development_dependency 'rspec',     '~> 3.12.0'
-  gem.add_development_dependency 'simplecov', '~> 0.22.0'
   gem.metadata['rubygems_mfa_required'] = 'true'
 end
