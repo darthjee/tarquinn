@@ -16,7 +16,7 @@ module Tarquinn
       controller.send(method, *args)
     end
 
-    def has_method?(method)
+    def method?(method)
       controller.respond_to?(method, true)
     end
   end
