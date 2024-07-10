@@ -12,8 +12,8 @@ module Tarquinn
       @params ||= controller.send(:params)
     end
 
-    def call(method, *args)
-      controller.send(method, *args)
+    def call(method, *)
+      controller.send(method, *)
     end
 
     def method?(method)
