@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/darthje/tarquinn'
   gem.description   = 'Gem for easy redirection controll'
   gem.summary       = gem.description
+  gem.required_ruby_version = '>= 3.3.1'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
