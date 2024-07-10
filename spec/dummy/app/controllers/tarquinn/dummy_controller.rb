@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Tarquinn
-  class DummyController
-    def self.before_action(_); end
-
+  class DummyController < ApplicationController
     include Tarquinn
 
     skip_redirection :redirection_path, :route_method

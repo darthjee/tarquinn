@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Tarquinn do
-  let(:controller) { Tarquinn::DummyController.new }
-
+describe Tarquinn, type: :controller do
   describe 'redirection' do
+    let(:controller) { Tarquinn::DummyController.new }
+
     context 'when configuration calls for a method that allows redirection' do
       it 'redirects to redirection path given by the method' do
         expect(controller).to receive(:redirect_to).with('/path')
