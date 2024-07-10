@@ -12,14 +12,14 @@ module Tarquinn
       skip_blocks << block_routes(routes)
     end
 
-    def add_redirection_rules(*methods, &block)
+    def add_redirection_rules(*methods, &)
       redirection_blocks << block_methods(methods)
-      redirection_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
+      redirection_blocks << Tarquinn::Condition::ProcRunner.new(&) if block_given?
     end
 
-    def add_skip_rules(*methods, &block)
+    def add_skip_rules(*methods, &)
       skip_blocks << block_methods(methods)
-      skip_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
+      skip_blocks << Tarquinn::Condition::ProcRunner.new(&) if block_given?
     end
 
     def redirection_blocks
