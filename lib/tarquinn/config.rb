@@ -1,39 +1,43 @@
-class Tarquinn::Config
-  attr_accessor :redirect
+# frozen_string_literal: true
 
-  def initialize(redirect)
-    @redirect = redirect
-  end
+module Tarquinn
+  class Config
+    attr_accessor :redirect
 
-  def add_skip_action(*routes)
-    skip_blocks << block_routes(routes)
-  end
+    def initialize(redirect)
+      @redirect = redirect
+    end
 
-  def add_redirection_rules(*methods, &block)
-    redirection_blocks << block_methods(methods)
-    redirection_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
-  end
+    def add_skip_action(*routes)
+      skip_blocks << block_routes(routes)
+    end
 
-  def add_skip_rules(*methods, &block)
-    skip_blocks << block_methods(methods)
-    skip_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
-  end
+    def add_redirection_rules(*methods, &block)
+      redirection_blocks << block_methods(methods)
+      redirection_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
+    end
 
-  def redirection_blocks
-    @blocks ||= []
-  end
+    def add_skip_rules(*methods, &block)
+      skip_blocks << block_methods(methods)
+      skip_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
+    end
 
-  def skip_blocks
-    @skip_blocks ||= []
-  end
+    def redirection_blocks
+      @redirection_blocks ||= []
+    end
 
-  private
+    def skip_blocks
+      @skip_blocks ||= []
+    end
 
-  def block_methods(methods)
-    Tarquinn::Condition::MethodCaller.new(methods)
-  end
+    private
 
-  def block_routes(routes)
-    Tarquinn::Condition::ActionChecker.new(routes)
+    def block_methods(methods)
+      Tarquinn::Condition::MethodCaller.new(methods)
+    end
+
+    def block_routes(routes)
+      Tarquinn::Condition::ActionChecker.new(routes)
+    end
   end
 end

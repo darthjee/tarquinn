@@ -1,11 +1,17 @@
-class Tarquinn::Condition::ActionChecker
-  attr_accessor :routes
+# frozen_string_literal: true
 
-  def initialize(routes)
-    @routes = [routes].flatten.map(&:to_s)
-  end
+module Tarquinn
+  module Condition
+    class ActionChecker
+      attr_accessor :routes
 
-  def check?(controller)
-    routes.include? controller.params[:action]
+      def initialize(routes)
+        @routes = [routes].flatten.map(&:to_s)
+      end
+
+      def check?(controller)
+        routes.include? controller.params[:action]
+      end
+    end
   end
 end

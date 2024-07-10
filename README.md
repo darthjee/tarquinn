@@ -15,6 +15,10 @@ Yard Documentation
 
 This gem makes easier to controll generic redirection
 
+Current Release: [0.2.0](https://github.com/darthjee/tarquinn/tree/0.2.0)
+
+[Next release](https://github.com/darthjee/tarquinn/compare/0.2.0...master)
+
 Getting started
 ---------------
 1. Add Tarquinn to your `Gemfile` and `bundle install`:

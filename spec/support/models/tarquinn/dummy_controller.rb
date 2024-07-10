@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tarquinn::DummyController
   def self.before_action(_)
   end
