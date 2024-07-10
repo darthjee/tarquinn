@@ -12,14 +12,6 @@
 Metrics/BlockLength:
   Max: 87
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'spec/support/models/tarquinn/dummy_controller.rb'
-
 # Offense count: 12
 # Configuration parameters: AllowedConstants.
 Style/Documentation:
