@@ -20,11 +20,5 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'activesupport'
 
-  gem.add_development_dependency 'bundler',   '~> 2.5.13'
-  gem.add_development_dependency 'pry',       '~> 0.14.2'
-  gem.add_development_dependency 'pry-nav',   '~> 1.0.0'
-  gem.add_development_dependency 'rake',      '~> 13.1.0'
-  gem.add_development_dependency 'rspec',     '~> 3.12.0'
-  gem.add_development_dependency 'simplecov', '~> 0.22.0'
   gem.metadata['rubygems_mfa_required'] = 'true'
 end
