@@ -4,14 +4,14 @@ module Tarquinn
   class DummyRouteController < ApplicationController
     include Tarquinn
 
-    redirection_rule :redirection_path, :should_redirect?
+    redirection_rule :redirection, :should_redirect?
 
     def index
     end
 
     private
 
-    def redirection_path
+    def redirection
       '/path'
     end
 
