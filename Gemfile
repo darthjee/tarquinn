@@ -9,5 +9,6 @@ gem 'rake',      '~> 13.1.0'
 gem 'rspec',     '~> 3.12.0'
 gem 'simplecov', '~> 0.22.0'
 gem 'rails',     '7.0.8.4'
+gem 'rspec-rails'
 
 gemspec
