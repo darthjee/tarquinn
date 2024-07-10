@@ -2,8 +2,7 @@
 
 module Tarquinn
   class DummyController
-    def self.before_action(_)
-    end
+    def self.before_action(_); end
 
     include Tarquinn
 
@@ -33,8 +32,7 @@ module Tarquinn
       '/path'
     end
 
-    def redirect_to(_)
-    end
+    def redirect_to(_); end
 
     def should_redirect?
       true
