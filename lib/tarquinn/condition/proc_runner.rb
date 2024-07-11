@@ -2,6 +2,9 @@
 
 module Tarquinn
   module Condition
+    # @api private
+    #
+    # Checks condition based on a given block
     class ProcRunner
       attr_reader :block
 

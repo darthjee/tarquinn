@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api private
+  #
+  # Redirect config handler
+  #
+  # Checks if one redirection rule should or should not be applied
   class Handler
     attr_accessor :config, :controller
 

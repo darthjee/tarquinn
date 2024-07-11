@@ -2,6 +2,9 @@
 
 module Tarquinn
   module Condition
+    # @api private
+    #
+    # Checks condition based on result of method call from controller
     class MethodCaller
       attr_accessor :methods
 
