@@ -3,6 +3,9 @@
 require 'active_support'
 require 'active_support/core_ext'
 
+# @api public
+#
+# Concern adding methods for easy redirection controll
 module Tarquinn
   require 'tarquinn/version'
   require 'tarquinn/handler'

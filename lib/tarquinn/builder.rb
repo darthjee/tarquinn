@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api private
+  #
+  # Redirections rules builder
+  #
+  # @see Tarquinn::Config
+  # @see Tarquinn::Engine
+  # @see Tarquinn::Controller
   class Builder
     def add_skip_action(redirection, *actions)
       config_for(redirection).add_skip_action(*actions)

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api public
+  #
+  # Methods added by Tarquinn
   module ClassMethods
     def skip_redirection(redirection, *actions)
       redirector_builder.add_skip_action(redirection, *actions)
