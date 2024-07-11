@@ -6,8 +6,7 @@ module Tarquinn
 
     redirection_rule :redirection, :should_redirect?
 
-    def index
-    end
+    def index; end
 
     private
 
