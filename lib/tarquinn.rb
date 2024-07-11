@@ -7,6 +7,8 @@ require 'active_support/core_ext'
 #
 # Concern adding methods for easy redirection controll
 module Tarquinn
+  extend ActiveSupport::Concern
+
   require 'tarquinn/version'
   require 'tarquinn/handler'
   require 'tarquinn/controller'
@@ -15,5 +17,18 @@ module Tarquinn
   require 'tarquinn/engine'
   require 'tarquinn/builder'
   require 'tarquinn/class_methods'
-  require 'tarquinn/concern'
+
+  included do
+    before_action :perform_redirection
+  end
+
+  private
+
+  def redirector_engine
+    self.class.redirector_builder.build(self)
+  end
+
+  def perform_redirection
+    redirector_engine.perform_redirect
+  end
 end
