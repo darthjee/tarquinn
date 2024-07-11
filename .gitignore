@@ -3,3 +3,6 @@
 Gemfile.lock
 **/*.swp
 **/*.swo
+spec/dummy/log/*
+spec/dummy/tmp/*
+**/*.sqlite3
