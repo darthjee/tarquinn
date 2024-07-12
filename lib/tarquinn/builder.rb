@@ -9,14 +9,38 @@ module Tarquinn
   # @see Tarquinn::Engine
   # @see Tarquinn::Controller
   class Builder
-    def add_skip_action(redirection, *actions)
-      config_for(redirection).add_skip_action(*actions)
-    end
-
+    # Creates a redirection rule
+    #
+    # The rule name defines which method will be called when checking the path of redirection
+    #
+    # @param redirection [Symbol] Rule name and method with redirection path
+    # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
+    # @param block [Proc] block that tells if a the redirection should be applied
+    #
+    # @return [NilClass,Array] Current registered conditions
     def add_redirection_config(redirection, *methods, block)
       config_for(redirection).add_redirection_rules(*methods, &block)
     end
 
+    # Attaches a condition to skip a redirection based on route (controller action)
+    #
+    # When any of the skip rules is met the redirection is skipped
+    #
+    # @param redirection [Symbol] Rule name to attach the skip condition
+    # @param actions [Array<Symbol>] Route actions to be skipped
+    #
+    # @return [NilClass,Array] Current registered conditions
+    def add_skip_action(redirection, *actions)
+      config_for(redirection).add_skip_action(*actions)
+    end
+
+    # Attaches conditions to skip a redirection
+    #
+    # Methods and blocks are ran and if any returns true, the redirec is skipped
+    #
+    # @param redirection [Symbol] Rule name to attach the skip condition
+    # @param methods [Array<Symbol>] Methods that tell that a redirection should be skipped
+    # @param block [Proc] block that tells if a the redirection should be skipped
     def add_skip_config(redirection, *methods, block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
