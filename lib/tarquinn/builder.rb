@@ -17,7 +17,8 @@ module Tarquinn
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
     # @param block [Proc] block that tells if a the redirection should be applied
     #
-    # @return [NilClass,Array] Current registered conditions
+    # @return [NilClass] When no block is given
+    # @return [Array] Current registered conditions
     def add_redirection_config(redirection, *methods, block)
       config_for(redirection).add_redirection_rules(*methods, &block)
     end
@@ -29,7 +30,8 @@ module Tarquinn
     # @param redirection [Symbol] Rule name to attach the skip condition
     # @param actions [Array<Symbol>] Route actions to be skipped
     #
-    # @return [NilClass,Array] Current registered conditions
+    # @return [NilClass] When no block is given
+    # @return [Array] Current registered conditions
     def add_skip_action(redirection, *actions)
       config_for(redirection).add_skip_action(*actions)
     end
@@ -41,6 +43,9 @@ module Tarquinn
     # @param redirection [Symbol] Rule name to attach the skip condition
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be skipped
     # @param block [Proc] block that tells if a the redirection should be skipped
+    #
+    # @return [NilClass] When no block is given
+    # @return [Array] Current registered conditions
     def add_skip_config(redirection, *methods, block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
