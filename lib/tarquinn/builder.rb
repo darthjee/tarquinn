@@ -45,6 +45,11 @@ module Tarquinn
       config_for(redirection).add_skip_rules(*methods, &block)
     end
 
+    # Builds a new engine to process a request
+    #
+    # @param controller [ActionController::Base] Controller handling the request
+    #
+    # @return [Tarquinn::Engine]
     def build(controller)
       controller = Tarquinn::Controller.new(controller)
       Tarquinn::Engine.new(configs, controller)
@@ -52,10 +57,26 @@ module Tarquinn
 
     private
 
+    # @api private
+    # @private
+    #
+    # Returns the configuration for one redirection
+    #
+    # When none is configured, a new one is created
+    #
+    # @param redirection [Symbol] redirection_name
+    #
+    # @return [Tarquinn::Config]
     def config_for(redirection)
       configs[redirection.to_sym] ||= Tarquinn::Config.new(redirection)
     end
 
+    # @api private
+    # @private
+    #
+    # Returns all configurations for all redirections for the controller
+    #
+    # @return [Hash<Symbol,Tarquinn::Config>]
     def configs
       @configs ||= {}
     end
