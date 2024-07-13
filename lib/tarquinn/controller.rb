@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api private
+  #
+  # Controller interface
   class Controller
     attr_reader :controller
 

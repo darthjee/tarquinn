@@ -11,22 +11,3 @@
 # AllowedMethods: refine
 Metrics/BlockLength:
   Max: 87
-
-# Offense count: 12
-# Configuration parameters: AllowedConstants.
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'lib/tarquinn.rb'
-    - 'lib/tarquinn/builder.rb'
-    - 'lib/tarquinn/class_methods.rb'
-    - 'lib/tarquinn/concern.rb'
-    - 'lib/tarquinn/condition.rb'
-    - 'lib/tarquinn/condition/action_checker.rb'
-    - 'lib/tarquinn/condition/method_caller.rb'
-    - 'lib/tarquinn/condition/proc_runner.rb'
-    - 'lib/tarquinn/config.rb'
-    - 'lib/tarquinn/controller.rb'
-    - 'lib/tarquinn/engine.rb'
-    - 'lib/tarquinn/handler.rb'

@@ -11,5 +11,7 @@ gem 'rspec',       '~> 3.12.0'
 gem 'rspec-rails', '6.0.2'
 gem 'simplecov',   '~> 0.22.0'
 gem 'sqlite3',     '1.4.2'
+gem 'yard',        '0.9.36'
+gem 'yardstick',   '0.9.9'
 
 gemspec

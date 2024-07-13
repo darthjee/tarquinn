@@ -1,14 +1,39 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api private
+  #
+  # Engine processing a request defining the flow
   class Engine
     attr_reader :configs, :controller
 
+    # @method configs
+    # @api private
+    #
+    # All redirect configs
+    #
+    # @return [Hash<Symbol,Tarquinn::Config>]
+
+    # @method controller
+    #
+    # Controller interface
+    #
+    # @return [Tarquinn::Controller]
+
+    # @param configs [Hash<Symbol,Tarquinn::Config>] All redirect configs
+    # @param controller [Tarquinn::Controller] Controller interface
     def initialize(configs, controller)
       @configs = configs
       @controller = controller
     end
 
+    # Performs redirection if enabled / needed
+    #
+    # The rules / configuratons are processed in order
+    # and if any is positive, it will be processed
+    #
+    # @return [NilClass] Nothing when no redirection is performed
+    # @return [String] The result of the redirection
     def perform_redirect
       return unless perform_redirect?
 

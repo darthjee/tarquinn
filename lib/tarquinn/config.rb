@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @api private
+  #
+  # Redirection configuration
+  #
+  # @see Tarquinn::Engine
   class Config
     attr_accessor :redirect
 

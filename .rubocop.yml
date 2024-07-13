@@ -6,3 +6,7 @@ AllCops:
 
 Lint/BooleanSymbol:
   Enabled: false
+
+Lint/EmptyBlock:
+  Exclude:
+    - spec/dummy/db/schema.rb

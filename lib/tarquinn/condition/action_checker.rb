@@ -2,6 +2,9 @@
 
 module Tarquinn
   module Condition
+    # @api private
+    #
+    # Checks condition based on route action
     class ActionChecker
       attr_accessor :routes
 

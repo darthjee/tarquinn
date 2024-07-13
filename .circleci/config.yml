@@ -50,6 +50,12 @@ jobs:
           name: Bundle Install
           command: bundle install
       - run:
+          name: Rubocop
+          command: rubocop
+      - run:
+          name: Yardstick coverage check
+          command: bundle exec rake verify_measurements
+      - run:
           name: Check version documentation
           command: check_readme.sh
   build-and-release:
