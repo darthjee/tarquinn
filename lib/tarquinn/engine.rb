@@ -26,6 +26,13 @@ module Tarquinn
       @controller = controller
     end
 
+    # Performs redirection if enabled / needed
+    #
+    # The rules / configuratons are processed in order
+    # and if any is positive, it will be processed
+    #
+    # @return [NilClass] Nothing when no redirection is performed
+    # @return [String] The result of the redirection
     def perform_redirect
       return unless perform_redirect?
 

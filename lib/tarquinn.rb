@@ -67,6 +67,12 @@ module Tarquinn
     self.class.redirector_builder.build(self)
   end
 
+  # Performs redirection if enabled / needed
+  #
+  # The rules / configuratons are processed in order
+  # and if any is positive, it will be processed
+  #
+  # @return (see Tarquinn::Engine#perform_redirect)
   def perform_redirection
     redirector_engine.perform_redirect
   end
