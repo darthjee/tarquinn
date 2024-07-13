@@ -6,7 +6,21 @@ module Tarquinn
   # Engine processing a request defining the flow
   class Engine
     attr_reader :configs, :controller
+    # @method configs
+    # @api private
+    #
+    # All redirect configs
+    #
+    # @return [Hash<Symbol,Tarquinn::Config>]
 
+    # @method controller
+    #
+    # Controller interface
+    #
+    # @return [Tarquinn::Controller]
+
+    # @param configs [Hash<Symbol,Tarquinn::Config>] All redirect configs
+    # @param controller [Tarquinn::Controller] Controller interface
     def initialize(configs, controller)
       @configs = configs
       @controller = controller
