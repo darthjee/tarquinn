@@ -6,8 +6,6 @@ module Tarquinn
     #
     # Checks condition based on result of method call from controller
     class MethodCaller < Tarquinn::Condition
-      attr_reader :methods
-
       def initialize(methods)
         @methods = [methods].flatten
       end
@@ -17,6 +15,10 @@ module Tarquinn
           controller.call(method)
         end
       end
+
+      private
+
+      attr_reader :methods
     end
   end
 end

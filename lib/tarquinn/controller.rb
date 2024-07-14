@@ -5,8 +5,6 @@ module Tarquinn
   #
   # Controller interface
   class Controller
-    attr_reader :controller
-
     def initialize(controller)
       @controller = controller
     end
@@ -22,5 +20,9 @@ module Tarquinn
     def method?(method)
       controller.respond_to?(method, true)
     end
+
+    private
+
+    attr_reader :controller
   end
 end

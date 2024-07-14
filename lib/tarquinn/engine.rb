@@ -5,8 +5,6 @@ module Tarquinn
   #
   # Engine processing a request defining the flow
   class Engine
-    attr_reader :configs, :controller
-
     # @method configs
     # @api private
     #
@@ -41,6 +39,8 @@ module Tarquinn
     end
 
     private
+
+    attr_reader :configs, :controller
 
     def perform_redirect?
       handler_redirector.present?

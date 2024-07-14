@@ -6,8 +6,6 @@ module Tarquinn
     #
     # Checks condition based on a given block
     class ProcRunner < Tarquinn::Condition
-      attr_reader :block
-
       def initialize(&block)
         @block = block
       end
@@ -15,6 +13,10 @@ module Tarquinn
       def check?(controller)
         block.yield(controller)
       end
+
+      private
+
+      attr_reader :block
     end
   end
 end

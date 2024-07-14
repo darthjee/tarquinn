@@ -6,8 +6,6 @@ module Tarquinn
     #
     # Checks condition based on route action
     class ActionChecker < Tarquinn::Condition
-      attr_reader :routes
-
       def initialize(routes)
         @routes = [routes].flatten.map(&:to_s)
       end
@@ -15,6 +13,10 @@ module Tarquinn
       def check?(controller)
         routes.include? controller.params[:action]
       end
+
+      private
+
+      attr_reader :routes
     end
   end
 end

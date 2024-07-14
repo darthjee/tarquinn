@@ -7,10 +7,6 @@ module Tarquinn
   #
   # Checks if one redirection rule should or should not be applied
   class Handler
-    attr_reader :config, :controller, :perform_redirect
-
-    delegate :redirection_blocks, :skip_blocks, to: :config
-
     def initialize(config, controller)
       @config = config
       @controller = controller
@@ -27,6 +23,11 @@ module Tarquinn
     end
 
     private
+
+    attr_reader :config, :controller, :perform_redirect
+
+    delegate :redirection_blocks, :skip_blocks, to: :config
+
 
     def redirect_method
       config.redirect
