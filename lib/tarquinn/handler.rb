@@ -28,7 +28,6 @@ module Tarquinn
 
     delegate :redirection_blocks, :skip_blocks, to: :config
 
-
     def redirect_method
       config.redirect
     end

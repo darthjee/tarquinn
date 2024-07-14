@@ -55,7 +55,7 @@ module Tarquinn
     end
 
     def build_handlers
-      configs.map { |_, c| Tarquinn::Handler.new(c, controller) }
+      configs.values.map { |config| Tarquinn::Handler.new(config, controller) }
     end
   end
 end
