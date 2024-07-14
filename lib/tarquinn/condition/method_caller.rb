@@ -16,7 +16,12 @@ module Tarquinn
         end
       end
 
-      private
+      def ==(other)
+        return false unless other.class == self.class
+        other.methods == methods
+      end
+
+      protected
 
       attr_reader :methods
     end
