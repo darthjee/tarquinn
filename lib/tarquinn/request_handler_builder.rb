@@ -6,9 +6,9 @@ module Tarquinn
   # Redirections rules builder
   #
   # @see Tarquinn::Config
-  # @see Tarquinn::Engine
+  # @see Tarquinn::RequestHandler
   # @see Tarquinn::Controller
-  class EngineBuilder
+  class RequestHandlerBuilder
     # Creates a redirection rule
     #
     # The rule name defines which method will be called when checking the path of redirection
@@ -54,10 +54,10 @@ module Tarquinn
     #
     # @param controller [ActionController::Base] Controller handling the request
     #
-    # @return [Tarquinn::Engine]
+    # @return [Tarquinn::RequestHandler]
     def build(controller)
       controller = Tarquinn::Controller.new(controller)
-      Tarquinn::Engine.new(configs, controller)
+      Tarquinn::RequestHandler.new(configs, controller)
     end
 
     private

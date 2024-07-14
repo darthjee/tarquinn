@@ -3,8 +3,8 @@
 module Tarquinn
   # @api private
   #
-  # Engine processing a request defining the flow
-  class Engine
+  # RequestHandler processing a request defining the flow
+  class RequestHandler
     # @method configs
     # @api private
     #

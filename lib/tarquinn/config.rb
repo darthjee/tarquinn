@@ -5,7 +5,7 @@ module Tarquinn
   #
   # Redirection configuration
   #
-  # @see Tarquinn::Engine
+  # @see Tarquinn::RequestHandler
   class Config
     attr_reader :redirect
 
