@@ -28,6 +28,38 @@ describe Tarquinn, type: :controller do
       end
     end
 
+    context 'when there are two conditions' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, :should_redirect?, :condition2
+      end
+
+      before { get :index, params: parameters }
+
+      context 'when request indicates a redirection through first condition' do
+        let(:parameters) { { should_redirect: true } }
+
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request indicates a redirection through second condition' do
+        let(:parameters) { { redirect: true } }
+
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { {} }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
+      end
+    end
+
     # TODO: fix this condition
     xcontext 'when there are no conditions' do
       controller(Tarquinn::DummyRouteController) do
