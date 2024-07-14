@@ -13,7 +13,7 @@ module Tarquinn
     end
 
     def perform_redirect?
-      return perform_redirect unless perform_redirect.nil?
+      return perform_redirect if instance_variable_defined?(:@perform_redirect)
 
       @perform_redirect = redirect?
     end
