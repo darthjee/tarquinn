@@ -1,0 +1,4 @@
+ignore:
+  - lib/tarquinn/class_methods.rb
+  - lib/tarquinn/condition.rb
+  - lib/tarquinn/version.rb

@@ -58,6 +58,9 @@ jobs:
       - run:
           name: Check version documentation
           command: check_readme.sh
+      - run:
+          name: Check unit tests
+          command: check_specs
   build-and-release:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.1
