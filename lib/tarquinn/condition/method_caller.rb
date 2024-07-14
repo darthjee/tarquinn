@@ -5,7 +5,7 @@ module Tarquinn
     # @api private
     #
     # Checks condition based on result of method call from controller
-    class MethodCaller
+    class MethodCaller < Tarquinn::Condition
       attr_accessor :methods
 
       def initialize(methods)

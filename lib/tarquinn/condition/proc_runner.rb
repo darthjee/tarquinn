@@ -5,7 +5,7 @@ module Tarquinn
     # @api private
     #
     # Checks condition based on a given block
-    class ProcRunner
+    class ProcRunner < Tarquinn::Condition
       attr_reader :block
 
       def initialize(&block)
