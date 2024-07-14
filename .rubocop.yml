@@ -10,3 +10,7 @@ Lint/BooleanSymbol:
 Lint/EmptyBlock:
   Exclude:
     - spec/dummy/db/schema.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
