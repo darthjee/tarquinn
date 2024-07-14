@@ -21,6 +21,20 @@ describe Tarquinn::Condition do
     end
   end
 
+  describe '.action_checker' do
+    let(:actions) { %i[index show] }
+
+    it do
+      expect(described_class.action_checker(actions))
+        .to be_a(Tarquinn::Condition::ActionChecker)
+    end
+
+    it do
+      expect(described_class.action_checker(actions))
+        .to eq(Tarquinn::Condition::ActionChecker.new(actions))
+    end
+  end
+
   describe '#check?' do
     it do
       expect { condition.check?(controller) }.to raise_error(NotImplementedError)

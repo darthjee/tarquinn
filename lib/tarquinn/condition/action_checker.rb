@@ -14,7 +14,13 @@ module Tarquinn
         routes.include? controller.params[:action]
       end
 
-      private
+      def ==(other)
+        return false unless other.class == self.class
+
+        other.routes == routes
+      end
+
+      protected
 
       attr_reader :routes
     end

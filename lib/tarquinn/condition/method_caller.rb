@@ -18,6 +18,7 @@ module Tarquinn
 
       def ==(other)
         return false unless other.class == self.class
+
         other.methods == methods
       end
 
