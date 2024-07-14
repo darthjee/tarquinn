@@ -29,6 +29,33 @@ describe Tarquinn, type: :controller do
     end
   end
 
+  describe '.skip_redirection' do
+    controller(Tarquinn::DummyRouteController) do
+      redirection_rule :redirection, :always_redirect
+      skip_redirection_rule :redirection, :should_skip?
+    end
+
+    before do
+      get :index, params: parameters
+    end
+
+    context 'when requesting with parameters that do not skip' do
+      let(:parameters) { {} }
+
+      it 'performs a redirect' do
+        expect(response).to redirect_to('/path')
+      end
+    end
+
+    context 'when request does not indicate a redirection' do
+      let(:parameters) { { should_skip: true } }
+
+      it 'does not performs a redirect' do
+        expect(response).not_to redirect_to('/path')
+      end
+    end
+  end
+
   describe '.skip_redirection_rule' do
     controller(Tarquinn::DummyRouteController) do
       redirection_rule :redirection, :always_redirect
