@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Tarquinn
-  module Condition
+  class Condition
     # @api private
     #
     # Checks condition based on result of method call from controller

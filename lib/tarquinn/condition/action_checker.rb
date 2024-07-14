@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Tarquinn
-  module Condition
+  class Condition
     # @api private
     #
     # Checks condition based on route action
-    class ActionChecker
+    class ActionChecker < Tarquinn::Condition
       attr_accessor :routes
 
       def initialize(routes)
