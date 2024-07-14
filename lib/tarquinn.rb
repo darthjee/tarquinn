@@ -9,13 +9,14 @@ require 'active_support/core_ext'
 module Tarquinn
   extend ActiveSupport::Concern
 
-  require 'tarquinn/version'
-  require 'tarquinn/handler'
-  require 'tarquinn/controller'
-  require 'tarquinn/condition'
-  require 'tarquinn/config'
-  require 'tarquinn/engine'
-  require 'tarquinn/builder'
+  autoload :Version,    'tarquinn/version'
+  autoload :Handler,    'tarquinn/handler'
+  autoload :Controller, 'tarquinn/controller'
+  autoload :Condition,  'tarquinn/condition'
+  autoload :Config,     'tarquinn/config'
+  autoload :Engine,     'tarquinn/engine'
+  autoload :Builder,    'tarquinn/builder'
+
   require 'tarquinn/class_methods'
 
   # @method self.redirection_rule(redirection, *methods, &block)
