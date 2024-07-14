@@ -20,7 +20,7 @@ module Tarquinn
     end
 
     def check?(_controller)
-      raise 'Needs to be implemented in child class'
+      raise NotImplementedError, 'Needs to be implemented in child class'
     end
   end
 end
