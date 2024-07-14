@@ -9,8 +9,8 @@ module Tarquinn
     autoload :MethodCaller,  'tarquinn/condition/method_caller'
     autoload :ProcRunner,    'tarquinn/condition/proc_runner'
 
-    def check?(controller)
-      raise "Needs to be implemented in child class"
+    def check?(_controller)
+      raise 'Needs to be implemented in child class'
     end
   end
 end
