@@ -7,7 +7,7 @@ module Tarquinn
   #
   # Checks if one redirection rule should or should not be applied
   class Handler
-    attr_accessor :config, :controller
+    attr_reader :config, :controller
 
     delegate :redirection_blocks, :skip_blocks, to: :config
 

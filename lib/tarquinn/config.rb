@@ -7,7 +7,7 @@ module Tarquinn
   #
   # @see Tarquinn::Engine
   class Config
-    attr_accessor :redirect
+    attr_reader :redirect
 
     def initialize(redirect)
       @redirect = redirect
