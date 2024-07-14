@@ -102,26 +102,61 @@ describe Tarquinn, type: :controller do
   end
 
   describe '.skip_redirection' do
-    controller(Tarquinn::DummyRouteController) do
-      redirection_rule :redirection, :always_redirect
-      skip_redirection_rule :redirection, :should_skip?
-    end
+    context 'when there is only one skip condition'do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, :always_redirect
+        skip_redirection_rule :redirection, :should_skip?
+      end
 
-    before { get :index, params: parameters }
+      before { get :index, params: parameters }
 
-    context 'when requesting with parameters that do not skip' do
-      let(:parameters) { {} }
+      context 'when requesting with parameters that do not skip' do
+        let(:parameters) { {} }
 
-      it 'performs a redirect' do
-        expect(response).to redirect_to('/path')
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { { should_skip: true } }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
       end
     end
 
-    context 'when request does not indicate a redirection' do
-      let(:parameters) { { should_skip: true } }
+    context 'when there are more than oneskip condition'do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, :always_redirect
+        skip_redirection_rule :redirection, :should_skip?, :do_skip?
+      end
 
-      it 'does not performs a redirect' do
-        expect(response).not_to redirect_to('/path')
+      before { get :index, params: parameters }
+
+      context 'when requesting with parameters that do not skip' do
+        let(:parameters) { {} }
+
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request skips redirection using first condition' do
+        let(:parameters) { { should_skip: true } }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
+      end
+
+      context 'when request skips redirection using second condition' do
+        let(:parameters) { { skip: true } }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
       end
     end
   end

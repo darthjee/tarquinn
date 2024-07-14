@@ -26,6 +26,10 @@ module Tarquinn
       params[:should_skip]
     end
 
+    def do_skip?
+      params[:skip]
+    end
+
     def always_redirect
       true
     end
