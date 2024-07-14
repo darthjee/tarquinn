@@ -4,9 +4,9 @@ module Tarquinn
   class DummyRouteController < ApplicationController
     include Tarquinn
 
-    redirection_rule :redirection, :should_redirect?
-
     def index; end
+
+    def new; end
 
     private
 
@@ -16,6 +16,22 @@ module Tarquinn
 
     def should_redirect?
       params[:should_redirect]
+    end
+
+    def condition2
+      params[:redirect]
+    end
+
+    def should_skip?
+      params[:should_skip]
+    end
+
+    def do_skip?
+      params[:skip]
+    end
+
+    def always_redirect
+      true
     end
   end
 end
