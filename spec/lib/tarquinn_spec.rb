@@ -28,7 +28,33 @@ describe Tarquinn, type: :controller do
       end
     end
 
-    context 'when there are two conditions' do
+    xcontext 'when there is only one block condition' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection do
+          params[:redirect_block]
+        end
+      end
+
+      before { get :index, params: parameters }
+
+      context 'when request indicates a redirection' do
+        let(:parameters) { { redirect_block: true } }
+
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { {} }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
+      end
+    end
+
+    context 'when there are more conditions' do
       controller(Tarquinn::DummyRouteController) do
         redirection_rule :redirection, :should_redirect?, :condition2
       end
