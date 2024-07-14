@@ -6,7 +6,7 @@ module Tarquinn
   # Redirect config handler
   #
   # Checks if one redirection rule should or should not be applied
-  class Handler
+  class RedirectionHandler
     def initialize(config, controller)
       @config = config
       @controller = controller

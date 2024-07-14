@@ -55,7 +55,7 @@ module Tarquinn
     end
 
     def build_handlers
-      configs.values.map { |config| Tarquinn::Handler.new(config, controller) }
+      configs.values.map { |config| Tarquinn::RedirectionHandler.new(config, controller) }
     end
   end
 end

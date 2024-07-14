@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Tarquinn::Handler do
+describe Tarquinn::RedirectionHandler do
   let(:redirection_path) { '/path' }
   let(:controller) { Tarquinn::DummyController.new }
   let(:config) { Tarquinn::Config.new(:redirection_path) }
