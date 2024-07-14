@@ -4,27 +4,40 @@ require 'spec_helper'
 
 describe Tarquinn, type: :controller do
   describe '.redirection_rule' do
-    controller(Tarquinn::DummyRouteController) do
-      redirection_rule :redirection, :should_redirect?
-    end
+    context 'when there is only one condition' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, :should_redirect?
+      end
 
-    before do
-      get :index, params: parameters
-    end
+      before { get :index, params: parameters }
 
-    context 'when request indicates a redirection' do
-      let(:parameters) { { should_redirect: true } }
+      context 'when request indicates a redirection' do
+        let(:parameters) { { should_redirect: true } }
 
-      it 'performs a redirect' do
-        expect(response).to redirect_to('/path')
+        it 'performs a redirect' do
+          expect(response).to redirect_to('/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { {} }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
       end
     end
 
-    context 'when request does not indicate a redirection' do
-      let(:parameters) { {} }
+    # TODO: fix this condition
+    xcontext 'when there are no conditions' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection
+      end
 
-      it 'does not performs a redirect' do
-        expect(response).not_to redirect_to('/path')
+      before { get :index }
+
+      it 'performs a redirect' do
+        expect(response).to redirect_to('/path')
       end
     end
   end
@@ -35,9 +48,7 @@ describe Tarquinn, type: :controller do
       skip_redirection_rule :redirection, :should_skip?
     end
 
-    before do
-      get :index, params: parameters
-    end
+    before { get :index, params: parameters }
 
     context 'when requesting with parameters that do not skip' do
       let(:parameters) { {} }
@@ -62,9 +73,7 @@ describe Tarquinn, type: :controller do
       skip_redirection :redirection, :index, :delete
     end
 
-    before do
-      get action
-    end
+    before { get action }
 
     context 'when requestin a path that redirects' do
       let(:action) { :new }
