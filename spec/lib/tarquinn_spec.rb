@@ -28,6 +28,7 @@ describe Tarquinn, type: :controller do
       end
     end
 
+    # TODO: fix this condition
     xcontext 'when there is only one block condition' do
       controller(Tarquinn::DummyRouteController) do
         redirection_rule :redirection do
