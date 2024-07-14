@@ -102,7 +102,7 @@ describe Tarquinn, type: :controller do
   end
 
   describe '.skip_redirection' do
-    context 'when there is only one skip condition'do
+    context 'when there is only one skip condition' do
       controller(Tarquinn::DummyRouteController) do
         redirection_rule :redirection, :always_redirect
         skip_redirection_rule :redirection, :should_skip?
@@ -127,7 +127,7 @@ describe Tarquinn, type: :controller do
       end
     end
 
-    context 'when there are more than oneskip condition'do
+    context 'when there are more than oneskip condition' do
       controller(Tarquinn::DummyRouteController) do
         redirection_rule :redirection, :always_redirect
         skip_redirection_rule :redirection, :should_skip?, :do_skip?
