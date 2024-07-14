@@ -7,7 +7,7 @@ module Tarquinn
   #
   # Checks if one redirection rule should or should not be applied
   class Handler
-    attr_reader :config, :controller
+    attr_reader :config, :controller, :perform_redirect
 
     delegate :redirection_blocks, :skip_blocks, to: :config
 
@@ -17,7 +17,7 @@ module Tarquinn
     end
 
     def perform_redirect?
-      return @perform_redirect unless @perform_redirect.nil?
+      return perform_redirect unless perform_redirect.nil?
 
       @perform_redirect = redirect?
     end
