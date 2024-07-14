@@ -59,6 +59,9 @@ jobs:
           name: Check version documentation
           command: check_readme.sh
       - run:
+          name: Rubycritcs check
+          command: rubycritic.sh
+      - run:
           name: Check unit tests
           command: check_specs
   build-and-release:
