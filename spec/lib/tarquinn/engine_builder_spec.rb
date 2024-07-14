@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Tarquinn::Builder do
+describe Tarquinn::EngineBuilder do
   describe '#build' do
     let(:controller) do
       double('controller')

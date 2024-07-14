@@ -9,13 +9,13 @@ require 'active_support/core_ext'
 module Tarquinn
   extend ActiveSupport::Concern
 
-  autoload :Version,    'tarquinn/version'
-  autoload :Handler,    'tarquinn/handler'
-  autoload :Controller, 'tarquinn/controller'
-  autoload :Condition,  'tarquinn/condition'
-  autoload :Config,     'tarquinn/config'
-  autoload :Engine,     'tarquinn/engine'
-  autoload :Builder,    'tarquinn/builder'
+  autoload :Version,       'tarquinn/version'
+  autoload :Handler,       'tarquinn/handler'
+  autoload :Controller,    'tarquinn/controller'
+  autoload :Condition,     'tarquinn/condition'
+  autoload :Config,        'tarquinn/config'
+  autoload :Engine,        'tarquinn/engine'
+  autoload :EngineBuilder, 'tarquinn/engine_builder'
 
   require 'tarquinn/class_methods'
 
@@ -48,9 +48,9 @@ module Tarquinn
 
   # @method self.redirector_builder
   #
-  # Retruns the Engine Builder
+  # Retruns the EngineBuilder
   #
-  # Engine Builder will Carry all the configurations and will create
+  # Engine EngineBuilder will Carry all the configurations and will create
   # one {Engine} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)

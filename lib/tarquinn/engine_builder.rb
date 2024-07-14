@@ -8,7 +8,7 @@ module Tarquinn
   # @see Tarquinn::Config
   # @see Tarquinn::Engine
   # @see Tarquinn::Controller
-  class Builder
+  class EngineBuilder
     # Creates a redirection rule
     #
     # The rule name defines which method will be called when checking the path of redirection
