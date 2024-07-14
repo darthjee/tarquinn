@@ -17,3 +17,7 @@ Metrics/BlockLength:
 
 Lint/MissingSuper:
   Enabled: false
+
+Lint/ScriptPermission:
+  Exclude:
+    - spec/dummy/bin/*
