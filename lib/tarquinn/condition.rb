@@ -3,10 +3,24 @@
 module Tarquinn
   # @api private
   #
-  # Runle condition
-  module Condition
-    require 'tarquinn/condition/action_checker'
-    require 'tarquinn/condition/method_caller'
-    require 'tarquinn/condition/proc_runner'
+  # Redirection condition
+  class Condition
+    autoload :ActionChecker, 'tarquinn/condition/action_checker'
+    autoload :MethodCaller,  'tarquinn/condition/method_caller'
+    autoload :ProcRunner,    'tarquinn/condition/proc_runner'
+
+    class << self
+      def method_caller(methods)
+        Tarquinn::Condition::MethodCaller.new(methods)
+      end
+
+      def action_checker(routes)
+        Tarquinn::Condition::ActionChecker.new(routes)
+      end
+    end
+
+    def check?(_controller)
+      raise NotImplementedError, 'Needs to be implemented in child class'
+    end
   end
 end

@@ -9,3 +9,4 @@ spec/dummy/tmp/*
 doc
 .yardoc
 measurement
+rubycritic

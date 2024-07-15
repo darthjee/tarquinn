@@ -14,3 +14,10 @@ Lint/EmptyBlock:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/ScriptPermission:
+  Exclude:
+    - spec/dummy/bin/*

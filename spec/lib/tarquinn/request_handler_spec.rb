@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Tarquinn::Engine do
+describe Tarquinn::RequestHandler do
   let(:redirection_path) { '/path' }
   let(:redirection_path2) { '/path2' }
   let(:controller) do

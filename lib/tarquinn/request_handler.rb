@@ -3,10 +3,8 @@
 module Tarquinn
   # @api private
   #
-  # Engine processing a request defining the flow
-  class Engine
-    attr_reader :configs, :controller
-
+  # RequestHandler processing a request defining the flow
+  class RequestHandler
     # @method configs
     # @api private
     #
@@ -42,6 +40,8 @@ module Tarquinn
 
     private
 
+    attr_reader :configs, :controller
+
     def perform_redirect?
       handler_redirector.present?
     end
@@ -55,7 +55,7 @@ module Tarquinn
     end
 
     def build_handlers
-      configs.map { |_, c| Tarquinn::Handler.new(c, controller) }
+      configs.values.map { |config| Tarquinn::RedirectionHandler.new(config, controller) }
     end
   end
 end

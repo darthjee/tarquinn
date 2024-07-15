@@ -9,13 +9,14 @@ require 'active_support/core_ext'
 module Tarquinn
   extend ActiveSupport::Concern
 
-  require 'tarquinn/version'
-  require 'tarquinn/handler'
-  require 'tarquinn/controller'
-  require 'tarquinn/condition'
-  require 'tarquinn/config'
-  require 'tarquinn/engine'
-  require 'tarquinn/builder'
+  autoload :Version,               'tarquinn/version'
+  autoload :RedirectionHandler,    'tarquinn/redirection_handler'
+  autoload :Controller,            'tarquinn/controller'
+  autoload :Condition,             'tarquinn/condition'
+  autoload :Config,                'tarquinn/config'
+  autoload :RequestHandler,        'tarquinn/request_handler'
+  autoload :RequestHandlerBuilder, 'tarquinn/request_handler_builder'
+
   require 'tarquinn/class_methods'
 
   # @method self.redirection_rule(redirection, *methods, &block)
@@ -47,10 +48,10 @@ module Tarquinn
 
   # @method self.redirector_builder
   #
-  # Retruns the Engine Builder
+  # Retruns the RequestHandlerBuilder
   #
-  # Engine Builder will Carry all the configurations and will create
-  # one {Engine} for each request
+  # RequestHandlerBuilder will Carry all the configurations and will create
+  # one {RequestHandler} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)
   included do
@@ -62,7 +63,7 @@ module Tarquinn
   # @api private
   # private
   #
-  # @return [Tarquinn::Engine] an engine for the controller
+  # @return [Tarquinn::RequestHandler] an engine for the controller
   def redirector_engine
     self.class.redirector_builder.build(self)
   end
@@ -72,7 +73,7 @@ module Tarquinn
   # The rules / configuratons are processed in order
   # and if any is positive, it will be processed
   #
-  # @return (see Tarquinn::Engine#perform_redirect)
+  # @return (see Tarquinn::RequestHandler#perform_redirect)
   def perform_redirection
     redirector_engine.perform_redirect
   end
