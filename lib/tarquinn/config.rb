@@ -9,10 +9,16 @@ module Tarquinn
   class Config
     attr_reader :redirect
 
+    # @param redirect [Symbol] redirection name and redirection method
     def initialize(redirect)
       @redirect = redirect
     end
 
+    # Add rule for skipping on some actions / routes
+    #
+    # @param routes [Array<Symbol>] actions / routes to be skipped by redirection rule
+    #
+    # @return [Array<Tarquinn::Condition>]
     def add_skip_action(*routes)
       skip_blocks << action_checker(routes)
     end
