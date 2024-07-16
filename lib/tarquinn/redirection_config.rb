@@ -6,7 +6,7 @@ module Tarquinn
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
-  class Config
+  class RedirectionConfig
     attr_reader :redirect
 
     # @param redirect [Symbol] redirection name and redirection method
