@@ -48,7 +48,7 @@ module Tarquinn
     # @return [Array] Current registered conditions
     def add_skip_rules(*methods, &block)
       skip_blocks << method_caller(methods)
-      skip_blocks << Tarquinn::Condition::ProcRunner.new(&block) if block_given?
+      skip_blocks << proc_runner(&block) if block_given?
     end
 
     def redirection_blocks
@@ -59,6 +59,6 @@ module Tarquinn
       @skip_blocks ||= []
     end
 
-    delegate :method_caller, :action_checker, to: Tarquinn::Condition
+    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
   end
 end

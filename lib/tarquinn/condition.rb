@@ -28,6 +28,11 @@ module Tarquinn
       def action_checker(routes)
         Tarquinn::Condition::ActionChecker.new(routes)
       end
+
+      def proc_runner(&block)
+        return unless block
+        Tarquinn::Condition::ProcRunner.new(&block)
+      end
     end
 
     # Checks if a condition is matched
