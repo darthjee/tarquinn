@@ -30,11 +30,11 @@ module Tarquinn
 
     # Add rule for skipping on some actions / routes
     #
-    # @param routes [Array<Symbol>] actions / routes to be skipped by redirection rule
+    # @param actions [Array<Symbol>] actions / routes to be skipped by redirection rule
     #
     # @return [Array<Tarquinn::Condition>]
-    def add_skip_action(*routes)
-      skip_blocks << action_checker(routes)
+    def add_skip_action(*actions)
+      skip_blocks << action_checker(actions)
     end
 
     # Attaches conditions to skip a redirection
