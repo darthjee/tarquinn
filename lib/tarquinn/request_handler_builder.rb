@@ -5,7 +5,7 @@ module Tarquinn
   #
   # Redirections rules builder
   #
-  # @see Tarquinn::Config
+  # @see Tarquinn::RedirectionConfig
   # @see Tarquinn::RequestHandler
   # @see Tarquinn::Controller
   class RequestHandlerBuilder
@@ -14,10 +14,10 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param redirection [Symbol] Rule name and method with redirection path
-    # @param (see Tarquinn::Config#add_redirection_rules)
+    # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
-    # @return (see Tarquinn::Config#add_redirection_rules)
-    def add_redirection_config(redirection, *methods, block)
+    # @return (see Tarquinn::RedirectionConfig#add_redirection_rules)
+    def add_redirection_config(redirection, *methods, &block)
       config_for(redirection).add_redirection_rules(*methods, &block)
     end
 
@@ -26,9 +26,9 @@ module Tarquinn
     # When any of the skip rules is met the redirection is skipped
     #
     # @param redirection [Symbol] Rule name to attach the skip condition
-    # @param (see Tarquinn::Config#add_skip_action)
+    # @param (see Tarquinn::RedirectionConfig#add_skip_action)
     #
-    # @return (see Tarquinn::Config#add_skip_action)
+    # @return (see Tarquinn::RedirectionConfig#add_skip_action)
     def add_skip_action(redirection, *actions)
       config_for(redirection).add_skip_action(*actions)
     end
@@ -38,9 +38,9 @@ module Tarquinn
     # Methods and blocks are ran and if any returns true, the redirec is skipped
     #
     # @param redirection [Symbol] Rule name to attach the skip condition
-    # @param (see Tarquinn::Config#add_skip_rules)
+    # @param (see Tarquinn::RedirectionConfig#add_skip_rules)
     #
-    # @return (see Tarquinn::Config#add_skip_rules)
+    # @return (see Tarquinn::RedirectionConfig#add_skip_rules)
     def add_skip_config(redirection, *methods, block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
@@ -66,9 +66,9 @@ module Tarquinn
     #
     # @param redirection [Symbol] redirection_name
     #
-    # @return [Tarquinn::Config]
+    # @return [Tarquinn::RedirectionConfig]
     def config_for(redirection)
-      configs[redirection.to_sym] ||= Tarquinn::Config.new(redirection)
+      configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection)
     end
 
     # @api private
@@ -76,7 +76,7 @@ module Tarquinn
     #
     # Returns all configurations for all redirections for the controller
     #
-    # @return [Hash<Symbol,Tarquinn::Config>]
+    # @return [Hash<Symbol,Tarquinn::RedirectionConfig>]
     def configs
       @configs ||= {}
     end

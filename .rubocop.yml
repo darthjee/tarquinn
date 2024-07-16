@@ -21,3 +21,6 @@ Lint/MissingSuper:
 Lint/ScriptPermission:
   Exclude:
     - spec/dummy/bin/*
+
+Naming/BlockForwarding:
+  Enabled: false

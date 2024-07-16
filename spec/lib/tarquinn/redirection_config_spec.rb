@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Tarquinn::Config do
+describe Tarquinn::RedirectionConfig do
   let(:subject) { described_class.new(:redirect) }
 
   describe '#add_redirection_rules' do

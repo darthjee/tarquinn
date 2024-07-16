@@ -6,7 +6,7 @@ module Tarquinn
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
-  class Config
+  class RedirectionConfig
     attr_reader :redirect
 
     # @param redirect [Symbol] redirection name and redirection method
@@ -19,22 +19,21 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
-    # @param & [Proc] block that tells if a the redirection should be applied
+    # @param block [Proc] block that tells if a the redirection should be applied
     #
-    # @return [NilClass] When no block is given
     # @return [Array<Tarquinn::Condition>] Current registered conditions
-    def add_redirection_rules(*methods, &)
-      redirection_blocks << method_caller(methods)
-      redirection_blocks << Tarquinn::Condition::ProcRunner.new(&) if block_given?
+    def add_redirection_rules(*methods, &block)
+      redirect_on method_caller(methods)
+      redirect_on proc_runner(&block)
     end
 
     # Add rule for skipping on some actions / routes
     #
-    # @param routes [Array<Symbol>] actions / routes to be skipped by redirection rule
+    # @param actions [Array<Symbol>] actions / routes to be skipped by redirection rule
     #
     # @return [Array<Tarquinn::Condition>]
-    def add_skip_action(*routes)
-      skip_blocks << action_checker(routes)
+    def add_skip_action(*actions)
+      skip action_checker(actions)
     end
 
     # Attaches conditions to skip a redirection
@@ -44,11 +43,10 @@ module Tarquinn
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be skipped
     # @param block [Proc] block that tells if a the redirection should be skipped
     #
-    # @return [NilClass] When no block is given
     # @return [Array] Current registered conditions
-    def add_skip_rules(*methods, &)
-      skip_blocks << method_caller(methods)
-      skip_blocks << Tarquinn::Condition::ProcRunner.new(&) if block_given?
+    def add_skip_rules(*methods, &block)
+      skip method_caller(methods)
+      skip proc_runner(&block)
     end
 
     def redirection_blocks
@@ -59,6 +57,20 @@ module Tarquinn
       @skip_blocks ||= []
     end
 
-    delegate :method_caller, :action_checker, to: Tarquinn::Condition
+    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
+
+    private
+
+    def skip(condition)
+      return skip_blocks unless condition
+
+      skip_blocks << condition
+    end
+
+    def redirect_on(condition)
+      return skip_blocks unless condition
+
+      redirection_blocks << condition
+    end
   end
 end

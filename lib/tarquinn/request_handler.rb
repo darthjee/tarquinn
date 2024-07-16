@@ -10,7 +10,7 @@ module Tarquinn
     #
     # All redirect configs
     #
-    # @return [Hash<Symbol,Tarquinn::Config>]
+    # @return [Hash<Symbol,Tarquinn::RedirectionConfig>]
 
     # @method controller
     #
@@ -18,7 +18,7 @@ module Tarquinn
     #
     # @return [Tarquinn::Controller]
 
-    # @param configs [Hash<Symbol,Tarquinn::Config>] All redirect configs
+    # @param configs [Hash<Symbol,Tarquinn::RedirectionConfig>] All redirect configs
     # @param controller [Tarquinn::Controller] Controller interface
     def initialize(configs, controller)
       @configs = configs

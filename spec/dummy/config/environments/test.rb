@@ -18,7 +18,7 @@ Rails.application.configure do
   # system, or in some way before deploying your code.
   config.eager_load = ENV['CI'].present?
 
-  # Configure public file server for tests with Cache-Control for performance.
+  # RedirectionConfigure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
     'Cache-Control' => "public, max-age=#{1.hour.to_i}"

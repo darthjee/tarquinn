@@ -11,8 +11,8 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
-    def redirection_rule(redirection, *methods, &block)
-      redirector_builder.add_redirection_config(redirection, *methods, block)
+    def redirection_rule(redirection, *methods, &)
+      redirector_builder.add_redirection_config(redirection, *methods, &)
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
