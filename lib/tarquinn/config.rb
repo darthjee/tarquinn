@@ -23,6 +23,10 @@ module Tarquinn
       skip_blocks << action_checker(routes)
     end
 
+    # Adds conditions to the rule
+    #
+    # The rule name defines which method will be called when checking the path of redirection
+    #
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
     # @param & [Proc] block that tells if a the redirection should be applied
     #
