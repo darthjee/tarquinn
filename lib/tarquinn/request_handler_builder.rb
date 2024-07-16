@@ -14,11 +14,9 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param redirection [Symbol] Rule name and method with redirection path
-    # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
-    # @param block [Proc] block that tells if a the redirection should be applied
+    # @param (see Tarquinn::Config#add_redirection_rules)
     #
-    # @return [NilClass] When no block is given
-    # @return [Array] Current registered conditions
+    # @return (see Tarquinn::Config#add_redirection_rules)
     def add_redirection_config(redirection, *methods, block)
       config_for(redirection).add_redirection_rules(*methods, &block)
     end

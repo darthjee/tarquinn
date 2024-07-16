@@ -23,6 +23,11 @@ module Tarquinn
       skip_blocks << action_checker(routes)
     end
 
+    # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
+    # @param & [Proc] block that tells if a the redirection should be applied
+    #
+    # @return [NilClass] When no block is given
+    # @return [Array] Current registered conditions
     def add_redirection_rules(*methods, &)
       redirection_blocks << method_caller(methods)
       redirection_blocks << Tarquinn::Condition::ProcRunner.new(&) if block_given?
