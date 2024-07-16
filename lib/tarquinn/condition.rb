@@ -31,6 +31,7 @@ module Tarquinn
 
       def proc_runner(&block)
         return unless block
+
         Tarquinn::Condition::ProcRunner.new(&block)
       end
     end
