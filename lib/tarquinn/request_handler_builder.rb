@@ -14,11 +14,9 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param redirection [Symbol] Rule name and method with redirection path
-    # @param methods [Array<Symbol>] Methods that tell that a redirection should be applied
-    # @param block [Proc] block that tells if a the redirection should be applied
+    # @param (see Tarquinn::Config#add_redirection_rules)
     #
-    # @return [NilClass] When no block is given
-    # @return [Array] Current registered conditions
+    # @return (see Tarquinn::Config#add_redirection_rules)
     def add_redirection_config(redirection, *methods, block)
       config_for(redirection).add_redirection_rules(*methods, &block)
     end
@@ -28,10 +26,9 @@ module Tarquinn
     # When any of the skip rules is met the redirection is skipped
     #
     # @param redirection [Symbol] Rule name to attach the skip condition
-    # @param actions [Array<Symbol>] Route actions to be skipped
+    # @param (see Tarquinn::Config#add_skip_action)
     #
-    # @return [NilClass] When no block is given
-    # @return [Array] Current registered conditions
+    # @return (see Tarquinn::Config#add_skip_action)
     def add_skip_action(redirection, *actions)
       config_for(redirection).add_skip_action(*actions)
     end
@@ -41,11 +38,9 @@ module Tarquinn
     # Methods and blocks are ran and if any returns true, the redirec is skipped
     #
     # @param redirection [Symbol] Rule name to attach the skip condition
-    # @param methods [Array<Symbol>] Methods that tell that a redirection should be skipped
-    # @param block [Proc] block that tells if a the redirection should be skipped
+    # @param (see Tarquinn::Config#add_skip_rules)
     #
-    # @return [NilClass] When no block is given
-    # @return [Array] Current registered conditions
+    # @return (see Tarquinn::Config#add_skip_rules)
     def add_skip_config(redirection, *methods, block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
