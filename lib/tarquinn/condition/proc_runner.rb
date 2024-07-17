@@ -11,7 +11,7 @@ module Tarquinn
       end
 
       def check?(controller)
-        controller.send(:instance_eval, &block)
+        controller.run(&block)
       end
 
       private

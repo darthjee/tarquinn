@@ -40,7 +40,7 @@ describe Tarquinn::Condition::ProcRunner do
         end
 
         it do
-          expect(subject.check?(controller)).to be_falsey
+          expect(subject.check?(controller)).to be_truthy
         end
       end
 

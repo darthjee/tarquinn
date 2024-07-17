@@ -17,6 +17,10 @@ module Tarquinn
       controller.send(method, *)
     end
 
+    def run(&block)
+      controller.send(:instance_eval, &block)
+    end
+
     def method?(method)
       controller.respond_to?(method, true)
     end
