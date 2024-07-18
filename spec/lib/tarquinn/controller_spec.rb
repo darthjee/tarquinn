@@ -32,6 +32,26 @@ describe Tarquinn::Controller do
         expect(rails_controller).to have_received(:redirect_to)
       end
     end
+
+    context 'when a block is given' do
+      let(:block) { proc { 12 } }
+
+      before do
+        allow(rails_controller)
+          .to receive(:redirect_to)
+          .with(no_args).and_yield
+      end
+
+      it 'delegate a method call to the controller' do
+        subject.call(:redirect_to, &block)
+
+        expect(rails_controller).to have_received(:redirect_to)
+      end
+
+      it 'passes the block to be executed' do
+        expect(subject.call(:redirect_to, &block)).to eq(12)
+      end
+    end
   end
 
   describe '#run' do

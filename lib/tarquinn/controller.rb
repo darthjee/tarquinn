@@ -21,10 +21,11 @@ module Tarquinn
     # @param method [Symbol] method name to be called
     # @param args [Array<Symbol>] Method arguments
     # @param opts [Hash<Symbol,Object>] Method arguments
+    # @param block [Proc] block to be given to the method
     #
     # @return [Object]
-    def call(method, *args, **opts)
-      controller.send(method, *args, **opts)
+    def call(method, *args, **opts, &block)
+      controller.send(method, *args, **opts, &block)
     end
 
     def run(&block)
