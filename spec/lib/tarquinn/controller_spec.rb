@@ -39,7 +39,7 @@ describe Tarquinn::Controller do
 
       it 'returns the value' do
         expect(controller.run(&block))
-          .to eq(ActionController::Parameters.new( action: 'show' ))
+          .to eq(ActionController::Parameters.new(action: 'show'))
       end
     end
   end
