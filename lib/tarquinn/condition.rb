@@ -15,8 +15,11 @@ module Tarquinn
       #
       # @param methods [Array<Symbol>] list of methods to be called for condition
       #
-      # @return [Tarquinn::Condition::MethodCaller]
+      # @return [Tarquinn::Condition::MethodCaller] when methods are given
+      # @return [NilClass] when no methods are given
       def method_caller(methods)
+        return if methods.empty?
+
         Tarquinn::Condition::MethodCaller.new(methods)
       end
 
@@ -29,6 +32,12 @@ module Tarquinn
         Tarquinn::Condition::ActionChecker.new(routes)
       end
 
+      # Cretes a proc checker
+      #
+      # @param block [Proc] block to be ran when condition is checked
+      #
+      # @return [Tarquinn::Condition::ProcRunner] When a block is given
+      # @return [NilClass] when no block is given
       def proc_runner(&block)
         return unless block
 

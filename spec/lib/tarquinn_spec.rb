@@ -88,7 +88,7 @@ describe Tarquinn, type: :controller do
     end
 
     # TODO: fix this condition
-    xcontext 'when there are no conditions' do
+    context 'when there are no conditions' do
       controller(Tarquinn::DummyRouteController) do
         redirection_rule :redirection
       end

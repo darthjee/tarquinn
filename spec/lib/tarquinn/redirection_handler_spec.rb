@@ -11,6 +11,22 @@ describe Tarquinn::RedirectionHandler do
   end
 
   describe '#perform_redirect?' do
+    context 'when there are no rules' do
+      it do
+        expect(subject.perform_redirect?).to be_truthy
+      end
+
+      context 'but some grant a skip' do
+        before do
+          config.add_skip_rules { true }
+        end
+
+        it do
+          expect(subject.perform_redirect?).to be_falsey
+        end
+      end
+    end
+
     context 'when rules allow for redirection' do
       before do
         config.add_redirection_rules { true }
