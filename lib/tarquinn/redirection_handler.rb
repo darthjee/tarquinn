@@ -49,6 +49,8 @@ module Tarquinn
     end
 
     def blocks_require_redirect?
+      return true if redirection_blocks.empty?
+
       check_blocks(redirection_blocks)
     end
 

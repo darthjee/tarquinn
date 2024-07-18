@@ -17,6 +17,8 @@ module Tarquinn
       #
       # @return [Tarquinn::Condition::MethodCaller]
       def method_caller(methods)
+        return if methods.empty?
+
         Tarquinn::Condition::MethodCaller.new(methods)
       end
 
