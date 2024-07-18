@@ -16,6 +16,11 @@ module Tarquinn
       @params ||= controller.send(:params)
     end
 
+    # Calls a method from the controller
+    #
+    # @param method [Symbol] method name to be called
+    #
+    # @return [Object]
     def call(method, *)
       controller.send(method, *)
     end
