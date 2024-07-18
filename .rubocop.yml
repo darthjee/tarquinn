@@ -24,3 +24,6 @@ Lint/ScriptPermission:
 
 Naming/BlockForwarding:
   Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: false

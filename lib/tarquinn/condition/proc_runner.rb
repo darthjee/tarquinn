@@ -11,7 +11,7 @@ module Tarquinn
       end
 
       def check?(controller)
-        block.yield(controller)
+        controller.run(&block)
       end
 
       private

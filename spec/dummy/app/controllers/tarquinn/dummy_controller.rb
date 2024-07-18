@@ -15,7 +15,7 @@ module Tarquinn
     private
 
     def params
-      { action: 'show' }
+      ActionController::Parameters.new({ action: 'show' })
     end
 
     def true
