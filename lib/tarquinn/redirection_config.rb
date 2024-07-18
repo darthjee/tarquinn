@@ -49,26 +49,42 @@ module Tarquinn
       skip proc_runner(&block)
     end
 
+    # All blocks that indicate a redirection
+    #
+    # @return [Array<Tarquinn::Condition>]
     def redirection_blocks
       @redirection_blocks ||= []
     end
 
+    # All blocks that indicate a redirection should be skipped
+    #
+    # @return [Array<Tarquinn::Condition>]
     def skip_blocks
       @skip_blocks ||= []
     end
 
-    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
-
     private
 
+    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
+
+    # @private
+    #
+    # Adds a condition to skip a redirection
+    #
+    # @return (see #skip_blocks)
     def skip(condition)
       return skip_blocks unless condition
 
       skip_blocks << condition
     end
 
+    # @private
+    #
+    # Adds a condition to a redirection
+    #
+    # @return (see #redirection_blocks)
     def redirect_on(condition)
-      return skip_blocks unless condition
+      return redirection_blocks unless condition
 
       redirection_blocks << condition
     end
