@@ -14,7 +14,7 @@ describe Tarquinn::Controller do
     end
   end
 
-  describe '#run'do
+  describe '#run' do
     context 'when block does not call any controller method' do
       let(:block) { proc { 12 } }
 
@@ -24,7 +24,10 @@ describe Tarquinn::Controller do
     end
 
     context 'when block references a value outside' do
-      let(:block) { value = 15; proc { 15 } }
+      let(:block) do
+        value = 15
+        proc { value }
+      end
 
       it 'returns the value' do
         expect(controller.run(&block)).to eq(15)

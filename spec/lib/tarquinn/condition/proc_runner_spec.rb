@@ -59,8 +59,11 @@ describe Tarquinn::Condition::ProcRunner do
       end
     end
 
-    context "when the block references a value defined outside" do
-      let(:block) { val = value; proc { val } }
+    context 'when the block references a value defined outside' do
+      let(:block) do
+        val = value
+        proc { val }
+      end
       let(:value) { [false, true].sample }
 
       it do
