@@ -38,14 +38,15 @@ describe Tarquinn::Controller do
       let(:block) { proc { params } }
 
       it 'returns the value' do
-        expect(controller.run(&block)).to eq({ action: 'show' })
+        expect(controller.run(&block))
+          .to eq(ActionController::Parameters.new( action: 'show' ))
       end
     end
   end
 
   describe '#params' do
     it 'returns the instance params call' do
-      expect(subject.params).to eq(action: 'show')
+      expect(subject.params).to eq(ActionController::Parameters.new(action: 'show'))
     end
   end
 
