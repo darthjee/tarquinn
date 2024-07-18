@@ -7,17 +7,26 @@ module Tarquinn
   #
   # Checks if one redirection rule should or should not be applied
   class RedirectionHandler
+    # @param config [Tarquinn::RedirectionConfig] redirection configuration
+    # @param controller [Tarquinn::Controller] controller interface
     def initialize(config, controller)
       @config = config
       @controller = controller
     end
 
+    # Checks if redirection should be performd
+    #
+    # @return [TrueClass] when redirection should be performed
+    # @return [FalseClass] when redirection should not be performed
     def perform_redirect?
       return perform_redirect if instance_variable_defined?(:@perform_redirect)
 
       @perform_redirect = redirect?
     end
 
+    # Performs redirction to a new route
+    #
+    # @return [String] redirection body
     def redirect
       controller.call(:redirect_to, redirect_path)
     end
