@@ -21,8 +21,8 @@ module Tarquinn
     # @param method [Symbol] method name to be called
     #
     # @return [Object]
-    def call(method, *)
-      controller.send(method, *)
+    def call(method, *args)
+      controller.send(method, *args)
     end
 
     def run(&block)
