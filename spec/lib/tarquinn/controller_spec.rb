@@ -8,9 +8,29 @@ describe Tarquinn::Controller do
   let(:rails_controller) { Tarquinn::DummyController.new }
 
   describe '#call' do
-    it 'redirects a method call to the controller' do
-      expect(rails_controller).to receive(:redirect_to)
-      subject.call(:redirect_to)
+    context 'when no arguments are given' do
+      before do
+        allow(rails_controller).to receive(:redirect_to).with(no_args)
+      end
+
+      it 'delegate a method call to the controller' do
+        subject.call(:redirect_to)
+        expect(rails_controller).to have_received(:redirect_to)
+      end
+    end
+
+    context 'when arguments are given' do
+      before do
+        allow(rails_controller)
+          .to receive(:redirect_to)
+          .with(1, 2, opt: 3)
+      end
+
+      it 'delegate a method call to the controller' do
+        subject.call(:redirect_to, 1, 2, opt: 3)
+
+        expect(rails_controller).to have_received(:redirect_to)
+      end
     end
   end
 

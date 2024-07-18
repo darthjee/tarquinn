@@ -19,10 +19,12 @@ module Tarquinn
     # Calls a method from the controller
     #
     # @param method [Symbol] method name to be called
+    # @param args [Array<Symbol>] Method arguments
+    # @param opts [Hash<Symbol,Object>] Method arguments
     #
     # @return [Object]
-    def call(method, *args)
-      controller.send(method, *args)
+    def call(method, *args, **opts)
+      controller.send(method, *args, **opts)
     end
 
     def run(&block)
