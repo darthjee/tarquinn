@@ -3,13 +3,40 @@
 require 'spec_helper'
 
 describe Tarquinn::Controller do
-  let(:controller) { Tarquinn::DummyController.new }
-  let(:subject) { described_class.new(controller) }
+  subject(:controller) { described_class.new(rails_controller) }
+
+  let(:rails_controller) { Tarquinn::DummyController.new }
 
   describe '#call' do
     it 'redirects a method call to the controller' do
-      expect(controller).to receive(:redirect_to)
+      expect(rails_controller).to receive(:redirect_to)
       subject.call(:redirect_to)
+    end
+  end
+
+  describe '#run'do
+    context 'when block does not call any controller method' do
+      let(:block) { proc { 12 } }
+
+      it 'returns the value from the block' do
+        expect(controller.run(&block)).to eq(12)
+      end
+    end
+
+    context 'when block references a value outside' do
+      let(:block) { value = 15; proc { 15 } }
+
+      it 'returns the value' do
+        expect(controller.run(&block)).to eq(15)
+      end
+    end
+
+    context 'when block references a method in the controller' do
+      let(:block) { proc { params } }
+
+      it 'returns the value' do
+        expect(controller.run(&block)).to eq({ action: 'show' })
+      end
     end
   end
 
