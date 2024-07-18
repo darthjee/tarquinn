@@ -9,6 +9,9 @@ module Tarquinn
       @controller = controller
     end
 
+    # Returns request parameters
+    #
+    # @return [ActionController::Parameters]
     def params
       @params ||= controller.send(:params)
     end
