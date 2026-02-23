@@ -9,37 +9,8 @@ require 'active_support/core_ext'
 #
 # Concern adding methods for easy redirection control
 #
-# @example A redirection with block style condition
-#   class ApplicationController < ActionController::Base
-#     include Tarquinn
-#
-#     redirection_rule :redirect_old_path do |redirection|
-#       redirection.path == '/old_path'
-#     end
-#
-#     private
-#
-#     def redirect_old_path
-#       '/new_path'
-#     end
-#   end
-#
-# @example A redirection with method style condition
-#   class ApplicationController < ActionController::Base
-#     include Tarquinn
-#
-#     redirection_rule :redirect_old_path, :perform_redirection_for_old_path?
-#
-#     private
-#
-#     def perform_redirection_for_old_path?
-#       request.path == '/old_path'
-#     end
-#
-#     def redirect_old_path
-#       '/new_path'
-#     end
-#   end
+# @example (see Tarquinn::ClassMethods#redirection_rule)
+# @example (see Tarquinn::ClassMethods#skip_redirection)
 module Tarquinn
   extend ActiveSupport::Concern
 

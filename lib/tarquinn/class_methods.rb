@@ -11,6 +11,38 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
+    #
+    # @example A redirection with block style condition
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #
+    #     redirection_rule :redirect_old_path do |redirection|
+    #       redirection.path == '/old_path'
+    #     end
+    #
+    #     private
+    #
+    #     def redirect_old_path
+    #       '/new_path'
+    #     end
+    #   end
+    #
+    # @example A redirection with method style condition
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #
+    #     redirection_rule :redirect_old_path, :perform_redirection_for_old_path?
+    #
+    #     private
+    #
+    #     def perform_redirection_for_old_path?
+    #       request.path == '/old_path'
+    #     end
+    #
+    #     def redirect_old_path
+    #       '/new_path'
+    #     end
+    #   end
     def redirection_rule(redirection, *methods, &)
       redirector_builder.add_redirection_config(redirection, *methods, &)
     end
@@ -21,6 +53,24 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_action)
     # @return (see Tarquinn::RequestHandlerBuilder#add_skip_action)
+    #
+    # @example
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #
+    #     redirection_rule :redirect_old_path
+    #     skip_redirection :redirect_old_path, :skip_redirection_for_old_path?
+    #
+    #     private
+    #
+    #     def skip_redirection_for_old_path?
+    #       request.path != '/old_path'
+    #     end
+    #
+    #     def redirect_old_path
+    #       '/new_path'
+    #     end
+    #   end
     def skip_redirection(redirection, *actions)
       redirector_builder.add_skip_action(redirection, *actions)
     end
