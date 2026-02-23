@@ -66,5 +66,10 @@ All checks must pass before a PR can be merged.
 
 ## Docker / Local Development
 
-See the [Developer Guide](../README.md#developer-guide) in the README for instructions on
-running the project locally with `docker-compose` and the `Makefile`.
+To run the project locally, use the Makefile targets:
+
+- Build Docker image:  `make build`
+- Start development environment:  `make dev`
+- Run tests:  `make tests`
+
+See the [Developer Guide](../README.md#developer-guide) in the README for further instructions.
