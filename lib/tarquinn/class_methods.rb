@@ -81,6 +81,21 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
+    #
+    # @example A redirection with block style condition
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #
+    #     redirection_rule :redirect_old_path do |redirection|
+    #       redirection.path == '/old_path'
+    #     end
+    #
+    #     private
+    #
+    #     def redirect_old_path
+    #       '/new_path'
+    #     end
+    #   end
     def skip_redirection_rule(redirection, *methods, &block)
       redirector_builder.add_skip_config(redirection, *methods, block)
     end
