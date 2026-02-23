@@ -1,29 +1,21 @@
-.PHONY: build dev test rubocop yard logs stop
+.PHONY: build dev tests
 
-## Build the Docker image
+PROJECT?=tarquinn
+IMAGE?=$(PROJECT)
+BASE_IMAGE?=$(DOCKER_ID_USER)/$(PROJECT)-base
+DOCKER_FILE_BASE=Dockerfile.$(PROJECT)-base
+
+all:
+	@echo "Usage:"
+	@echo "  make build\n    Build docker image for $(PROJECT)"
+	@echo "  make dev\n    Run development environment for $(PROJECT)"
+	@echo "  make tests\n    Run tests for $(PROJECT)"
+
 build:
-	docker compose build base_build
+	docker build -f Dockerfile.$(PROJECT) . -t $(IMAGE) -t $(PUSH_IMAGE):latest
 
-## Start an interactive bash session inside the container
+tests:
+	docker-compose run $(PROJECT)_tests /bin/bash
+
 dev:
-	docker compose run --rm tarquinn /bin/bash
-
-## Run RSpec tests inside the container
-test:
-	docker compose run --rm tarquinn /bin/bash -c 'rspec'
-
-## Run RuboCop inside the container
-rubocop:
-	docker compose run --rm tarquinn /bin/bash -c 'rubocop'
-
-## Run the full CI-equivalent check suite (tests + YARD coverage)
-test_all:
-	docker compose run --rm test_all
-
-## Stop all running containers
-stop:
-	docker compose down
-
-## Show logs for running containers
-logs:
-	docker compose logs -f
+	docker-compose run $(PROJECT) /bin/bash

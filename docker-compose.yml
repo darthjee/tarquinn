@@ -17,7 +17,7 @@ services:
     depends_on: [base_build]
     command: /bin/bash -c 'rspec'
 
-  test_all:
+  tarquinn_tests:
     <<: *base
     depends_on: [base_build]
     command: /bin/bash -c 'rspec && yard && rake yardstick_measure && rake verify_measurements'
