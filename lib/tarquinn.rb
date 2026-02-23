@@ -7,6 +7,23 @@ require 'active_support/core_ext'
 # @api public
 #
 # Concern adding methods for easy redirection control
+# @example A redirection with block style condition
+#
+#   class ApplicationController < ActionController::Base
+#     include Tarquinn
+#
+#     redirection_rule :redirect_old_path do |redirection|
+#       redirection.path == '/old_path'
+#     end
+#
+#     skip_redirection :redirect_old_path, only: :index
+#
+#.    private
+#
+#     def redirect_old_path
+#       '/new_path'
+#     end
+#   end
 module Tarquinn
   extend ActiveSupport::Concern
 
