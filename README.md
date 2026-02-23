@@ -2,8 +2,6 @@ Tarquinn
 ========
 [![Build Status](https://circleci.com/gh/darthjee/tarquinn.svg?style=shield)](https://circleci.com/gh/darthjee/tarquinn)
 [![Code Climate](https://codeclimate.com/github/darthjee/tarquinn/badges/gpa.svg)](https://codeclimate.com/github/darthjee/tarquinn)
-[![Test Coverage](https://codeclimate.com/github/darthjee/tarquinn/badges/coverage.svg)](https://codeclimate.com/github/darthjee/tarquinn/coverage)
-[![Issue Count](https://codeclimate.com/github/darthjee/tarquinn/badges/issue_count.svg)](https://codeclimate.com/github/darthjee/tarquinn)
 [![Gem Version](https://badge.fury.io/rb/tarquinn.svg)](https://badge.fury.io/rb/tarquinn)
 [![Inline docs](http://inch-ci.org/github/darthjee/tarquinn.svg)](http://inch-ci.org/github/darthjee/tarquinn)
 
@@ -60,3 +58,83 @@ Getting started
       end
     end
   ```
+
+---
+
+## Developer Guide
+
+### How It Works
+
+Tarquinn is a Rails concern that adds a `before_action` to any controller it is included in.
+On each request the action chain works as follows:
+
+1. `before_action :perform_redirection` is triggered automatically.
+2. A `RequestHandlerBuilder` (stored per controller class) holds all registered redirection
+   configs (`redirection_rule` / `skip_redirection` / `skip_redirection_rule` calls).
+3. At request time, `RequestHandlerBuilder` creates a `RequestHandler` for the current request.
+4. `RequestHandler` iterates over every `RedirectionConfig` and checks whether a redirect
+   should fire via `RedirectionHandler`.
+5. `RedirectionHandler` evaluates skip conditions first; if none match, it evaluates redirect
+   conditions. The first config that requires a redirect triggers `redirect_to`.
+
+### Running Locally with Docker Compose
+
+> Prerequisites: Docker and Docker Compose installed.
+
+**Build the image**
+
+```bash
+docker compose build base_build
+# or
+### Running Locally with Docker Compose and Makefile
+
+| `make build`    | Build the Docker image                               |
+
+| `make dev`      | Open an interactive bash shell inside the container  |
+
+| `make test`     | Run RSpec tests inside the container                 |
+make build
+```
+
+**Run the test suite**
+
+```bash
+make tests
+```
+
+**Open an interactive shell inside the container**
+
+```bash
+make dev
+```
+
+### Makefile Targets
+
+| Target        | Description                                 |
+|--------------|---------------------------------------------|
+| `make build` | Build Docker image for the project          |
+| `make dev`   | Run development environment (bash shell)    |
+| `make tests` | Run tests (RSpec) in the container          |
+
+### CI Checks
+
+The CircleCI pipeline (`.circleci/config.yml`) runs three jobs:
+
+| Job                   | What it does                                                                             |
+|-----------------------|------------------------------------------------------------------------------------------|
+| `test`                | `bundle exec rspec` + uploads coverage report                                            |
+| `checks`              | RuboCop, Yardstick coverage, README version check, RubyCritic, unit-test structure check |
+| `build-and-release`   | Builds and pushes the gem (tags only, on `master`)                                       |
+
+Run the same checks locally before opening a PR:
+
+```bash
+# Tests
+bundle exec rspec
+
+# RuboCop
+bundle exec rubocop
+
+# YARD documentation coverage
+bundle exec rake verify_measurements
+```
