@@ -27,7 +27,7 @@ module Tarquinn
 
     # Attaches conditions to skip a redirection
     #
-    # Methods and blocks are ran and if any returns true, the redirec is skipped
+    # Methods and blocks are ran and if any returns true, the redirect is skipped
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_skip_config)
@@ -35,9 +35,9 @@ module Tarquinn
       redirector_builder.add_skip_config(redirection, *methods, block)
     end
 
-    # Retruns the RequestHandlerBuilder
+    # Returns the RequestHandlerBuilder
     #
-    # RequestHandlerBuilder will Carry all the configurations and will create
+    # RequestHandlerBuilder will carry all the configurations and will create
     # one {RequestHandler} for each request
     #
     # @return [RequestHandlerBuilder]

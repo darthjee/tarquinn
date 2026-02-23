@@ -7,12 +7,15 @@ module Tarquinn
   class RequestHandler
     # @method configs
     # @api private
+    # @private
     #
     # All redirect configs
     #
     # @return [Hash<Symbol,Tarquinn::RedirectionConfig>]
 
     # @method controller
+    # @api private
+    # @private
     #
     # Controller interface
     #
@@ -20,6 +23,8 @@ module Tarquinn
 
     # @param configs [Hash<Symbol,Tarquinn::RedirectionConfig>] All redirect configs
     # @param controller [Tarquinn::Controller] Controller interface
+    #
+    # @return [Tarquinn::RequestHandler]
     def initialize(configs, controller)
       @configs = configs
       @controller = controller
@@ -27,7 +32,7 @@ module Tarquinn
 
     # Performs redirection if enabled / needed
     #
-    # The rules / configuratons are processed in order
+    # The rules / configurations are processed in order
     # and if any is positive, it will be processed
     #
     # @return [NilClass] Nothing when no redirection is performed
@@ -40,20 +45,49 @@ module Tarquinn
 
     private
 
+    # @api private
+    # @private
+    #
+    # All redirect configs and controller interface
     attr_reader :configs, :controller
 
+    # @api private
+    # @private
+    #
+    # Checks if any redirection handler should be applied
+    #
+    # @return [TrueClass] when a redirect is required
+    # @return [FalseClass] when no redirect is required
     def perform_redirect?
       handler_redirector.present?
     end
 
+    # @api private
+    # @private
+    #
+    # Returns the first handler that requires a redirect
+    #
+    # @return [Tarquinn::RedirectionHandler, nil] the matching handler, or nil if none
     def handler_redirector
       @handler_redirector ||= handlers.find(&:perform_redirect?)
     end
 
+    # @api private
+    # @private
+    #
+    # All redirection handlers built from the configs
+    #
+    # @return [Array<Tarquinn::RedirectionHandler>]
     def handlers
       @handlers ||= build_handlers
     end
 
+    # @api private
+    # @private
+    #
+    # Builds a handler for each redirection config
+    #
+    # @return [Array<Tarquinn::RedirectionHandler>]
     def build_handlers
       configs.values.map { |config| Tarquinn::RedirectionHandler.new(config, controller) }
     end
