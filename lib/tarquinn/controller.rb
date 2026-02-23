@@ -5,6 +5,11 @@ module Tarquinn
   #
   # Controller interface
   class Controller
+    # Initializes a new controller interface
+    #
+    # @param controller [ActionController::Base] the Rails controller handling the request
+    #
+    # @return [Tarquinn::Controller]
     def initialize(controller)
       @controller = controller
     end
@@ -28,7 +33,7 @@ module Tarquinn
       controller.send(method, *args, **opts, &block)
     end
 
-    # Run a block in teh context of the controller
+    # Runs a block in the context of the controller
     #
     # @param block [Proc] block to be ran
     #
@@ -41,22 +46,20 @@ module Tarquinn
     #
     # @param method [Symbol] method name
     #
-    # @return [TrueClass] the controller responds to this method
-    # @return [FalseClass] the controller does not responds to this method
+    # @return [TrueClass] when the controller responds to this method
+    # @return [FalseClass] when the controller does not respond to this method
     def method?(method)
       controller.respond_to?(method, true)
     end
 
     private
 
-    attr_reader :controller
-
-    # @method controller
     # @api private
     # @private
     #
-    # Returns the controller handling the request
+    # Returns the Rails controller handling the request
     #
     # @return [ActionController::Base]
+    attr_reader :controller
   end
 end

@@ -7,9 +7,18 @@ module Tarquinn
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig
+    # @api public
+    #
+    # Redirection name and method that returns the path to redirect to
+    #
+    # @return [Symbol]
     attr_reader :redirect
 
+    # Initializes a new redirection configuration
+    #
     # @param redirect [Symbol] redirection name and redirection method
+    #
+    # @return [Tarquinn::RedirectionConfig]
     def initialize(redirect)
       @redirect = redirect
     end
@@ -38,7 +47,7 @@ module Tarquinn
 
     # Attaches conditions to skip a redirection
     #
-    # Methods and blocks are ran and if any returns true, the redirec is skipped
+    # Methods and blocks are ran and if any returns true, the redirect is skipped
     #
     # @param methods [Array<Symbol>] Methods that tell that a redirection should be skipped
     # @param block [Proc] block that tells if a the redirection should be skipped
@@ -67,6 +76,7 @@ module Tarquinn
 
     delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
 
+    # @api private
     # @private
     #
     # Adds a condition to skip a redirection
@@ -78,6 +88,7 @@ module Tarquinn
       skip_blocks << condition
     end
 
+    # @api private
     # @private
     #
     # Adds a condition to a redirection
