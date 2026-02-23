@@ -10,7 +10,7 @@ require 'active_support/core_ext'
 # Concern adding methods for easy redirection control
 #
 # @example (see Tarquinn::ClassMethods#redirection_rule)
-# @example (see Tarquinn::ClassMethods#skip_redirection)
+# @example (see Tarquinn::ClassMethods#skip_redirection_rule)
 module Tarquinn
   extend ActiveSupport::Concern
 

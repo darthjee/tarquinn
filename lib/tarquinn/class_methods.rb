@@ -53,13 +53,23 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_action)
     # @return (see Tarquinn::RequestHandlerBuilder#add_skip_action)
+    def skip_redirection(redirection, *actions)
+      redirector_builder.add_skip_action(redirection, *actions)
+    end
+
+    # Attaches conditions to skip a redirection
     #
-    # @example
+    # Methods and blocks are ran and if any returns true, the redirect is skipped
+    #
+    # @param (see Tarquinn::RequestHandlerBuilder#add_skip_config)
+    # @return (see Tarquinn::RequestHandlerBuilder#add_skip_config)
+    #
+    # @example A redirection with method style condition
     #   class ApplicationController < ActionController::Base
     #     include Tarquinn
     #
     #     redirection_rule :redirect_old_path
-    #     skip_redirection :redirect_old_path, :skip_redirection_for_old_path?
+    #     skip_redirection_rule :redirect_old_path, :skip_redirection_for_old_path?
     #
     #     private
     #
@@ -71,16 +81,6 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
-    def skip_redirection(redirection, *actions)
-      redirector_builder.add_skip_action(redirection, *actions)
-    end
-
-    # Attaches conditions to skip a redirection
-    #
-    # Methods and blocks are ran and if any returns true, the redirect is skipped
-    #
-    # @param (see Tarquinn::RequestHandlerBuilder#add_skip_config)
-    # @return (see Tarquinn::RequestHandlerBuilder#add_skip_config)
     def skip_redirection_rule(redirection, *methods, &block)
       redirector_builder.add_skip_config(redirection, *methods, block)
     end
