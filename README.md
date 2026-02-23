@@ -88,60 +88,35 @@ On each request the action chain works as follows:
 ```bash
 docker compose build base_build
 # or
+### Running Locally with Docker Compose and Makefile
+
+| `make build`    | Build the Docker image                               |
+
+| `make dev`      | Open an interactive bash shell inside the container  |
+
+| `make test`     | Run RSpec tests inside the container                 |
 make build
 ```
 
 **Run the test suite**
 
 ```bash
-docker compose run --rm tarquinn /bin/bash -c 'rspec'
-# or
-make test
-```
-
-**Run the full CI-equivalent check suite** (tests + YARD coverage)
-
-```bash
-docker compose run --rm test_all
-# or
-make test_all
+make tests
 ```
 
 **Open an interactive shell inside the container**
 
 ```bash
-docker compose run --rm tarquinn /bin/bash
-# or
 make dev
-```
-
-**View container logs**
-
-```bash
-docker compose logs -f
-# or
-make logs
-```
-
-**Stop all containers**
-
-```bash
-docker compose down
-# or
-make stop
 ```
 
 ### Makefile Targets
 
-| Target          | Description                                              |
-|-----------------|----------------------------------------------------------|
-| `make build`    | Build the Docker image                               |
-| `make dev`      | Open an interactive bash shell inside the container  |
-| `make test`     | Run RSpec tests inside the container                 |
-| `make rubocop`  | Run RuboCop lint checks inside the container         |
-| `make test_all` | Run the full CI check suite (tests + YARD coverage)  |
-| `make stop`     | Stop all running containers                          |
-| `make logs`     | Tail container logs                                  |
+| Target        | Description                                 |
+|--------------|---------------------------------------------|
+| `make build` | Build Docker image for the project          |
+| `make dev`   | Run development environment (bash shell)    |
+| `make tests` | Run tests (RSpec) in the container          |
 
 ### CI Checks
 
