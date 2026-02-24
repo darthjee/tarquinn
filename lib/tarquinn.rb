@@ -5,8 +5,12 @@ require 'active_support'
 require 'active_support/core_ext'
 
 # @api public
+# @author darthjee
 #
-# Concern adding methods for easy redirection controll
+# Concern adding methods for easy redirection control
+#
+# @example (see Tarquinn::ClassMethods#redirection_rule)
+# @example (see Tarquinn::ClassMethods#skip_redirection_rule)
 module Tarquinn
   extend ActiveSupport::Concern
 
@@ -42,16 +46,16 @@ module Tarquinn
   #
   # Attaches conditions to skip a redirection
   #
-  # Methods and blocks are ran and if any returns true, the redirec is skipped
+  # Methods and blocks are ran and if any returns true, the redirect is skipped
   #
   # @param (see Tarquinn::ClassMethods#skip_redirection)
   # @return (see Tarquinn::ClassMethods#skip_redirection)
 
   # @method self.redirector_builder
   #
-  # Retruns the RequestHandlerBuilder
+  # Returns the RequestHandlerBuilder
   #
-  # RequestHandlerBuilder will Carry all the configurations and will create
+  # RequestHandlerBuilder will carry all the configurations and will create
   # one {RequestHandler} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)
@@ -62,16 +66,19 @@ module Tarquinn
   private
 
   # @api private
-  # private
+  # @private
   #
   # @return [Tarquinn::RequestHandler] an engine for the controller
   def redirector_engine
     self.class.redirector_builder.build(self)
   end
 
+  # @api private
+  # @private
+  #
   # Performs redirection if enabled / needed
   #
-  # The rules / configuratons are processed in order
+  # The rules / configurations are processed in order
   # and if any is positive, it will be processed
   #
   # @return (see Tarquinn::RequestHandler#perform_redirect)
