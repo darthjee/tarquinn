@@ -72,7 +72,7 @@ module Tarquinn
     end
 
     def create_config_for(redirection)
-      raise "error" if configs[redirection.to_sym]
+      raise Exception::RedirectionAlreadyDefined, redirection: redirection if configs[redirection.to_sym]
       configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
     end
 

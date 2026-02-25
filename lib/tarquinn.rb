@@ -18,6 +18,7 @@ module Tarquinn
   autoload :RedirectionHandler,    'tarquinn/redirection_handler'
   autoload :Controller,            'tarquinn/controller'
   autoload :Condition,             'tarquinn/condition'
+  autoload :Exception,             'tarquinn/exception'
   autoload :RedirectionConfig,     'tarquinn/redirection_config'
   autoload :RequestHandler,        'tarquinn/request_handler'
   autoload :RequestHandlerBuilder, 'tarquinn/request_handler_builder'
