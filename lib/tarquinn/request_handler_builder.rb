@@ -18,7 +18,7 @@ module Tarquinn
     #
     # @return (see Tarquinn::RedirectionConfig#add_redirection_rules)
     def add_redirection_config(redirection, *methods, &block)
-      config_for(redirection).add_redirection_rules(*methods, &block)
+      create_config_for(redirection).add_redirection_rules(*methods, &block)
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
@@ -69,6 +69,11 @@ module Tarquinn
     # @return [Tarquinn::RedirectionConfig]
     def config_for(redirection)
       configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection)
+    end
+
+    def create_config_for(redirection)
+      raise "error" if configs[redirection.to_sym]
+      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
     end
 
     # @api private
