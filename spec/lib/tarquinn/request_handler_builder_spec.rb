@@ -30,5 +30,16 @@ describe Tarquinn::RequestHandlerBuilder do
           .to raise_error(Tarquinn::Exception::RedirectionAlreadyDefined)
       end
     end
+
+    xcontext "when calling for an already defined redirection by a skip rule" do
+      before do
+        subject.add_skip_config(:redirection_path)
+      end
+
+      it "raises an error" do
+        expect { subject.add_redirection_config(:redirection_path) }
+          .to raise_error(Tarquinn::Exception::RedirectionAlreadyDefined)
+      end
+    end
   end
 end

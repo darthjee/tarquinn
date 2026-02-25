@@ -97,7 +97,7 @@ module Tarquinn
     #     end
     #   end
     def skip_redirection_rule(redirection, *methods, &block)
-      redirector_builder.add_skip_config(redirection, *methods, block)
+      redirector_builder.add_skip_config(redirection, *methods, &block)
     end
 
     # Returns the RequestHandlerBuilder
