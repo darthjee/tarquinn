@@ -18,6 +18,89 @@ Key components:
 - **`Tarquinn::Condition`** – Wraps a single condition (method name or block) used in redirection/skip evaluation.
 - **`Tarquinn::Controller`** – Thin wrapper around the Rails controller instance, used by handlers.
 
+## Fluxo de dados / Regras de redirecionamento
+
+### 1. Como um controller passa a usar o Tarquinn
+
+Um controller deve **incluir `Tarquinn`**. Isso registra um `before_action :perform_redirection` e
+adiciona ao controller os **métodos de classe** definidos em `Tarquinn::ClassMethods`.
+
+```ruby
+class MyController < ApplicationController
+  include Tarquinn
+end
+```
+
+### 2. Como criar uma regra de redirecionamento
+
+O método **`redirection_rule`** define uma regra de redirecionamento. Seus argumentos são:
+
+- **Primeiro argumento** – nome da regra e também o **nome do método** que será chamado para
+  obter o caminho de redirecionamento.
+- **`methods:`** – lista de métodos chamados para avaliar se a regra é aplicável.
+- **Bloco opcional** – também integra o conjunto de condições de avaliação.
+
+Exemplo com bloco:
+
+```ruby
+class MyController < ApplicationController
+  include Tarquinn
+
+  redirection_rule(:redirect_home) { params[:secret_key] != '12345' }
+
+  def redirect_home
+    root_path
+  end
+end
+```
+
+> Se `secret_key` não for enviada ou for diferente de `'12345'`, o usuário é redirecionado
+> para `home`.
+
+Exemplo com método:
+
+```ruby
+class MyController < ApplicationController
+  include Tarquinn
+
+  redirection_rule :redirect_home, :misses_secret_key
+
+  def redirect_home
+    root_path
+  end
+
+  def misses_secret_key
+    params[:secret_key] != '12345'
+  end
+end
+```
+
+### 3. Como a regra é avaliada
+
+Se **qualquer** método listado em `methods:` **ou** o bloco fornecido retornar um valor
+verdadeiro (`truthy`), a regra é considerada aplicável e o redirecionamento é executado.
+
+### 4. Como ignorar o redirecionamento em actions específicas
+
+**`skip_redirection`** recebe o nome de uma regra e uma lista de actions onde ela não se aplica:
+
+```ruby
+skip_redirection :redirect_home, :index
+```
+
+> A action `index` não será afetada pela regra `redirect_home`.
+
+### 5. Como definir regras de exceção (quando não redirecionar)
+
+**`skip_redirection_rule`** define condições sob as quais um redirecionamento **não** deve
+ocorrer, mesmo que a regra principal seja avaliada como verdadeira:
+
+```ruby
+skip_redirection_rule(:redirect_home) { params[:admin_key] == '9999' }
+```
+
+> Quando a `admin_key` correta é enviada, o redirecionamento não acontece.
+
 ## Language
 
 All code, comments, documentation, commit messages, and PR descriptions must be written in **English**.
