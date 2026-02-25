@@ -4,8 +4,8 @@ module Tarquinn
   class DummyController < ApplicationController
     include Tarquinn
 
-    skip_redirection :redirection_path, :route_method
     redirection_rule :redirection_path, :should_redirect?
+    skip_redirection :redirection_path, :route_method
     skip_redirection_rule :redirection_path, :should_skip_redirect?
 
     def parse_request

@@ -16,9 +16,11 @@ module Tarquinn
     # @param redirection [Symbol] Rule name and method with redirection path
     # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
-    # @return (see Tarquinn::RedirectionConfig#add_redirection_rules)
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def add_redirection_config(redirection, *methods, &block)
-      config_for(redirection).add_redirection_rules(*methods, &block)
+      create_config_for(redirection) do |config|
+        config.add_redirection_rules(*methods, &block)
+      end
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
@@ -41,7 +43,7 @@ module Tarquinn
     # @param (see Tarquinn::RedirectionConfig#add_skip_rules)
     #
     # @return (see Tarquinn::RedirectionConfig#add_skip_rules)
-    def add_skip_config(redirection, *methods, block)
+    def add_skip_config(redirection, *methods, &block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
 
@@ -69,6 +71,22 @@ module Tarquinn
     # @return [Tarquinn::RedirectionConfig]
     def config_for(redirection)
       configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection)
+    end
+
+    # @api private
+    # @private
+    # Creates a new configuration for a redirection
+    #
+    # When a configuration for the redirection already exists, an exception is raised
+    # @param redirection [Symbol] redirection_name
+    # @param block [Proc] block to build the configuration
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
+    def create_config_for(redirection, &block)
+      raise Exception::RedirectionAlreadyDefined, redirection if configs[redirection.to_sym]
+
+      config = configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
+
+      config.tap(&block)
     end
 
     # @api private
