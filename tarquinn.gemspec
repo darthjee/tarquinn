@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_runtime_dependency 'activesupport'
-  gem.add_runtime_dependency 'sinclair', '>= 2.1.1'
+  gem.add_runtime_dependency 'sinclair', '>= 3.0.1'
 
   gem.metadata['rubygems_mfa_required'] = 'true'
 end
