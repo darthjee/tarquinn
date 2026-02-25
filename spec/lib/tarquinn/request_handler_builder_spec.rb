@@ -31,7 +31,7 @@ describe Tarquinn::RequestHandlerBuilder do
       end
     end
 
-    xcontext "when calling for an already defined redirection by a skip rule" do
+    context "when calling for an already defined redirection by a skip rule" do
       before do
         subject.add_skip_config(:redirection_path)
       end
