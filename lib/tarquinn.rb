@@ -3,6 +3,7 @@
 require 'logger'
 require 'active_support'
 require 'active_support/core_ext'
+require 'sinclair'
 
 # @api public
 # @author darthjee
@@ -14,13 +15,15 @@ require 'active_support/core_ext'
 module Tarquinn
   extend ActiveSupport::Concern
 
-  autoload :Version,               'tarquinn/version'
-  autoload :RedirectionHandler,    'tarquinn/redirection_handler'
-  autoload :Controller,            'tarquinn/controller'
-  autoload :Condition,             'tarquinn/condition'
-  autoload :RedirectionConfig,     'tarquinn/redirection_config'
-  autoload :RequestHandler,        'tarquinn/request_handler'
-  autoload :RequestHandlerBuilder, 'tarquinn/request_handler_builder'
+  autoload :Version,                  'tarquinn/version'
+  autoload :RedirectionHandler,       'tarquinn/redirection_handler'
+  autoload :Controller,               'tarquinn/controller'
+  autoload :Condition,                'tarquinn/condition'
+  autoload :Exception,                'tarquinn/exception'
+  autoload :RedirectionConfig,        'tarquinn/redirection_config'
+  autoload :RedirectionConfigBuilder, 'tarquinn/redirection_config_builder'
+  autoload :RequestHandler,           'tarquinn/request_handler'
+  autoload :RequestHandlerBuilder,    'tarquinn/request_handler_builder'
 
   require 'tarquinn/class_methods'
 

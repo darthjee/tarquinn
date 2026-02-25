@@ -1,0 +1,65 @@
+# frozen_string_literal: true
+
+module Tarquinn
+  # @api private
+  # Redirections rules builder
+  #
+  # Builds redirection rule and attaches it to the config collection.
+  #
+  # Before building the redirection rule, it checks if a rule with the same name already exists
+  # and raises an error if it does.
+  # @see Tarquinn::RedirectionConfig
+  # @see Tarquinn::RequestHandler
+  # @see Tarquinn::Controller
+  class RedirectionConfigBuilder < Sinclair::Model
+    initialize_with :configs, :redirection
+
+    # @method configs
+    # @api private
+    #
+    # @return [Array<Tarquinn::RedirectionConfig>] the collection of redirection rules
+
+    # @method redirection
+    # @api private
+    #
+    # @return [Symbol] the name of the redirection rule being built
+
+    # @method initialize(configs:, redirection:)
+    # @api private
+    # @param configs [Array<Tarquinn::RedirectionConfig>] the collection of redirection rules
+    # @param redirection [Symbol] the name of the redirection rule being built
+
+    # Builds a new redirection rule and adds it to the collection of rules
+    #
+    # @overload self.build(configs:, redirection:, &block)
+    # @param (see Tarquinn::RedirectionConfigBuilder#initialize)
+    # @param block [Proc] block that will be used to add conditions to the redirection rule
+    #
+    # @yield [Tarquinn::RedirectionConfig] the newly built configuration
+    #
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
+    def self.build(**attributes, &block)
+      new(**attributes).build(&block)
+    end
+
+    def build(&block)
+      check_redirection_exists!
+
+      config.tap(&block)
+    end
+
+    private
+
+    def config
+      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
+    end
+
+    def check_redirection_exists!
+      raise Exception::RedirectionAlreadyDefined, redirection if config_exists?
+    end
+
+    def config_exists?
+      configs[redirection.to_sym]
+    end
+  end
+end

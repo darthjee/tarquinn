@@ -16,9 +16,11 @@ module Tarquinn
     # @param redirection [Symbol] Rule name and method with redirection path
     # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
-    # @return (see Tarquinn::RedirectionConfig#add_redirection_rules)
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def add_redirection_config(redirection, *methods, &block)
-      config_for(redirection).add_redirection_rules(*methods, &block)
+      RedirectionConfigBuilder.build(configs:, redirection:) do |config|
+        config.add_redirection_rules(*methods, &block)
+      end
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
@@ -41,7 +43,7 @@ module Tarquinn
     # @param (see Tarquinn::RedirectionConfig#add_skip_rules)
     #
     # @return (see Tarquinn::RedirectionConfig#add_skip_rules)
-    def add_skip_config(redirection, *methods, block)
+    def add_skip_config(redirection, *methods, &block)
       config_for(redirection).add_skip_rules(*methods, &block)
     end
 
