@@ -18,8 +18,8 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'activesupport'
-  gem.add_runtime_dependency 'sinclair', '>= 3.0.1'
+  gem.add_dependency 'activesupport'
+  gem.add_dependency 'sinclair', '>= 3.0.1'
 
   gem.metadata['rubygems_mfa_required'] = 'true'
 end
