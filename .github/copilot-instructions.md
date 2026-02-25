@@ -18,6 +18,97 @@ Key components:
 - **`Tarquinn::Condition`** – Wraps a single condition (method name or block) used in redirection/skip evaluation.
 - **`Tarquinn::Controller`** – Thin wrapper around the Rails controller instance, used by handlers.
 
+## Redirection Rules Data Flow
+
+### How It Works
+
+1. A controller includes `Tarquinn` (an `ActiveSupport::Concern`), which:
+   - Extends the controller with `Tarquinn::ClassMethods`, making the DSL methods available.
+   - Registers a `before_action :perform_redirection` that runs on every request.
+
+2. During a request, `perform_redirection` delegates to `Tarquinn::RequestHandler`, which
+   iterates over all registered `Tarquinn::RedirectionConfig` objects (in definition order)
+   and applies the **first** rule whose conditions are satisfied.
+
+3. Each rule is evaluated by `Tarquinn::RedirectionHandler`:
+   - All condition methods and/or the optional block are evaluated against the current
+     controller instance.
+   - If **any** condition returns a truthy value the rule fires and the controller redirects
+     to the path returned by the rule's target method.
+   - Skip conditions (registered via `skip_redirection` or `skip_redirection_rule`) are
+     checked first; if any skip condition is truthy the rule is bypassed entirely.
+
+### Defining a Redirection Rule — `redirection_rule`
+
+```ruby
+redirection_rule <rule_name>, *<condition_methods>, &<block>
+```
+
+| Argument            | Description                                                                                  |
+|---------------------|----------------------------------------------------------------------------------------------|
+| `rule_name`         | Symbol. Also the name of the controller method that returns the redirect path.               |
+| `condition_methods` | Zero or more symbol method names. Each is called on the controller; truthy → rule fires.     |
+| `block`             | Optional. Evaluated in the context of the controller; truthy → rule fires.                   |
+
+**Evaluation**: the rule fires when **any** condition method **or** the block returns truthy.
+
+#### Example 1 — block-based rule
+
+```ruby
+redirection_rule :redirect_home { params[:secret_key] != '12345' }
+
+def redirect_home
+  home_path
+end
+```
+
+Redirects to `home_path` if `secret_key` is absent or different from `'12345'`.
+
+#### Example 2 — method-based rule
+
+```ruby
+redirection_rule :redirect_home, :misses_secret_key
+
+def redirect_home
+  home_path
+end
+
+def misses_secret_key
+  params[:secret_key] != '12345'
+end
+```
+
+Same behaviour as Example 1, but the condition is extracted into a dedicated method.
+
+### Skipping a Rule for Specific Actions — `skip_redirection`
+
+```ruby
+skip_redirection <rule_name>, *<actions>
+```
+
+Prevents the named rule from running for the listed controller actions.
+
+```ruby
+skip_redirection :redirect_home, :index
+```
+
+The `index` action is not affected by the `redirect_home` rule; all other actions still are.
+
+### Skipping a Rule Under a Condition — `skip_redirection_rule`
+
+```ruby
+skip_redirection_rule <rule_name>, *<condition_methods>, &<block>
+```
+
+Registers a skip condition for a rule. When the condition is truthy the rule is bypassed,
+regardless of the action.
+
+```ruby
+skip_redirection_rule :redirect_home { params[:admin_key] == '9999' }
+```
+
+The `redirect_home` rule does not fire when the correct admin key is provided.
+
 ## Language
 
 All code, comments, documentation, commit messages, and PR descriptions must be written in **English**.
