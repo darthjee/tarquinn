@@ -1,3 +1,4 @@
 ignore:
   - lib/tarquinn/class_methods.rb
   - lib/tarquinn/version.rb
+  - lib/tarquinn/exception.rb
