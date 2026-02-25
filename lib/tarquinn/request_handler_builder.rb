@@ -73,6 +73,14 @@ module Tarquinn
       configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection)
     end
 
+    # @api private
+    # @private
+    # Creates a new configuration for a redirection
+    #
+    # When a configuration for the redirection already exists, an exception is raised
+    # @param redirection [Symbol] redirection_name
+    # @param block [Proc] block to build the configuration
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def create_config_for(redirection, &block)
       raise Exception::RedirectionAlreadyDefined, redirection if configs[redirection.to_sym]
 
