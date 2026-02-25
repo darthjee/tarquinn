@@ -3,6 +3,7 @@
 require 'logger'
 require 'active_support'
 require 'active_support/core_ext'
+require 'sinclair'
 
 # @api public
 # @author darthjee

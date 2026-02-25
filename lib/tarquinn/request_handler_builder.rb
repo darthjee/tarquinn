@@ -18,7 +18,7 @@ module Tarquinn
     #
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def add_redirection_config(redirection, *methods, &block)
-      create_config_for(redirection) do |config|
+      RedirectionConfigBuilder.build(configs:, redirection:) do |config|
         config.add_redirection_rules(*methods, &block)
       end
     end

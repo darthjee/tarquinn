@@ -2,25 +2,30 @@
 
 module Tarquinn
   class RedirectionConfigBuilder < Sinclair::Model
-    initialize_with :configs, :redirection, :methods, :block
+    initialize_with :configs, :redirection
 
-    def self.build(...)
+    def self.build(**attributes, &block)
+      new(**attributes).build(&block)
     end
 
-    def build
-      create_config do |config|
-        config.add_redirection_rules(*methods, &block)
-      end
+    def build(&block)
+      check_redirection_exists!
+
+      config.tap(&block)
     end
 
     private
 
-    def create_config
-      raise Exception::RedirectionAlreadyDefined, redirection if configs[redirection.to_sym]
+    def config
+      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
+    end
 
-      config = configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
+    def check_redirection_exists!
+      raise Exception::RedirectionAlreadyDefined, redirection if config_exists?
+    end
 
-      config.tap(&block)
+    def config_exists?
+      configs[redirection.to_sym]
     end
   end
 end
