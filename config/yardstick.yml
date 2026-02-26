@@ -21,7 +21,9 @@ rules:
     exclude: []
   Summary::Presence:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn::RedirectionHandler#initialize
+      - Tarquinn::RequestHandler#initialize
   Summary::Length:
     enabled: true
     exclude: []
