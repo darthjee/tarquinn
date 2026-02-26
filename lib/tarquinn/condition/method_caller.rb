@@ -40,6 +40,7 @@ module Tarquinn
       protected
 
       # @api private
+      # @private
       #
       # Methods to be called when checking the condition
       #

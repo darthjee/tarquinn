@@ -29,23 +29,21 @@ module Tarquinn
 
     private
 
-    attr_reader :configs, :controller
-
-    # @method configs
     # @api private
     # @private
     #
     # All redirect configs
     #
     # @return [Hash<Symbol,Tarquinn::RedirectionConfig>]
+    attr_reader :configs
 
-    # @method controller
     # @api private
     # @private
     #
     # Controller interface
     #
     # @return [Tarquinn::Controller]
+    attr_reader :controller
 
     # @api private
     # @private
