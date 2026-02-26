@@ -34,6 +34,7 @@ module Tarquinn
   #
   # The rule name defines which method will be called when checking the path of redirection
   #
+  # @example (see Tarquinn::ClassMethods#redirection_rule)
   # @param (see Tarquinn::ClassMethods#redirection_rule)
   # @return (see Tarquinn::ClassMethods#redirection_rule)
 
@@ -43,6 +44,7 @@ module Tarquinn
   #
   # When any of the skip rules is met the redirection is skipped
   #
+  # @example (see Tarquinn::ClassMethods#skip_redirection)
   # @param (see Tarquinn::ClassMethods#skip_redirection)
   # @return (see Tarquinn::ClassMethods#skip_redirection)
 
@@ -52,6 +54,7 @@ module Tarquinn
   #
   # Methods and blocks are ran and if any returns true, the redirect is skipped
   #
+  # @example (see Tarquinn::ClassMethods#skip_redirection_rule)
   # @param (see Tarquinn::ClassMethods#skip_redirection_rule)
   # @return (see Tarquinn::ClassMethods#skip_redirection_rule)
 
