@@ -3,7 +3,7 @@
 module Tarquinn
   # @api public
   #
-  # Exceptions raised by +Tarquinn+
+  # Exceptions raised by {Tarquinn}
   module Exception
     # @api public
     #

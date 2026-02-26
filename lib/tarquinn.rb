@@ -12,6 +12,7 @@ require 'sinclair'
 #
 # @example (see Tarquinn::ClassMethods#redirection_rule)
 # @example (see Tarquinn::ClassMethods#skip_redirection_rule)
+# @example (see Tarquinn::ClassMethods#skip_redirection)
 module Tarquinn
   extend ActiveSupport::Concern
 
@@ -28,33 +29,40 @@ module Tarquinn
   require 'tarquinn/class_methods'
 
   # @method self.redirection_rule(redirection, *methods, &block)
+  # @api public
   #
   # Creates a redirection rule
   #
   # The rule name defines which method will be called when checking the path of redirection
   #
+  # @example (see Tarquinn::ClassMethods#redirection_rule)
   # @param (see Tarquinn::ClassMethods#redirection_rule)
   # @return (see Tarquinn::ClassMethods#redirection_rule)
 
   # @method self.skip_redirection(redirection, *actions)
+  # @api public
   #
   # Attaches a condition to skip a redirection based on route (controller action)
   #
   # When any of the skip rules is met the redirection is skipped
   #
+  # @example (see Tarquinn::ClassMethods#skip_redirection)
   # @param (see Tarquinn::ClassMethods#skip_redirection)
   # @return (see Tarquinn::ClassMethods#skip_redirection)
 
   # @method self.skip_redirection_rule(redirection, *methods, &block)
+  # @api public
   #
   # Attaches conditions to skip a redirection
   #
   # Methods and blocks are ran and if any returns true, the redirect is skipped
   #
-  # @param (see Tarquinn::ClassMethods#skip_redirection)
-  # @return (see Tarquinn::ClassMethods#skip_redirection)
+  # @example (see Tarquinn::ClassMethods#skip_redirection_rule)
+  # @param (see Tarquinn::ClassMethods#skip_redirection_rule)
+  # @return (see Tarquinn::ClassMethods#skip_redirection_rule)
 
   # @method self.redirector_builder
+  # @api private
   #
   # Returns the RequestHandlerBuilder
   #
@@ -62,6 +70,7 @@ module Tarquinn
   # one {RequestHandler} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)
+
   included do
     before_action :perform_redirection
   end
@@ -70,6 +79,8 @@ module Tarquinn
 
   # @api private
   # @private
+  #
+  # Returns the redirection engine for the controller
   #
   # @return [Tarquinn::RequestHandler] an engine for the controller
   def redirector_engine

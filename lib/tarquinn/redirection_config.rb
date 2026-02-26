@@ -1,26 +1,30 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @!parse class RedirectionConfig < Sinclair::Model; end
   # @api private
   #
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
-  class RedirectionConfig
-    # @api public
+  class RedirectionConfig < Sinclair::Model.for(:redirection, writter: false)
+    autoload :Options, 'tarquinn/redirection_config/options'
+
+    # @method redirection
+    # @api private
     #
     # Redirection name and method that returns the path to redirect to
     #
     # @return [Symbol]
-    attr_reader :redirect
 
     # Initializes a new redirection configuration
     #
-    # @param redirect [Symbol] redirection name and redirection method
+    # @param redirection [Symbol] redirection name and redirection method
     #
     # @return [Tarquinn::RedirectionConfig]
-    def initialize(redirect)
-      @redirect = redirect
+    def initialize(redirection:, **options)
+      super(redirection:)
+      @options = Options.new(**options)
     end
 
     # Adds conditions to the rule
@@ -74,7 +78,37 @@ module Tarquinn
 
     private
 
-    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
+    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition, private: true
+
+    # @method method_caller(methods)
+    # @api private
+    # @private
+    #
+    # Creates a method caller condition
+    #
+    # @see Tarquinn::Condition.method_caller
+    # @param (see Tarquinn::Condition.method_caller)
+    # @return (see Tarquinn::Condition.method_caller)
+
+    # @method action_checker(routes)
+    # @api private
+    # @private
+    #
+    # Creates an action checker condition
+    #
+    # @see Tarquinn::Condition.action_checker
+    # @param (see Tarquinn::Condition.action_checker)
+    # @return (see Tarquinn::Condition.action_checker)
+
+    # @method proc_runner(&block)
+    # @api private
+    # @private
+    #
+    # Creates a proc runner condition
+    #
+    # @see Tarquinn::Condition.proc_runner
+    # @param (see Tarquinn::Condition.proc_runner)
+    # @return (see Tarquinn::Condition.proc_runner)
 
     # @api private
     # @private

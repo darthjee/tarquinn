@@ -5,6 +5,12 @@ module Tarquinn
   # @abstract
   #
   # Redirection condition
+  # Conditions are used to check if a redirection should be performed or not.
+  #
+  # They can be based on controller actions, custom methods or blocks
+  #
+  # Each condition type is implemented in a different class, but they all inherit
+  # from this one and implement the check? method
   class Condition
     autoload :ActionChecker, 'tarquinn/condition/action_checker'
     autoload :MethodCaller,  'tarquinn/condition/method_caller'
@@ -48,6 +54,8 @@ module Tarquinn
     # Checks if a condition is matched
     #
     # @param _controller [Tarquinn::Controller] the controller with the request params
+    #
+    # @raise [NotImplementedError] when not implemented in child class
     #
     # @return [TrueClass] When it is a match
     # @return [FalseClass] When it is not a match

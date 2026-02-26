@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Tarquinn::RedirectionConfig do
-  let(:subject) { described_class.new(:redirect) }
+  let(:subject) { described_class.new(redirection: :redirect) }
 
   describe '#add_redirection_rules' do
     context 'when not passing a block' do

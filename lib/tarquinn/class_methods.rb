@@ -3,7 +3,7 @@
 module Tarquinn
   # @api public
   #
-  # Methods added by Tarquinn
+  # Methods added by {Tarquinn}
   module ClassMethods
     # Creates a redirection rule
     #
@@ -11,6 +11,9 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
+    #
+    # @see Tarquinn::RequestHandlerBuilder
+    # @see Tarquinn::RedirectionConfig::Options
     #
     # @example A redirection with block style condition
     #   class ApplicationController < ActionController::Base
@@ -43,8 +46,8 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
-    def redirection_rule(redirection, *methods, &)
-      redirector_builder.add_redirection_config(redirection, *methods, &)
+    def redirection_rule(redirection, *methods, **options, &block)
+      redirector_builder.add_redirection_config(redirection, *methods, **options, &block)
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
@@ -53,6 +56,13 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_action)
     # @return (see Tarquinn::RequestHandlerBuilder#add_skip_action)
+    #
+    # @example Skip a redirection for a specific group of controller actions
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #     redirection_rule :redirect_old_path
+    #     skip_redirection :redirect_old_path, :new, :create, :update
+    #   end
     def skip_redirection(redirection, *actions)
       redirector_builder.add_skip_action(redirection, *actions)
     end
@@ -100,6 +110,7 @@ module Tarquinn
       redirector_builder.add_skip_config(redirection, *methods, &block)
     end
 
+    # @api private
     # Returns the RequestHandlerBuilder
     #
     # RequestHandlerBuilder will carry all the configurations and will create

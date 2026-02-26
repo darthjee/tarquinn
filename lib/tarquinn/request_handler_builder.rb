@@ -14,11 +14,14 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param redirection [Symbol] Rule name and method with redirection path
+    # @param options [Hash] additional options for the redirection rule
+    #   (using {RedirectionConfig::Options})
     # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
+    # @see Tarquinn::RedirectionConfig::Options
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
-    def add_redirection_config(redirection, *methods, &block)
-      RedirectionConfigBuilder.build(configs:, redirection:) do |config|
+    def add_redirection_config(redirection, *methods, **options, &block)
+      RedirectionConfigBuilder.build(configs:, redirection:, options:) do |config|
         config.add_redirection_rules(*methods, &block)
       end
     end
@@ -70,7 +73,7 @@ module Tarquinn
     #
     # @return [Tarquinn::RedirectionConfig]
     def config_for(redirection)
-      configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection)
+      configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection:)
     end
 
     # @api private
