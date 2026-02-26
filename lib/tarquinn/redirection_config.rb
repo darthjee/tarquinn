@@ -76,6 +76,36 @@ module Tarquinn
 
     delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition, private: true
 
+    # @method method_caller(methods)
+    # @api private
+    # @private
+    #
+    # Creates a method caller condition
+    #
+    # @see Tarquinn::Condition.method_caller
+    # @param (see Tarquinn::Condition.method_caller)
+    # @return (see Tarquinn::Condition.method_caller)
+
+    # @method action_checker(routes)
+    # @api private
+    # @private
+    #
+    # Creates an action checker condition
+    #
+    # @see Tarquinn::Condition.action_checker
+    # @param (see Tarquinn::Condition.action_checker)
+    # @return (see Tarquinn::Condition.action_checker)
+
+    # @method proc_runner(&block)
+    # @api private
+    # @private
+    #
+    # Creates a proc runner condition
+    #
+    # @see Tarquinn::Condition.proc_runner
+    # @param (see Tarquinn::Condition.proc_runner)
+    # @return (see Tarquinn::Condition.proc_runner)
+
     # @api private
     # @private
     #
