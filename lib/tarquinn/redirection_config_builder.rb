@@ -63,7 +63,7 @@ module Tarquinn
     #
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def config
-      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection: redirection)
+      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection:)
     end
 
     # Checks if a redirection rule with the same name already exists

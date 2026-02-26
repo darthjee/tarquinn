@@ -70,7 +70,7 @@ module Tarquinn
     #
     # @return [Tarquinn::RedirectionConfig]
     def config_for(redirection)
-      configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection: redirection)
+      configs[redirection.to_sym] ||= Tarquinn::RedirectionConfig.new(redirection:)
     end
 
     # @api private
