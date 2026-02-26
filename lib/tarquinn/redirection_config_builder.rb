@@ -11,9 +11,7 @@ module Tarquinn
   # @see Tarquinn::RedirectionConfig
   # @see Tarquinn::RequestHandler
   # @see Tarquinn::Controller
-  class RedirectionConfigBuilder < Sinclair::Model
-    initialize_with :configs, :redirection
-
+  class RedirectionConfigBuilder < Sinclair::Model.for(:configs, :redirection)
     # @method configs
     # @api private
     #
