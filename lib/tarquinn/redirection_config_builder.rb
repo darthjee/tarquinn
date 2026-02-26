@@ -42,6 +42,11 @@ module Tarquinn
       new(**attributes).build(&block)
     end
 
+    # Builds a new redirection rule and adds it to the collection of rules
+    #
+    # @param block [Proc] block that will be used to add conditions to the redirection rule
+    # @yield [Tarquinn::RedirectionConfig] the newly built configuration
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def build(&block)
       check_redirection_exists!
 
@@ -50,14 +55,23 @@ module Tarquinn
 
     private
 
+    # Builds a new redirection rule and adds it to the collection of rules
+    #
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def config
       configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
     end
 
+    # Checks if a redirection rule with the same name already exists and raises an error if it does
+    # @raise [Tarquinn::Exception::RedirectionAlreadyDefined] when a redirection rule with the same
+    #   name already exists
     def check_redirection_exists!
       raise Exception::RedirectionAlreadyDefined, redirection if config_exists?
     end
 
+    # Checks if a redirection rule with the same name already exists
+    # @return [TrueClass] when a redirection rule with the same name already exists
+    # @return [FalseClass] when a redirection rule with the same name does not exist
     def config_exists?
       configs[redirection.to_sym]
     end
