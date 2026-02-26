@@ -17,10 +17,14 @@ module Tarquinn
     # @method configs
     # @api private
     #
+    # Returns all configurations for all redirections for the controller
+    #
     # @return [Array<Tarquinn::RedirectionConfig>] the collection of redirection rules
 
     # @method redirection
     # @api private
+    #
+    # Returns the name of the redirection rule being built
     #
     # @return [Symbol] the name of the redirection rule being built
 
@@ -62,7 +66,7 @@ module Tarquinn
       configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
     end
 
-    # Checks if a redirection rule with the same name already exists and raises an error if it does
+    # Checks if a redirection rule with the same name already exists
     #
     # @raise [Tarquinn::Exception::RedirectionAlreadyDefined] when a redirection rule with the same
     #   name already exists
