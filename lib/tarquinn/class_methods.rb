@@ -43,8 +43,8 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
-    def redirection_rule(redirection, *methods, &)
-      redirector_builder.add_redirection_config(redirection, *methods, &)
+    def redirection_rule(redirection, *methods, **options, &block)
+      redirector_builder.add_redirection_config(redirection, *methods, **options, &block)
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)

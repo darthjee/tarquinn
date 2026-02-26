@@ -5,10 +5,11 @@ require 'spec_helper'
 describe Tarquinn::RedirectionConfigBuilder do
   let(:configs) { {} }
   let(:redirection) { :my_rule }
+  let(:options) { {} }
 
   describe '.build' do
     subject(:config) do
-      described_class.build(configs:, redirection:) do |config|
+      described_class.build(configs:, redirection:, options:) do |config|
         config
       end
     end
@@ -25,7 +26,7 @@ describe Tarquinn::RedirectionConfigBuilder do
 
       context 'when alter something about the rules' do
         subject(:config) do
-          described_class.build(configs:, redirection:) do |config|
+          described_class.build(configs:, redirection:, options:) do |config|
             yield_registry << config
             nil
           end
