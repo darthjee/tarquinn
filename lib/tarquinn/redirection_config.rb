@@ -8,6 +8,7 @@ module Tarquinn
   # @see Tarquinn::RequestHandler
   class RedirectionConfig
     attr_reader :redirect
+
     # @method redirect
     # @api private
     #

@@ -5,7 +5,6 @@ module Tarquinn
   #
   # RequestHandler processing a request defining the flow
   class RequestHandler
-
     # @param configs [Hash<Symbol,Tarquinn::RedirectionConfig>] All redirect configs
     # @param controller [Tarquinn::Controller] Controller interface
     #
@@ -31,6 +30,7 @@ module Tarquinn
     private
 
     attr_reader :configs, :controller
+
     # @method configs
     # @api private
     # @private
