@@ -12,6 +12,7 @@ require 'sinclair'
 #
 # @example (see Tarquinn::ClassMethods#redirection_rule)
 # @example (see Tarquinn::ClassMethods#skip_redirection_rule)
+# @example (see Tarquinn::ClassMethods#skip_redirection)
 module Tarquinn
   extend ActiveSupport::Concern
 
@@ -51,8 +52,8 @@ module Tarquinn
   #
   # Methods and blocks are ran and if any returns true, the redirect is skipped
   #
-  # @param (see Tarquinn::ClassMethods#skip_redirection)
-  # @return (see Tarquinn::ClassMethods#skip_redirection)
+  # @param (see Tarquinn::ClassMethods#skip_redirection_rule)
+  # @return (see Tarquinn::ClassMethods#skip_redirection_rule)
 
   # @method self.redirector_builder
   #
