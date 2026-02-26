@@ -14,15 +14,15 @@ module Tarquinn
     # Redirection name and method that returns the path to redirect to
     #
     # @return [Symbol]
-    attr_reader :redirect
+    attr_reader :redirection
 
     # Initializes a new redirection configuration
     #
-    # @param redirect [Symbol] redirection name and redirection method
+    # @param redirection [Symbol] redirection name and redirection method
     #
     # @return [Tarquinn::RedirectionConfig]
-    def initialize(redirect)
-      @redirect = redirect
+    def initialize(redirection)
+      @redirection = redirection
     end
 
     # Adds conditions to the rule
