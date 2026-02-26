@@ -7,12 +7,13 @@ module Tarquinn
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig
-    # @api public
+    attr_reader :redirect
+    # @method redirect
+    # @api private
     #
     # Redirection name and method that returns the path to redirect to
     #
     # @return [Symbol]
-    attr_reader :redirect
 
     # Initializes a new redirection configuration
     #
