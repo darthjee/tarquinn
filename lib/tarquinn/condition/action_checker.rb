@@ -38,6 +38,7 @@ module Tarquinn
       protected
 
       # @api private
+      # @private
       #
       # Controller actions that trigger the condition
       #

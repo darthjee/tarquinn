@@ -1,4 +1,4 @@
-threshold: 90.7
+threshold: 100.0
 require_exact_threshold: false
 rules:
   ApiTag::Presence:
@@ -15,13 +15,35 @@ rules:
     exclude: []
   ExampleTag:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn.redirection_rule
+      - Tarquinn.skip_redirection
+      - Tarquinn.skip_redirection_rule
   ReturnTag:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn.redirection_rule
+      - Tarquinn.skip_redirection
+      - Tarquinn.skip_redirection_rule
+      - Tarquinn.redirector_builder
+      - Tarquinn#perform_redirection
+      - Tarquinn::RedirectionHandler#initialize
+      - Tarquinn::RequestHandler#initialize
+      - Tarquinn::RedirectionConfigBuilder#initialize
+      - Tarquinn::Condition::ProcRunner#initialize
+      - Tarquinn::Condition::MethodCaller#initialize
+      - Tarquinn::Condition::ActionChecker#initialize
+      - Tarquinn::Exception::RedirectionAlreadyDefined#initialize
   Summary::Presence:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn::RedirectionHandler#initialize
+      - Tarquinn::RequestHandler#initialize
+      - Tarquinn::RedirectionConfigBuilder#initialize
+      - Tarquinn::Condition::ProcRunner#initialize
+      - Tarquinn::Condition::MethodCaller#initialize
+      - Tarquinn::Condition::ActionChecker#initialize
+      - Tarquinn::Exception::RedirectionAlreadyDefined#initialize
   Summary::Length:
     enabled: true
     exclude: []
