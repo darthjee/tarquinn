@@ -15,8 +15,10 @@ module Tarquinn
     #
     # @param redirection [Symbol] Rule name and method with redirection path
     # @param options [Hash] additional options for the redirection rule
+    #   (using {RedirectionConfig::Options})
     # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
+    # @see Tarquinn::RedirectionConfig::Options
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def add_redirection_config(redirection, *methods, **options, &block)
       RedirectionConfigBuilder.build(configs:, redirection:, options:) do |config|

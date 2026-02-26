@@ -12,6 +12,9 @@ module Tarquinn
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     #
+    # @see Tarquinn::RequestHandlerBuilder
+    # @see Tarquinn::RedirectionConfig::Options
+    #
     # @example A redirection with block style condition
     #   class ApplicationController < ActionController::Base
     #     include Tarquinn
