@@ -7,7 +7,7 @@ module Tarquinn
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig < Class.new(Sinclair::Model) { initialize_with :redirection }
-    autoload :Options, 'tarquinn/options'
+    autoload :Options, 'tarquinn/redirection_config/options'
 
     # @method redirection
     # @api private
@@ -21,8 +21,9 @@ module Tarquinn
     # @param redirection [Symbol] redirection name and redirection method
     #
     # @return [Tarquinn::RedirectionConfig]
-    def initialize(redirection:)
+    def initialize(redirection:, **options)
       super(redirection:)
+      @options = Options.new(**options)
     end
 
     # Adds conditions to the rule
