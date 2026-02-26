@@ -8,6 +8,7 @@ module Tarquinn
     #
     # @see Tarquinn::RedirectionConfig
     class Options < Sinclair::Options
+      with_options :domain
     end
   end
 end
