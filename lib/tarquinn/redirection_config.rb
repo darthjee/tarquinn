@@ -76,7 +76,11 @@ module Tarquinn
       @skip_blocks ||= []
     end
 
+    delegate :redirection_options, to: :options
+
     private
+
+    attr_reader :options
 
     delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition, private: true
 

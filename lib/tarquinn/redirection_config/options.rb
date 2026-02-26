@@ -9,6 +9,10 @@ module Tarquinn
     # @see Tarquinn::RedirectionConfig
     class Options < Sinclair::Options
       with_options :domain
+
+      def redirection_options
+        { allow_other_host: nil }.compact
+      end
     end
   end
 end

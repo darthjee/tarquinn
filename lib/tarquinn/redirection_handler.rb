@@ -33,11 +33,9 @@ module Tarquinn
       controller.call(:redirect_to, redirect_path, **redirection_options)
     end
 
-    private
+    delegate :redirection_options, to: :config
 
-    def redirection_options
-      { allow_other_host: nil }.compact
-    end
+    private
 
     # @api private
     # @private
