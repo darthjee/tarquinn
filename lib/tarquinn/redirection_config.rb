@@ -21,7 +21,7 @@ module Tarquinn
     # @param redirection [Symbol] redirection name and redirection method
     #
     # @return [Tarquinn::RedirectionConfig]
-    def initialize(redirection)
+    def initialize(old = nil, redirection: old)
       @redirection = redirection
     end
 
