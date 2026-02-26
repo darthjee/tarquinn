@@ -63,8 +63,11 @@ module Tarquinn
     end
 
     # Checks if a redirection rule with the same name already exists and raises an error if it does
+    #
     # @raise [Tarquinn::Exception::RedirectionAlreadyDefined] when a redirection rule with the same
     #   name already exists
+    #
+    # @return [NilClass] when no redirection rule with the same name exists
     def check_redirection_exists!
       raise Exception::RedirectionAlreadyDefined, redirection if config_exists?
     end
