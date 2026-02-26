@@ -30,10 +30,14 @@ module Tarquinn
     #
     # @return [String] redirection body
     def redirect
-      controller.call(:redirect_to, redirect_path, allow_other_host: true)
+      controller.call(:redirect_to, redirect_path, **redirection_options)
     end
 
     private
+
+    def redirection_options
+      { allow_other_host: nil }.compact
+    end
 
     # @api private
     # @private
