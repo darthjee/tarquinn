@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Tarquinn::RedirectionHandler do
   let(:redirection_path) { '/path' }
   let(:controller) { Tarquinn::DummyController.new }
-  let(:config) { Tarquinn::RedirectionConfig.new(:redirection_path) }
+  let(:config) { Tarquinn::RedirectionConfig.new(redirection: :redirection_path) }
   let(:subject) do
     described_class.new config, Tarquinn::Controller.new(controller)
   end
@@ -116,7 +116,7 @@ describe Tarquinn::RedirectionHandler do
       end
 
       context 'when configured with a method that does not exist in the controller' do
-        let(:config) { Tarquinn::RedirectionConfig.new('/new_path') }
+        let(:config) { Tarquinn::RedirectionConfig.new(redirection: '/new_path') }
 
         it 'calls for redirection using static path' do
           expect(controller).to receive(:redirect_to).with('/new_path')

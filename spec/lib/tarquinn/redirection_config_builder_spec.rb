@@ -45,7 +45,7 @@ describe Tarquinn::RedirectionConfigBuilder do
 
     context 'when rule already exists' do
       before do
-        configs[redirection] = Tarquinn::RedirectionConfig.new(redirection)
+        configs[redirection] = Tarquinn::RedirectionConfig.new(redirection: redirection)
       end
 
       it do

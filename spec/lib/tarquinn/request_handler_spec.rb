@@ -8,8 +8,8 @@ describe Tarquinn::RequestHandler do
   let(:controller) do
     double('controller', redirect_path: redirection_path, redirect_path2: redirection_path2)
   end
-  let(:config) { Tarquinn::RedirectionConfig.new(:redirect_path) }
-  let(:config2) { Tarquinn::RedirectionConfig.new(:redirect_path2) }
+  let(:config) { Tarquinn::RedirectionConfig.new(redirection: :redirect_path) }
+  let(:config2) { Tarquinn::RedirectionConfig.new(redirection: :redirect_path2) }
   let(:configs) { { redirect_path: config, redirect_path2: config2 } }
   let(:subject) do
     described_class.new configs, Tarquinn::Controller.new(controller)
