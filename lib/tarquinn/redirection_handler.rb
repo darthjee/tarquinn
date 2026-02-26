@@ -30,7 +30,7 @@ module Tarquinn
     #
     # @return [String] redirection body
     def redirect
-      controller.call(:redirect_to, redirect_path, **redirection_options)
+      controller.call(:redirect_to, redirect_full_path, **redirection_options)
     end
 
     delegate :redirection_options, to: :config
@@ -61,7 +61,7 @@ module Tarquinn
     # @return [Boolean]
     attr_reader :perform_redirect
 
-    delegate :redirection_blocks, :skip_blocks, to: :config
+    delegate :redirection_blocks, :domain, :domain?, :skip_blocks, to: :config
 
     # @api private
     # @private
@@ -71,6 +71,10 @@ module Tarquinn
     # @return [Symbol] method name
     def redirect_method
       config.redirection
+    end
+
+    def redirect_full_path
+      domain? ? "#{domain}#{redirect_path}" : redirect_path
     end
 
     # @api private

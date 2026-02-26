@@ -16,10 +16,14 @@ module Tarquinn
         }.compact
       end
 
+      def domain?
+        domain.present?
+      end
+
       private
 
       def allow_other_host?
-        domain.present? ? true : nil
+        domain? ? true : nil
       end
     end
   end

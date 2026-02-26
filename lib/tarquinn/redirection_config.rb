@@ -76,7 +76,7 @@ module Tarquinn
       @skip_blocks ||= []
     end
 
-    delegate :redirection_options, to: :options
+    delegate :redirection_options, :domain, :domain?, to: :options
 
     private
 
