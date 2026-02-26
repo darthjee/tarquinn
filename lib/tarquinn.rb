@@ -29,6 +29,7 @@ module Tarquinn
   require 'tarquinn/class_methods'
 
   # @method self.redirection_rule(redirection, *methods, &block)
+  # @api public
   #
   # Creates a redirection rule
   #
@@ -39,6 +40,7 @@ module Tarquinn
   # @return (see Tarquinn::ClassMethods#redirection_rule)
 
   # @method self.skip_redirection(redirection, *actions)
+  # @api public
   #
   # Attaches a condition to skip a redirection based on route (controller action)
   #
@@ -49,6 +51,7 @@ module Tarquinn
   # @return (see Tarquinn::ClassMethods#skip_redirection)
 
   # @method self.skip_redirection_rule(redirection, *methods, &block)
+  # @api public
   #
   # Attaches conditions to skip a redirection
   #
@@ -59,6 +62,7 @@ module Tarquinn
   # @return (see Tarquinn::ClassMethods#skip_redirection_rule)
 
   # @method self.redirector_builder
+  # @api private
   #
   # Returns the RequestHandlerBuilder
   #

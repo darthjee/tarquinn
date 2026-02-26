@@ -108,6 +108,7 @@ module Tarquinn
     end
 
     # Returns the RequestHandlerBuilder
+    # @api private
     #
     # RequestHandlerBuilder will carry all the configurations and will create
     # one {RequestHandler} for each request
