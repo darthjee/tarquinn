@@ -8,7 +8,6 @@ module Tarquinn
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig < Sinclair::Model.for(:redirection, writter: false)
-
     autoload :Options, 'tarquinn/redirection_config/options'
 
     # @method redirection
