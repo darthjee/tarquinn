@@ -6,7 +6,7 @@ module Tarquinn
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
-  class RedirectionConfig < Class.new(Sinclair::Model) { initialize_with :redirection }
+  class RedirectionConfig < Class.new(Sinclair::Model) { initialize_with :redirection, writter: false }
     autoload :Options, 'tarquinn/redirection_config/options'
 
     # @method redirection
