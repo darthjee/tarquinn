@@ -68,7 +68,7 @@ module Tarquinn
     #
     # @return [Symbol] method name
     def redirect_method
-      config.redirect
+      config.redirection
     end
 
     # @api private

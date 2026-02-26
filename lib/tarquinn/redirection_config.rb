@@ -1,26 +1,30 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @!parse class RedirectionConfig < Sinclair::Model; end
   # @api private
   #
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
-  class RedirectionConfig
+  class RedirectionConfig < Sinclair::Model.for(:redirection, writter: false)
+    autoload :Options, 'tarquinn/redirection_config/options'
+
+    # @method redirection
     # @api private
     #
     # Redirection name and method that returns the path to redirect to
     #
     # @return [Symbol]
-    attr_reader :redirect
 
     # Initializes a new redirection configuration
     #
-    # @param redirect [Symbol] redirection name and redirection method
+    # @param redirection [Symbol] redirection name and redirection method
     #
     # @return [Tarquinn::RedirectionConfig]
-    def initialize(redirect)
-      @redirect = redirect
+    def initialize(redirection:, **options)
+      super(redirection:)
+      @options = Options.new(**options)
     end
 
     # Adds conditions to the rule

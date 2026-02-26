@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @!parse class RedirectionConfigBuilder < Sinclair::Model; end
   # @api private
   # Redirections rules builder
   #
@@ -11,9 +12,7 @@ module Tarquinn
   # @see Tarquinn::RedirectionConfig
   # @see Tarquinn::RequestHandler
   # @see Tarquinn::Controller
-  class RedirectionConfigBuilder < Sinclair::Model
-    initialize_with :configs, :redirection
-
+  class RedirectionConfigBuilder < Sinclair::Model.for(:configs, :redirection, :options, writter: false)
     # @method configs
     # @api private
     #
@@ -28,10 +27,11 @@ module Tarquinn
     #
     # @return [Symbol] the name of the redirection rule being built
 
-    # @method initialize(configs:, redirection:)
+    # @method initialize(configs:, redirection:, options: {})
     # @api private
     # @param configs [Array<Tarquinn::RedirectionConfig>] the collection of redirection rules
     # @param redirection [Symbol] the name of the redirection rule being built
+    # @param options [Hash] additional options for the redirection rule
 
     # Builds a new redirection rule and adds it to the collection of rules
     #
@@ -63,7 +63,7 @@ module Tarquinn
     #
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def config
-      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection)
+      configs[redirection.to_sym] = Tarquinn::RedirectionConfig.new(redirection:, **options)
     end
 
     # Checks if a redirection rule with the same name already exists

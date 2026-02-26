@@ -12,6 +12,9 @@ module Tarquinn
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     #
+    # @see Tarquinn::RequestHandlerBuilder
+    # @see Tarquinn::RedirectionConfig::Options
+    #
     # @example A redirection with block style condition
     #   class ApplicationController < ActionController::Base
     #     include Tarquinn
@@ -43,8 +46,8 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
-    def redirection_rule(redirection, *methods, &)
-      redirector_builder.add_redirection_config(redirection, *methods, &)
+    def redirection_rule(redirection, *methods, **options, &block)
+      redirector_builder.add_redirection_config(redirection, *methods, **options, &block)
     end
 
     # Attaches a condition to skip a redirection based on route (controller action)
