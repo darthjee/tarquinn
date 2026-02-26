@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Tarquinn
+  # @!parse class RedirectionConfigBuilder < Sinclair::Model; end
   # @api private
   # Redirections rules builder
   #

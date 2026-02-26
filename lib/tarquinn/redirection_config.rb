@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 module Tarquinn
-  # @!class RedirectionConfig < Sinclair::Model
-  # end
-  
+  # @!parse class RedirectionConfig < Sinclair::Model; end
   # @api private
   #
   # Redirection configuration
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig < Sinclair::Model.for(:redirection, writter: false)
+
     autoload :Options, 'tarquinn/redirection_config/options'
 
     # @method redirection
