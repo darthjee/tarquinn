@@ -22,4 +22,24 @@ RSpec.describe Tarquinn::RedirectionConfig::Options do
       end
     end
   end
+
+  describe '#domain?' do
+    subject(:options) { described_class.new(domain: domain_value) }
+
+    context 'when domain is not set' do
+      let(:domain_value) { nil }
+
+      it 'returns false' do
+        expect(options.domain?).to be false
+      end
+    end
+
+    context 'when domain is set' do
+      let(:domain_value) { 'example.com' }
+
+      it 'returns true' do
+        expect(options.domain?).to be true
+      end
+    end
+  end
 end
