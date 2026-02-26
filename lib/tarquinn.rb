@@ -70,7 +70,7 @@ module Tarquinn
   # one {RequestHandler} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)
-  
+
   included do
     before_action :perform_redirection
   end
@@ -79,6 +79,8 @@ module Tarquinn
 
   # @api private
   # @private
+  #
+  # Returns the redirection engine for the controller
   #
   # @return [Tarquinn::RequestHandler] an engine for the controller
   def redirector_engine
