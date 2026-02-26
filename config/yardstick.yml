@@ -18,13 +18,24 @@ rules:
     exclude: []
   ReturnTag:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn::RedirectionHandler#initialize
+      - Tarquinn::RequestHandler#initialize
+      - Tarquinn::RedirectionConfigBuilder#initialize
+      - Tarquinn::Condition::ProcRunner#initialize
+      - Tarquinn::Condition::MethodCaller#initialize
+      - Tarquinn::Condition::ActionChecker#initialize
+      - Tarquinn::Exception::RedirectionAlreadyDefined#initialize
   Summary::Presence:
     enabled: true
     exclude:
       - Tarquinn::RedirectionHandler#initialize
       - Tarquinn::RequestHandler#initialize
       - Tarquinn::RedirectionConfigBuilder#initialize
+      - Tarquinn::Condition::ProcRunner#initialize
+      - Tarquinn::Condition::MethodCaller#initialize
+      - Tarquinn::Condition::ActionChecker#initialize
+      - Tarquinn::Exception::RedirectionAlreadyDefined#initialize
   Summary::Length:
     enabled: true
     exclude: []
