@@ -11,7 +11,15 @@ module Tarquinn
       with_options :domain
 
       def redirection_options
-        { allow_other_host: nil }.compact
+        {
+          allow_other_host: allow_other_host?
+        }.compact
+      end
+
+      private
+
+      def allow_other_host?
+        domain.present? ? true : nil
       end
     end
   end
