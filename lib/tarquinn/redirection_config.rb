@@ -7,6 +7,8 @@ module Tarquinn
   #
   # @see Tarquinn::RequestHandler
   class RedirectionConfig
+    autoload :Options, 'tarquinn/options'
+
     # @api private
     #
     # Redirection name and method that returns the path to redirect to
