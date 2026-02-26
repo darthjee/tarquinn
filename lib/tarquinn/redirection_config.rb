@@ -74,7 +74,7 @@ module Tarquinn
 
     private
 
-    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition
+    delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition, private: true
 
     # @api private
     # @private
