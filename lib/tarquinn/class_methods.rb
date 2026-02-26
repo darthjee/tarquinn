@@ -107,8 +107,8 @@ module Tarquinn
       redirector_builder.add_skip_config(redirection, *methods, &block)
     end
 
-    # Returns the RequestHandlerBuilder
     # @api private
+    # Returns the RequestHandlerBuilder
     #
     # RequestHandlerBuilder will carry all the configurations and will create
     # one {RequestHandler} for each request
