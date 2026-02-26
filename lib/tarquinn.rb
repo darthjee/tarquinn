@@ -70,6 +70,7 @@ module Tarquinn
   # one {RequestHandler} for each request
   #
   # @return (see Tarquinn::ClassMethods#redirector_builder)
+  
   included do
     before_action :perform_redirection
   end

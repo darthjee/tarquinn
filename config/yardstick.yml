@@ -15,10 +15,18 @@ rules:
     exclude: []
   ExampleTag:
     enabled: true
-    exclude: []
+    exclude:
+      - Tarquinn.redirection_rule
+      - Tarquinn.skip_redirection
+      - Tarquinn.skip_redirection_rule
   ReturnTag:
     enabled: true
     exclude:
+      - Tarquinn.redirection_rule
+      - Tarquinn.skip_redirection
+      - Tarquinn.skip_redirection_rule
+      - Tarquinn.redirector_builder
+      - Tarquinn.perform_redirect
       - Tarquinn::RedirectionHandler#initialize
       - Tarquinn::RequestHandler#initialize
       - Tarquinn::RedirectionConfigBuilder#initialize
