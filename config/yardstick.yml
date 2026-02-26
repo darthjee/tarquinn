@@ -26,7 +26,7 @@ rules:
       - Tarquinn.skip_redirection
       - Tarquinn.skip_redirection_rule
       - Tarquinn.redirector_builder
-      - Tarquinn.perform_redirect
+      - Tarquinn#perform_redirection
       - Tarquinn::RedirectionHandler#initialize
       - Tarquinn::RequestHandler#initialize
       - Tarquinn::RedirectionConfigBuilder#initialize
