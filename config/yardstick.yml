@@ -24,6 +24,7 @@ rules:
     exclude:
       - Tarquinn::RedirectionHandler#initialize
       - Tarquinn::RequestHandler#initialize
+      - Tarquinn::RedirectionConfigBuilder#initialize
   Summary::Length:
     enabled: true
     exclude: []
