@@ -25,6 +25,12 @@ module Tarquinn
       # @see RedirectionHandler#redirect
       # @see #redirection_options
 
+      # @method initialize(domain: nil)
+      # @api private
+      # Initializes a new Options object
+      # @param domain [String, nil] the domain for cross-domain redirection
+      # @return [Tarquinn::RedirectionConfig::Options]
+
       # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
       # @return [Hash] the options for the redirection
       def redirection_options
