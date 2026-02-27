@@ -51,7 +51,7 @@ module Tarquinn
       # Returns the value of the allow_other_host option
       # @return [TrueClass, nil] the value of the allow_other_host option
       def allow_other_host
-        domain? ? true : nil
+        domain? || nil
       end
     end
   end
