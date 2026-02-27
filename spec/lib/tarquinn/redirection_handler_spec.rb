@@ -130,7 +130,7 @@ describe Tarquinn::RedirectionHandler do
         end
       end
 
-      context "when configured with a domain" do
+      context 'when configured with a domain' do
         let(:config) do
           Tarquinn::RedirectionConfig.new(
             redirection: :redirection_path,
