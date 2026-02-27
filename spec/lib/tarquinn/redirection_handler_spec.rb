@@ -123,6 +123,20 @@ describe Tarquinn::RedirectionHandler do
           subject.redirect
         end
       end
+
+      context "when configured with a domain" do
+        let(:config) do
+          Tarquinn::RedirectionConfig.new(
+            redirection: :redirection_path,
+            domain: 'example.com'
+          )
+        end
+
+        it 'calls for redirection using full path' do
+          expect(controller).to receive(:redirect_to).with('example.com/path', allow_other_host: true)
+          subject.redirect
+        end
+      end
     end
   end
 end
