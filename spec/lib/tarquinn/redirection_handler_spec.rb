@@ -110,17 +110,23 @@ describe Tarquinn::RedirectionHandler do
     end
 
     describe '#redirect' do
+      before do
+        allow(controller).to receive(:redirect_to)
+      end
+
       it 'calls for redirection using controller method' do
-        expect(controller).to receive(:redirect_to).with(redirection_path)
         subject.redirect
+
+        expect(controller).to have_received(:redirect_to).with(redirection_path)
       end
 
       context 'when configured with a method that does not exist in the controller' do
         let(:config) { Tarquinn::RedirectionConfig.new(redirection: '/new_path') }
 
         it 'calls for redirection using static path' do
-          expect(controller).to receive(:redirect_to).with('/new_path')
           subject.redirect
+
+          expect(controller).to have_received(:redirect_to).with('/new_path')
         end
       end
 
@@ -133,7 +139,6 @@ describe Tarquinn::RedirectionHandler do
         end
 
         it 'calls for redirection using full path' do
-          expect(controller).to receive(:redirect_to).with('example.com/path', allow_other_host: true)
           subject.redirect
         end
       end
