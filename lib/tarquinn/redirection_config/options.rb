@@ -2,6 +2,7 @@
 
 module Tarquinn
   class RedirectionConfig
+    # @api private
     # Options for the RedirectionConfig class.
     #
     # These will be implemented in the future
@@ -10,19 +11,40 @@ module Tarquinn
     class Options < Sinclair::Options
       with_options :domain
 
+      # @method domain
+      # @api private
+      # The domain when a redirection is cross-domain
+      #
+      # if not set, the redirection be for the same host
+      # and not allowed for external hosts.
+      #
+      # if set, the redirection will be allowed for external
+      # hosts and the domain will be used for validation
+      #
+      # @return [String, nil] the domain for cross-domain redirection
+      # @see RedirectionHandler#redirect
+      # @see #redirection_options
+
+      # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
+      # @return [Hash] the options for the redirection
       def redirection_options
         {
-          allow_other_host: allow_other_host?
+          allow_other_host:
         }.compact
       end
 
+      # Checks if the domain option is set
+      # @return [TrueClass] when the domain option is set
+      # @return [FalseClass] when the domain option is not set
       def domain?
         domain.present?
       end
 
       private
 
-      def allow_other_host?
+      # Returns the value of the allow_other_host option
+      # @return [TrueClass, nil] the value of the allow_other_host option
+      def allow_other_host
         domain? ? true : nil
       end
     end
