@@ -73,8 +73,8 @@ module Tarquinn
     # @method redirection_blocks
     # @api private
     # @private
-    # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
-    # @return (see Tarquinn::RedirectionConfig::Options#redirection_options)
+    # Options to be passed for the controller on redirect_to
+    # @return [Array<Tarquinn::Condition>] all blocks that indicate a redirection
     # @see Tarquinn::RedirectionConfig::Options#redirection_options
 
     # @method domain
@@ -87,14 +87,15 @@ module Tarquinn
     # and not allowed for external hosts.
     # if set, the redirection will be allowed for external
     # hosts and the domain will be used for validation
-    # @return (see Tarquinn::RedirectionConfig::Options#domain)
+    # @return [String, nil] the domain for cross-domain redirection
     # @see Tarquinn::RedirectionConfig::Options#domain
 
     # @method domain?
     # @api private
     # @private
     # Checks if the domain option is set
-    # @return (see Tarquinn::RedirectionConfig::Options#domain?)
+    # @return [TrueClass] when the domain option is set
+    # @return [FalseClass] when the domain option is not set
     # @see Tarquinn::RedirectionConfig::Options#domain?
 
     # @method skip_blocks
