@@ -114,6 +114,11 @@ module Tarquinn
       config.redirection
     end
 
+    # @api private
+    # @private
+    #
+    # Returns the full redirection path, including the domain if set
+    # @return [String] the full redirection path
     def redirect_full_path
       domain? ? "#{domain}#{redirect_path}" : redirect_path
     end
