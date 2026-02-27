@@ -9,13 +9,13 @@ Tarquinn
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/tarquinn/0.3.0](https://www.rubydoc.info/gems/tarquinn/0.3.0)
+[https://www.rubydoc.info/gems/tarquinn/0.4.0](https://www.rubydoc.info/gems/tarquinn/0.4.0)
 
 This gem makes easier to controll generic redirection
 
-Current Release: [0.3.0](https://github.com/darthjee/tarquinn/tree/0.3.0)
+Current Release: [0.4.0](https://github.com/darthjee/tarquinn/tree/0.4.0)
 
-Next Version [0.4.0](https://github.com/darthjee/tarquinn/compare/0.3.0...main)
+Next Version [0.4.1](https://github.com/darthjee/tarquinn/compare/0.4.0...main)
 
 Getting started
 ---------------
