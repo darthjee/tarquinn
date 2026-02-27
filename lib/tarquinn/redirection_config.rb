@@ -78,8 +78,40 @@ module Tarquinn
 
     delegate :redirection_options, :domain, :domain?, to: :options
 
+    # @method redirection_options
+    # @api private
+    # @private
+    #
+    # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
+    # @return (see Tarquinn::RedirectionConfig::Options#redirection_options)
+    # @see Tarquinn::RedirectionConfig::Options#redirection_options
+
+    # @method domain
+    # @api private
+    # @private
+    #
+    # The domain when a redirection is cross-domain
+    #
+    # if not set, the redirection be for the same host
+    # and not allowed for external hosts.
+    # if set, the redirection will be allowed for external
+    # hosts and the domain will be used for validation
+    # @return (see Tarquinn::RedirectionConfig::Options#domain)
+    # @see Tarquinn::RedirectionConfig::Options#domain
+
+    # @method domain?
+    # @api private
+    # @private
+    # Checks if the domain option is set
+    # @return (see Tarquinn::RedirectionConfig::Options#domain?)
+    # @see Tarquinn::RedirectionConfig::Options#domain?
+
     private
 
+    # @api private
+    # @private
+    # Options for the redirection configuration
+    # @return [Tarquinn::RedirectionConfig::Options]
     attr_reader :options
 
     delegate :method_caller, :action_checker, :proc_runner, to: Tarquinn::Condition, private: true
