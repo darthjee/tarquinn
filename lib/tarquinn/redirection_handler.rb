@@ -100,7 +100,7 @@ module Tarquinn
     # @method skip_blocks
     # @api private
     # @private
-    # All blocks that indicate a redirection should be skipped  
+    # All blocks that indicate a redirection should be skipped
     # @return (see Tarquinn::RedirectionConfig#skip_blocks)
     # @see Tarquinn::RedirectionConfig#skip_blocks
 
