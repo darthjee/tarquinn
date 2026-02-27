@@ -10,6 +10,7 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
+    # @option (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     #
     # @see Tarquinn::RequestHandlerBuilder
