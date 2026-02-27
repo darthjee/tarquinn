@@ -109,6 +109,28 @@ skip_redirection_rule :redirect_home { params[:admin_key] == '9999' }
 
 The `redirect_home` rule does not fire when the correct admin key is provided.
 
+### Passing Options to Redirection Rules
+
+You can pass options to `redirection_rule` to control advanced behavior. Currently, the main supported option is `domain`, which enables cross-domain redirection.
+
+| Option   | Description                                                                                 |
+|----------|---------------------------------------------------------------------------------------------|
+| `domain` | String. If set, allows redirection to the specified domain (cross-domain). If not set, only same-host redirection is allowed. |
+
+#### Example — domain-based rule
+
+```ruby
+redirection_rule :redirect_external, domain: 'example.com' do
+  params[:should_redirect]
+end
+
+def redirect_external
+  '/external_path'
+end
+```
+
+This will only allow redirection to `https://example.com/external_path` because the domain option is set to `'example.com'`.
+
 ## Language
 
 All code, comments, documentation, commit messages, and PR descriptions must be written in **English**.
