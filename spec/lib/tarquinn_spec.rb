@@ -99,6 +99,32 @@ describe Tarquinn, type: :controller do
         expect(response).to redirect_to('/path')
       end
     end
+
+    context 'when passing domain option' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, domain: 'example.com' do
+          params[:should_redirect]
+        end
+      end
+
+      before { get :index, params: parameters }
+
+      context 'when request indicates a redirection' do
+        let(:parameters) { { should_redirect: true } }
+
+        it 'performs a redirect' do
+          expect(response).to redirect_to('example.com/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { {} }
+
+        it 'does not performs a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
+      end
+    end
   end
 
   describe '.skip_redirection' do

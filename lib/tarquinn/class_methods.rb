@@ -10,6 +10,7 @@ module Tarquinn
     # The rule name defines which method will be called when checking the path of redirection
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
+    # @option (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     #
     # @see Tarquinn::RequestHandlerBuilder
@@ -43,6 +44,18 @@ module Tarquinn
     #     end
     #
     #     def redirect_old_path
+    #       '/new_path'
+    #     end
+    #   end
+    #
+    # @example A redirection with domain options
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #     redirection_rule :redirect_external_path, domain: 'example.com' do |redirection|
+    #       redirection.path == '/new_path'
+    #     end
+    #     private
+    #     def redirect_external_path
     #       '/new_path'
     #     end
     #   end

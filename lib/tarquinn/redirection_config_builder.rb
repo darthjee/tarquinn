@@ -35,12 +35,14 @@ module Tarquinn
 
     # Builds a new redirection rule and adds it to the collection of rules
     #
-    # @overload self.build(configs:, redirection:, &block)
+    # @overload self.build(configs:, redirection:, options:, &block)
     # @param (see Tarquinn::RedirectionConfigBuilder#initialize)
     # @param block [Proc] block that will be used to add conditions to the redirection rule
     #
     # @yield [Tarquinn::RedirectionConfig] the newly built configuration
     #
+    # @see RequestHandlerBuilder#add_redirection_config
+    # @see RedirectionConfig::Options
     # @return [Tarquinn::RedirectionConfig] the newly built configuration
     def self.build(**attributes, &block)
       new(**attributes).build(&block)

@@ -16,6 +16,7 @@ module Tarquinn
     # @param redirection [Symbol] Rule name and method with redirection path
     # @param options [Hash] additional options for the redirection rule
     #   (using {RedirectionConfig::Options})
+    # @option options [String] :domain to redirect to, if not set it will redirect to the same host
     # @param (see Tarquinn::RedirectionConfig#add_redirection_rules)
     #
     # @see Tarquinn::RedirectionConfig::Options

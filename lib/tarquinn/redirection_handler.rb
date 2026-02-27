@@ -30,8 +30,17 @@ module Tarquinn
     #
     # @return [String] redirection body
     def redirect
-      controller.call(:redirect_to, redirect_path)
+      controller.call(:redirect_to, redirect_full_path, **redirection_options)
     end
+
+    delegate :redirection_options, to: :config
+
+    # @method redirection_options
+    # @api private
+    # @private
+    # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
+    # @return (see Tarquinn::RedirectionConfig::Options#redirection_options)
+    # @see Tarquinn::RedirectionConfig::Options#redirection_options
 
     private
 
@@ -59,7 +68,42 @@ module Tarquinn
     # @return [Boolean]
     attr_reader :perform_redirect
 
-    delegate :redirection_blocks, :skip_blocks, to: :config
+    delegate :redirection_blocks, :domain, :domain?, :skip_blocks, to: :config
+
+    # @method redirection_blocks
+    # @api private
+    # @private
+    # Options to be passed for the controller on redirect_to
+    # @return [Array<Tarquinn::Condition>] all blocks that indicate a redirection
+    # @see Tarquinn::RedirectionConfig::Options#redirection_options
+
+    # @method domain
+    # @api private
+    # @private
+    #
+    # The domain when a redirection is cross-domain
+    #
+    # if not set, the redirection be for the same host
+    # and not allowed for external hosts.
+    # if set, the redirection will be allowed for external
+    # hosts and the domain will be used for validation
+    # @return [String, nil] the domain for cross-domain redirection
+    # @see Tarquinn::RedirectionConfig::Options#domain
+
+    # @method domain?
+    # @api private
+    # @private
+    # Checks if the domain option is set
+    # @return [TrueClass] when the domain option is set
+    # @return [FalseClass] when the domain option is not set
+    # @see Tarquinn::RedirectionConfig::Options#domain?
+
+    # @method skip_blocks
+    # @api private
+    # @private
+    # All blocks that indicate a redirection should be skipped
+    # @return (see Tarquinn::RedirectionConfig#skip_blocks)
+    # @see Tarquinn::RedirectionConfig#skip_blocks
 
     # @api private
     # @private
@@ -69,6 +113,15 @@ module Tarquinn
     # @return [Symbol] method name
     def redirect_method
       config.redirection
+    end
+
+    # @api private
+    # @private
+    #
+    # Returns the full redirection path, including the domain if set
+    # @return [String] the full redirection path
+    def redirect_full_path
+      domain? ? "#{domain}#{redirect_path}" : redirect_path
     end
 
     # @api private
