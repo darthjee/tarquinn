@@ -47,6 +47,18 @@ module Tarquinn
     #       '/new_path'
     #     end
     #   end
+    #
+    # @example A redirection with domain options
+    #   class ApplicationController < ActionController::Base
+    #     include Tarquinn
+    #     redirection_rule :redirect_external_path, domain: 'example.com' do |redirection|
+    #       redirection.path == '/new_path'
+    #     end
+    #     private
+    #     def redirect_external_path
+    #       '/new_path'
+    #     end
+    #   end
     def redirection_rule(redirection, *methods, **options, &block)
       redirector_builder.add_redirection_config(redirection, *methods, **options, &block)
     end
