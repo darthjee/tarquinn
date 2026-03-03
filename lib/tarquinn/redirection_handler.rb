@@ -67,6 +67,13 @@ module Tarquinn
     attr_reader :perform_redirect
 
     delegate :redirection_blocks, :skip_blocks, to: :config
+    delegate :domain, to: :config, prefix: true
+
+    # @method config_domain
+    # @api private
+    # @private
+    # The configured domain for cross-domain redirection
+    # @return [String, Symbol, nil] the configured domain for cross-domain redirection
 
     # @method redirection_blocks
     # @api private
@@ -94,10 +101,9 @@ module Tarquinn
     #
     # @return [String, nil] the resolved domain
     def domain
-      raw = config.domain
-      return controller.call(raw) if raw.is_a?(Symbol) && controller.method?(raw)
+      return controller.call(config_domain) if config_domain.is_a?(Symbol) && controller.method?(config_domain)
 
-      raw
+      config_domain.to_s.presence
     end
 
     # @api private
