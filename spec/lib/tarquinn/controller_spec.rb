@@ -113,7 +113,7 @@ describe Tarquinn::Controller do
   describe '#resolve_callable' do
     context 'when value is a symbol and method exists' do
       it 'returns method call result' do
-        expect(subject.resolve_callable(:parse_request)).to eq('show')
+        expect(subject.resolve_callable(:redirection_path)).to eq('/path')
       end
     end
 
@@ -125,7 +125,7 @@ describe Tarquinn::Controller do
 
     context 'when value is not a symbol' do
       it 'returns the original value' do
-        expect(subject.resolve_callable('some-path')).to eq('some-path')
+        expect(subject.resolve_callable('redirection_path')).to eq('redirection_path')
       end
     end
   end
