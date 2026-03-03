@@ -138,8 +138,43 @@ describe Tarquinn::RedirectionHandler do
           )
         end
 
-        it 'calls for redirection using full path' do
+        it 'calls for redirection using full path with allow_other_host' do
           subject.redirect
+
+          expect(controller).to have_received(:redirect_to)
+            .with('example.com/path', allow_other_host: true)
+        end
+      end
+
+      context 'when configured with a symbol domain that the controller responds to' do
+        let(:config) do
+          Tarquinn::RedirectionConfig.new(
+            redirection: :redirection_path,
+            domain: :dynamic_domain
+          )
+        end
+
+        it 'resolves the domain by calling the controller method' do
+          subject.redirect
+
+          expect(controller).to have_received(:redirect_to)
+            .with('dynamic.example.com/path', allow_other_host: true)
+        end
+      end
+
+      context 'when configured with a symbol domain that the controller does not respond to' do
+        let(:config) do
+          Tarquinn::RedirectionConfig.new(
+            redirection: :redirection_path,
+            domain: :unknown_domain_method
+          )
+        end
+
+        it 'treats the symbol as a static domain string' do
+          subject.redirect
+
+          expect(controller).to have_received(:redirect_to)
+            .with('unknown_domain_method/path', allow_other_host: true)
         end
       end
     end
