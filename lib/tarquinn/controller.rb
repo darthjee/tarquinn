@@ -52,6 +52,20 @@ module Tarquinn
       controller.respond_to?(method, true)
     end
 
+    # Resolves a value that may reference a controller method
+    #
+    # If the value is a Symbol and the controller responds to it, calls the
+    # method and returns its result. Otherwise, returns the original value.
+    #
+    # @param value [Object] raw value or Symbol method name
+    #
+    # @return [Object] resolved method return or original value
+    def resolve_callable(value)
+      return value unless value.is_a?(Symbol) && method?(value)
+
+      call(value)
+    end
+
     private
 
     # @api private

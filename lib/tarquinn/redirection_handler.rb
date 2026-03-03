@@ -101,9 +101,7 @@ module Tarquinn
     #
     # @return [String, nil] the resolved domain
     def domain
-      return controller.call(config_domain) if config_domain.is_a?(Symbol) && controller.method?(config_domain)
-
-      config_domain.to_s.presence
+      controller.resolve_callable(config_domain).to_s.presence
     end
 
     # @api private
@@ -156,9 +154,7 @@ module Tarquinn
     #
     # @return [String]
     def redirect_path
-      return redirect_method unless controller.method?(redirect_method)
-
-      controller.call redirect_method
+      controller.resolve_callable(redirect_method)
     end
 
     # @api private
