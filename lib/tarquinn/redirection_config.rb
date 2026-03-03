@@ -76,16 +76,7 @@ module Tarquinn
       @skip_blocks ||= []
     end
 
-    delegate :redirection_options, :domain, :domain?, to: :options
-
-    # @method redirection_options
-    # @api private
-    # @private
-    #
-    # Options to be passed for the controller on redirect_to
-    #
-    # @return [Hash] the options for the redirection
-    # @see Tarquinn::RedirectionConfig::Options#redirection_options
+    delegate :domain, to: :options
 
     # @method domain
     # @api private
@@ -96,17 +87,10 @@ module Tarquinn
     # if not set, the redirection be for the same host
     # and not allowed for external hosts.
     # if set, the redirection will be allowed for external
-    # hosts and the domain will be used for validation
-    # @return [String, nil] the domain for cross-domain redirection
+    # hosts and the domain will be used for validation.
+    # A Symbol value is resolved at runtime via the controller method.
+    # @return [String, Symbol, nil] the domain for cross-domain redirection
     # @see Tarquinn::RedirectionConfig::Options#domain
-
-    # @method domain?
-    # @api private
-    # @private
-    # Checks if the domain option is set
-    # @return [TrueClass] when the domain option is set
-    # @return [FalseClass] when the domain option is not set
-    # @see Tarquinn::RedirectionConfig::Options#domain?
 
     private
 

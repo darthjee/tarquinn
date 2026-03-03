@@ -19,40 +19,19 @@ module Tarquinn
       # and not allowed for external hosts.
       #
       # if set, the redirection will be allowed for external
-      # hosts and the domain will be used for validation
+      # hosts and the domain will be used for validation.
+      # A Symbol value is resolved at runtime via the controller method.
       #
-      # @return [String, nil] the domain for cross-domain redirection
+      # @return [String, Symbol, nil] the domain for cross-domain redirection
       # @see RedirectionHandler#redirect
-      # @see #redirection_options
 
       # @method initialize(domain: nil)
       # @api private
       # Initializes a new Options object
-      # @param domain [String, nil] the domain for cross-domain redirection
+      # @param domain [String, Symbol, nil] the domain for cross-domain redirection.
+      #   A String is used as-is; a Symbol is resolved by calling the matching
+      #   method on the controller at runtime (via {Tarquinn::RedirectionHandler}).
       # @return [Tarquinn::RedirectionConfig::Options]
-
-      # Options to be passed for the controller on redirect_to
-      # @return [Hash] the options for the redirection
-      def redirection_options
-        {
-          allow_other_host:
-        }.compact
-      end
-
-      # Checks if the domain option is set
-      # @return [TrueClass] when the domain option is set
-      # @return [FalseClass] when the domain option is not set
-      def domain?
-        domain.present?
-      end
-
-      private
-
-      # Returns the value of the allow_other_host option
-      # @return [TrueClass, nil] the value of the allow_other_host option
-      def allow_other_host
-        domain? || nil
-      end
     end
   end
 end

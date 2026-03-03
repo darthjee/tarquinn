@@ -10,3 +10,4 @@ doc
 .yardoc
 measurement
 rubycritic
+.bundle/
