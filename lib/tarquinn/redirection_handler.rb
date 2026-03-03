@@ -84,7 +84,7 @@ module Tarquinn
     # @api private
     # @private
     #
-    # Resolves the domain for cross-domain redirection.
+    # Resolves the domain for cross-domain redirection
     #
     # When the configured domain is a Symbol and the controller responds to
     # that method, the method is called and its return value is used.
