@@ -10,7 +10,7 @@ Tarquinn
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/tarquinn/0.4.0](https://www.rubydoc.info/gems/tarquinn/0.5.0)
+[https://www.rubydoc.info/gems/tarquinn/0.5.0](https://www.rubydoc.info/gems/tarquinn/0.5.0)
 
 This gem makes easier to controll generic redirection
 
