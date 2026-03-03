@@ -33,14 +33,12 @@ module Tarquinn
       controller.call(:redirect_to, redirect_full_path, **redirection_options)
     end
 
-    delegate :redirection_options, to: :config
-
-    # @method redirection_options
-    # @api private
-    # @private
-    # Options to be passed for the controller on {Tarquinn::Controller#call}(:redirect_to)
-    # @return (see Tarquinn::RedirectionConfig::Options#redirection_options)
-    # @see Tarquinn::RedirectionConfig::Options#redirection_options
+    # Options to be passed for the controller on redirect_to
+    #
+    # @return [Hash] the options for the redirection
+    def redirection_options
+      { allow_other_host: }.compact
+    end
 
     private
 
@@ -68,35 +66,20 @@ module Tarquinn
     # @return [Boolean]
     attr_reader :perform_redirect
 
-    delegate :redirection_blocks, :domain, :domain?, :skip_blocks, to: :config
+    delegate :redirection_blocks, :skip_blocks, to: :config
+    delegate :domain, to: :config, prefix: true
+
+    # @method config_domain
+    # @api private
+    # @private
+    # The configured domain for cross-domain redirection
+    # @return [String, Symbol, nil] the configured domain for cross-domain redirection
 
     # @method redirection_blocks
     # @api private
     # @private
-    # Options to be passed for the controller on redirect_to
+    # All blocks that indicate a redirection
     # @return [Array<Tarquinn::Condition>] all blocks that indicate a redirection
-    # @see Tarquinn::RedirectionConfig::Options#redirection_options
-
-    # @method domain
-    # @api private
-    # @private
-    #
-    # The domain when a redirection is cross-domain
-    #
-    # if not set, the redirection be for the same host
-    # and not allowed for external hosts.
-    # if set, the redirection will be allowed for external
-    # hosts and the domain will be used for validation
-    # @return [String, nil] the domain for cross-domain redirection
-    # @see Tarquinn::RedirectionConfig::Options#domain
-
-    # @method domain?
-    # @api private
-    # @private
-    # Checks if the domain option is set
-    # @return [TrueClass] when the domain option is set
-    # @return [FalseClass] when the domain option is not set
-    # @see Tarquinn::RedirectionConfig::Options#domain?
 
     # @method skip_blocks
     # @api private
@@ -104,6 +87,43 @@ module Tarquinn
     # All blocks that indicate a redirection should be skipped
     # @return (see Tarquinn::RedirectionConfig#skip_blocks)
     # @see Tarquinn::RedirectionConfig#skip_blocks
+
+    # @api private
+    # @private
+    #
+    # Resolves the domain for cross-domain redirection
+    #
+    # When the configured domain is a Symbol and the controller responds to
+    # that method, the method is called and its return value is used.
+    # Otherwise, the configured value is returned as-is (a String is used
+    # directly; a Symbol that the controller does not respond to is converted
+    # to a String via `#to_s`).
+    #
+    # @return [String, nil] the resolved domain
+    def domain
+      controller.resolve_callable(config_domain).to_s.presence
+    end
+
+    # @api private
+    # @private
+    #
+    # Checks if the resolved domain is set
+    #
+    # @return [TrueClass] when the domain is set
+    # @return [FalseClass] when the domain is not set
+    def domain?
+      domain.present?
+    end
+
+    # @api private
+    # @private
+    #
+    # Returns the value of the allow_other_host option
+    #
+    # @return [TrueClass, nil] the value of the allow_other_host option
+    def allow_other_host
+      domain? || nil
+    end
 
     # @api private
     # @private
@@ -134,9 +154,7 @@ module Tarquinn
     #
     # @return [String]
     def redirect_path
-      return redirect_method unless controller.method?(redirect_method)
-
-      controller.call redirect_method
+      controller.resolve_callable(redirect_method)
     end
 
     # @api private

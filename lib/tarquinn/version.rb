@@ -4,5 +4,5 @@ module Tarquinn
   # @api public
   #
   # Current version of the Tarquinn gem
-  VERSION = '0.4.0'
+  VERSION = '0.5.0'
 end

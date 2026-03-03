@@ -3,42 +3,28 @@
 require 'spec_helper'
 
 RSpec.describe Tarquinn::RedirectionConfig::Options do
-  describe '#redirection_options' do
-    subject(:redirection_options) { options.redirection_options }
-
+  describe '#domain' do
     context 'when domain is not set' do
       subject(:options) { described_class.new }
 
-      it 'returns an empty hash' do
-        expect(redirection_options).to eq({})
+      it 'returns nil' do
+        expect(options.domain).to be_nil
       end
     end
 
-    context 'when domain is set' do
+    context 'when domain is set to a string' do
       subject(:options) { described_class.new(domain: 'example.com') }
 
-      it 'returns allow_other_host: true' do
-        expect(redirection_options).to eq({ allow_other_host: true })
-      end
-    end
-  end
-
-  describe '#domain?' do
-    subject(:options) { described_class.new(domain: domain_value) }
-
-    context 'when domain is not set' do
-      let(:domain_value) { nil }
-
-      it 'returns false' do
-        expect(options.domain?).to be false
+      it 'returns the configured string' do
+        expect(options.domain).to eq('example.com')
       end
     end
 
-    context 'when domain is set' do
-      let(:domain_value) { 'example.com' }
+    context 'when domain is set to a symbol' do
+      subject(:options) { described_class.new(domain: :some_domain_method) }
 
-      it 'returns true' do
-        expect(options.domain?).to be true
+      it 'returns the configured symbol' do
+        expect(options.domain).to eq(:some_domain_method)
       end
     end
   end

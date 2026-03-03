@@ -125,6 +125,36 @@ describe Tarquinn, type: :controller do
         end
       end
     end
+
+    context 'when passing domain option as a symbol' do
+      controller(Tarquinn::DummyRouteController) do
+        redirection_rule :redirection, domain: :dynamic_domain do
+          params[:should_redirect]
+        end
+
+        def dynamic_domain
+          'dynamic.example.com'
+        end
+      end
+
+      before { get :index, params: parameters }
+
+      context 'when request indicates a redirection' do
+        let(:parameters) { { should_redirect: true } }
+
+        it 'performs a redirect using the value returned by the domain method' do
+          expect(response).to redirect_to('dynamic.example.com/path')
+        end
+      end
+
+      context 'when request does not indicate a redirection' do
+        let(:parameters) { {} }
+
+        it 'does not perform a redirect' do
+          expect(response).not_to redirect_to('/path')
+        end
+      end
+    end
   end
 
   describe '.skip_redirection' do

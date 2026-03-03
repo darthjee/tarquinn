@@ -10,13 +10,13 @@ Tarquinn
 
 Yard Documentation
 -------------------
-[https://www.rubydoc.info/gems/tarquinn/0.4.0](https://www.rubydoc.info/gems/tarquinn/0.4.0)
+[https://www.rubydoc.info/gems/tarquinn/0.4.0](https://www.rubydoc.info/gems/tarquinn/0.5.0)
 
 This gem makes easier to controll generic redirection
 
-Current Release: [0.4.0](https://github.com/darthjee/tarquinn/tree/0.4.0)
+Current Release: [0.5.0](https://github.com/darthjee/tarquinn/tree/0.5.0)
 
-Next Version [0.4.1](https://github.com/darthjee/tarquinn/compare/0.4.0...main)
+Next Version [0.5.1](https://github.com/darthjee/tarquinn/compare/0.45.0...main)
 
 Getting started
 ---------------
@@ -144,7 +144,9 @@ bundle exec rake verify_measurements
 
 You can specify a `domain` option in your `redirection_rule` to allow cross-domain redirection. When set, the redirection will be allowed to external hosts and the specified domain will be used for validation.
 
-**Example:**
+The `domain:` option accepts either a **String** (static domain) or a **Symbol** (dynamic domain resolved at runtime by calling the named method on the controller).
+
+**Static domain (String):**
 
 ```ruby
 class ExternalRedirectController < ApplicationController
@@ -162,5 +164,30 @@ class ExternalRedirectController < ApplicationController
 end
 ```
 
+**Dynamic domain (Symbol):**
+
+```ruby
+class ExternalRedirectController < ApplicationController
+  include Tarquinn
+
+  redirection_rule :redirect_external, domain: :current_domain do
+    params[:should_redirect]
+  end
+
+  private
+
+  def redirect_external
+    '/external_path'
+  end
+
+  def current_domain
+    # resolved at request time
+    request.subdomain == 'admin' ? 'admin.example.com' : 'example.com'
+  end
+end
+```
+
 - If `domain` is not set, redirection is only allowed for the same host.
-- If `domain` is set, redirection to the specified domain is allowed.
+- If `domain` is a String, it is used directly as the domain prefix.
+- If `domain` is a Symbol and the controller responds to that method, the method is called and its return value is used as the domain.
+- If `domain` is a Symbol but the controller does not respond to it, the Symbol's string representation is used as the domain.

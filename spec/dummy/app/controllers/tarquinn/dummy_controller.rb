@@ -39,5 +39,9 @@ module Tarquinn
     def should_skip_redirect?
       false
     end
+
+    def dynamic_domain
+      'dynamic.example.com'
+    end
   end
 end
