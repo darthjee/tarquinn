@@ -16,7 +16,7 @@ This gem makes easier to controll generic redirection
 
 Current Release: [0.5.0](https://github.com/darthjee/tarquinn/tree/0.5.0)
 
-Next Version [0.5.1](https://github.com/darthjee/tarquinn/compare/0.45.0...main)
+Next Version [0.5.1](https://github.com/darthjee/tarquinn/compare/0.5.0...main)
 
 Getting started
 ---------------
