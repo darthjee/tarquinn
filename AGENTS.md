@@ -195,6 +195,7 @@ All project documentation lives under [`docs/agents/`](docs/agents/):
 |------|----------|
 | [Folder Structure](docs/agents/folder-structure.md) | Top-level directory layout and the role of each folder. |
 | [Architecture](docs/agents/architecture.md) | Source layout, modules, code style, and implementation guidelines. |
+| [Contributing](docs/agents/contributing.md) | Commit guidelines, PR standards, code organization, and refactoring rules. |
 | [Flow](docs/agents/flow.md) | Main runtime flow of the application. |
 | [Plans](docs/agents/plans/) | Implementation plans for ongoing or upcoming features. |
 | [Issues](docs/agents/issues/) | Detailed specs for open issues. |
