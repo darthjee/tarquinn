@@ -30,7 +30,7 @@ module Tarquinn
       params[:skip]
     end
 
-    def always_redirect
+    def always_redirect?
       true
     end
   end

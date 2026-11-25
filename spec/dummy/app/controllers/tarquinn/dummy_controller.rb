@@ -18,11 +18,11 @@ module Tarquinn
       ActionController::Parameters.new({ action: 'show' })
     end
 
-    def true
+    def true?
       true
     end
 
-    def false
+    def false?
       false
     end
 

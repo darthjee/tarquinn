@@ -70,7 +70,7 @@ describe Tarquinn::RedirectionHandler do
     context 'when passing a method name for evaluation' do
       context 'when method returns true' do
         before do
-          config.add_redirection_rules :true
+          config.add_redirection_rules :true?
         end
 
         it do
@@ -79,7 +79,7 @@ describe Tarquinn::RedirectionHandler do
 
         context 'but some grant a skip' do
           before do
-            config.add_skip_rules :true
+            config.add_skip_rules :true?
           end
 
           it do
@@ -90,7 +90,7 @@ describe Tarquinn::RedirectionHandler do
 
       context 'when method returns false' do
         before do
-          config.add_redirection_rules :false
+          config.add_redirection_rules :false?
         end
 
         it do
@@ -99,7 +99,7 @@ describe Tarquinn::RedirectionHandler do
 
         context 'but some do not grant a skip' do
           before do
-            config.add_skip_rules :false
+            config.add_skip_rules :false?
           end
 
           it do
