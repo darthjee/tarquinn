@@ -11,7 +11,7 @@ module Tarquinn
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
     # @option (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
-    # @return (see Tarquinn::RequestHandlerBuilder#add_redirection_config)
+    # @return [Tarquinn::RedirectionConfig] the newly built configuration
     #
     # @see Tarquinn::RequestHandlerBuilder
     # @see Tarquinn::RedirectionConfig::Options
@@ -68,7 +68,7 @@ module Tarquinn
     # When any of the skip rules is met the redirection is skipped
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_action)
-    # @return (see Tarquinn::RequestHandlerBuilder#add_skip_action)
+    # @return [Array<Tarquinn::Condition>] current registered skip conditions
     #
     # @example Skip a redirection for a specific group of controller actions
     #   class ApplicationController < ActionController::Base
@@ -85,7 +85,7 @@ module Tarquinn
     # Methods and blocks are ran and if any returns true, the redirect is skipped
     #
     # @param (see Tarquinn::RequestHandlerBuilder#add_skip_config)
-    # @return (see Tarquinn::RequestHandlerBuilder#add_skip_config)
+    # @return [Array] current registered conditions
     #
     # @example A redirection with method style condition
     #   class ApplicationController < ActionController::Base
